@@ -1,9 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 
 
 import photo1 from './assets/images/photo1.jpeg'
+import redcross1 from './assets/images/redcross1.jpeg'
+import bd1 from './assets/images/bd1.jpeg'
+import bd2 from './assets/images/bd2.jpeg'
+import bd3 from './assets/images/bd3.jpeg'
 
 const experiences = [
   {
@@ -132,6 +136,11 @@ const activities = [
       impact:
         'This experience strengthened my ability to communicate complex technical concepts to diverse audiences and provided valuable exposure to cutting-edge research in computational intelligence and its real-world applications.',
       skills: 'Public Speaking, Research Communication, Academic Networking, Technical Presentation',
+      images: [
+        bd1,
+        bd2,
+        bd3,
+      ],
     },
   },
   {
@@ -158,6 +167,11 @@ const activities = [
       impact:
         'This experience developed my technical skills in robotics, programming, and systems integration, while also building strong leadership and teamwork capabilities. Mentoring others reinforced my understanding of complex systems and improved my ability to explain technical concepts clearly.',
       skills: 'Robotics, Embedded Systems, C/C++, Team Leadership, Mentoring, Competition Strategy',
+      images: [
+        'https://placehold.co/600x400/1e293b/ef4444?text=FTC+Robot',
+        'https://placehold.co/600x400/1e293b/ef4444?text=Competition',
+        'https://placehold.co/600x400/1e293b/ef4444?text=Team+Work',
+      ],
     },
   },
   {
@@ -182,19 +196,24 @@ const activities = [
       impact:
         'This competition sharpened my analytical thinking and problem-solving abilities, skills that directly translate to tackling complex challenges in computer science and engineering.',
       skills: 'Mathematical Problem Solving, Analytical Thinking, Competitive Mathematics',
+      images: [
+        'https://placehold.co/600x400/1e293b/93c5fd?text=Math+Olympiad',
+        'https://placehold.co/600x400/1e293b/93c5fd?text=Competition',
+        'https://placehold.co/600x400/1e293b/93c5fd?text=Problem+Solving',
+      ],
     },
   },
   {
     id: 'lego-league',
-    title: 'FIRST Lego League – Mentor',
-    role: 'Team Mentor',
+    title: 'FIRST Lego League',
+    role: 'Team Member & Mentor',
     period: '2018-2020',
     location: 'Deva, Romania',
     description:
       'Guided younger students in robot development using LEGO Mindstorms and EV3, enhancing leadership and communication skills while coordinating team efforts.',
     color: '#6ee7b7',
     year: 2020,
-    type: 'Mentoring',
+    type: 'Robotics / Competition',
     details: {
       overview:
         'Served as a mentor for a FIRST Lego League team, guiding younger students in robotics and programming using LEGO Mindstorms and EV3 platforms. This role focused on teaching fundamental concepts while fostering creativity and problem-solving skills.',
@@ -207,31 +226,73 @@ const activities = [
       impact:
         'Mentoring younger students reinforced my own understanding of fundamental concepts and developed my leadership and communication abilities. This experience taught me the value of patience, clear explanation, and fostering enthusiasm for STEM fields.',
       skills: 'Mentoring, Leadership, Communication, LEGO Mindstorms, EV3 Programming, Team Coordination',
+      images: [
+        'https://placehold.co/600x400/1e293b/6ee7b7?text=LEGO+Robots',
+        'https://placehold.co/600x400/1e293b/6ee7b7?text=Mentoring',
+        'https://placehold.co/600x400/1e293b/6ee7b7?text=Team+Session',
+      ],
     },
   },
   {
-    id: 'volunteering',
-    title: 'Community Volunteering',
-    role: 'Red Cross & LEO Club Member',
+    id: 'red-cross',
+    title: 'Red Cross Volunteer',
+    role: 'Volunteer Member',
+    period: '2020-2022',
+    location: 'Deva, Romania',
+    description:
+      'Contributed to community well-being through various initiatives, developing skills in first aid, counseling, and emergency response.',
+    color: '#ef4444',
+    year: 2022,
+    type: 'Volunteering',
+    details: {
+      overview:
+        'Served as a volunteer with the Red Cross in Deva from 2020 to 2022, contributing to community well-being through various initiatives. This experience provided opportunities to make meaningful contributions while developing essential interpersonal and emergency response skills.',
+      contributions: [
+        'Community Service: Contributed to community well-being through various initiatives, focusing on health, safety, and emergency preparedness',
+        'First Aid Training: Gained comprehensive skills in first aid, emergency response, and medical assistance',
+        'Counseling & Support: Developed skills in counseling and effective communication, helping people in need during difficult situations',
+        'Emergency Response: Participated in emergency response activities, contributing to community safety and preparedness',
+        'Empathy Development: Developed a deeper understanding of people\'s needs and the importance of compassionate service',
+      ],
+      impact:
+        'This experience developed my empathy, communication skills, and ability to work effectively under pressure. Providing first aid and support to people in need taught me the value of service and gave me valuable perspective on the importance of community support.',
+      skills: 'First Aid, Emergency Response, Counseling, Communication, Community Service, Crisis Management',
+      images: [
+        redcross1,
+        'https://placehold.co/600x400/1e293b/ef4444?text=First+Aid',
+        'https://placehold.co/600x400/1e293b/ef4444?text=Community+Service',
+      ],
+    },
+  },
+  {
+    id: 'leo-club',
+    title: 'LEO Club Sarmizegetusa',
+    role: 'Member & Project Leader',
     period: '2018-2022',
     location: 'Deva, Romania',
     description:
-      'Contributed to community well-being through various initiatives, developing skills in first aid, counseling, and community organization.',
+      'Led projects supporting health initiatives, elderly care, and disability aid, organizing educational and community development programs.',
     color: '#a78bfa',
     year: 2022,
     type: 'Volunteering',
     details: {
       overview:
-        'Dedicated four years to community service through the Red Cross (2020-2022) and LEO Club Sarmizegetusa (2018-2022) in Deva. These experiences provided opportunities to make meaningful contributions to community well-being while developing essential interpersonal and organizational skills.',
+        'Active member of LEO Club Sarmizegetusa in Deva from 2018 to 2022, where I led projects supporting health initiatives, elderly care, and disability aid. This experience focused on organizing community development programs and educational initiatives.',
       contributions: [
-        'Red Cross Service (2020-2022): Contributed to community well-being through various initiatives, gained skills in first aid, counseling, and effective communication. Developed empathy and a better understanding of people\'s needs',
-        'LEO Club Leadership (2018-2022): Led projects supporting health initiatives, elderly care, and disability aid. Organized initiatives focused on education, skills development, and healthy living',
-        'Community Organization: Coordinated volunteer efforts, planned events, and managed logistics for community service projects',
-        'Health & Safety: Provided first aid training and support, contributing to community safety and emergency preparedness',
+        'Project Leadership: Led projects supporting health initiatives, elderly care, and disability aid, coordinating volunteer efforts and managing project logistics',
+        'Community Development: Organized initiatives focused on education, skills development, and healthy living within the community',
+        'Event Organization: Planned and executed community events, managing logistics, coordination, and volunteer participation',
+        'Youth Engagement: Facilitated programs that engaged young people in community service and leadership development',
+        'Health & Wellness Programs: Organized initiatives promoting healthy living, education, and community wellness',
       ],
       impact:
-        'Volunteering developed my empathy, communication skills, and ability to work with diverse groups of people. Leading community projects enhanced my organizational and leadership capabilities, while the experience of helping others provided valuable perspective on the importance of giving back to the community.',
-      skills: 'Community Service, Leadership, Event Organization, First Aid, Counseling, Communication, Project Management',
+        'Leading community projects enhanced my organizational and leadership capabilities. This experience taught me the importance of giving back to the community and provided valuable skills in project management, event organization, and working with diverse groups of people.',
+      skills: 'Project Leadership, Event Organization, Community Development, Volunteer Coordination, Youth Engagement, Program Management',
+      images: [
+        'https://placehold.co/600x400/1e293b/a78bfa?text=LEO+Club',
+        'https://placehold.co/600x400/1e293b/a78bfa?text=Community+Event',
+        'https://placehold.co/600x400/1e293b/a78bfa?text=Leadership',
+      ],
     },
   },
   {
@@ -257,6 +318,11 @@ const activities = [
       impact:
         'This course provided a foundation in leadership principles that I\'ve applied throughout my academic and professional journey, particularly in mentoring roles and team collaborations.',
       skills: 'Leadership, Personal Development, Professional Communication, Team Management',
+      images: [
+        'https://placehold.co/600x400/1e293b/f9a8d4?text=Leadership+Course',
+        'https://placehold.co/600x400/1e293b/f9a8d4?text=Development',
+        'https://placehold.co/600x400/1e293b/f9a8d4?text=Learning',
+      ],
     },
   },
 ]
@@ -266,6 +332,11 @@ const techStack = ['React', 'Node.js', 'Python', 'C/C++', 'MATLAB', 'Simulink', 
 function App() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
   const [selectedActivity, setSelectedActivity] = useState<typeof activities[0] | null>(null)
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null)
+  const [lightboxImages, setLightboxImages] = useState<string[]>([])
+  const [lightboxIndex, setLightboxIndex] = useState<number>(0)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
   
   // Project filters
   const [projectCategoryFilter, setProjectCategoryFilter] = useState<string>('All')
@@ -273,14 +344,12 @@ function App() {
   
   // Activity filters
   const [activityTypeFilter, setActivityTypeFilter] = useState<string>('All')
-  const [activityYearFilter, setActivityYearFilter] = useState<string>('All')
   
   // Get unique values for filters
   const projectCategories = ['All', ...Array.from(new Set(projects.map((p) => p.category)))]
   const projectYears = ['All', ...Array.from(new Set(projects.map((p) => p.year.toString()))).sort((a, b) => Number(b) - Number(a))]
   
   const activityTypes = ['All', ...Array.from(new Set(activities.map((a) => a.type)))]
-  const activityYears = ['All', ...Array.from(new Set(activities.map((a) => a.year.toString()))).sort((a, b) => Number(b) - Number(a))]
   
   // Filter projects
   const filteredProjects = projects.filter((project) => {
@@ -292,9 +361,53 @@ function App() {
   // Filter activities
   const filteredActivities = activities.filter((activity) => {
     const typeMatch = activityTypeFilter === 'All' || activity.type === activityTypeFilter
-    const yearMatch = activityYearFilter === 'All' || activity.year.toString() === activityYearFilter
-    return typeMatch && yearMatch
+    return typeMatch
   })
+
+  // Block body scroll when modal is open
+  useEffect(() => {
+    const isModalOpen = selectedProject !== null || selectedActivity !== null || lightboxImage !== null
+    
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+
+    // Cleanup function
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [selectedProject, selectedActivity, lightboxImage])
+
+  // Swipe handlers for lightbox
+  const minSwipeDistance = 50
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd || lightboxImages.length <= 1) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      const nextIndex = lightboxIndex < lightboxImages.length - 1 ? lightboxIndex + 1 : 0
+      setLightboxIndex(nextIndex)
+      setLightboxImage(lightboxImages[nextIndex])
+    } else if (isRightSwipe) {
+      const prevIndex = lightboxIndex > 0 ? lightboxIndex - 1 : lightboxImages.length - 1
+      setLightboxIndex(prevIndex)
+      setLightboxImage(lightboxImages[prevIndex])
+    }
+  }
 
   return (
     <div className="app">
@@ -302,6 +415,7 @@ function App() {
         <div className="logo">Carla<span>Maria</span></div>
         <nav>
           <a href="#home">Home</a>
+          <a href="#about">About</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
           <a href="#activities">Activities</a>
@@ -341,6 +455,71 @@ function App() {
             <div className="hero-visual">
               <div className="hero-image-wrapper">
                 <img src={photo1} alt="Carla Maria Bărăstean" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="about">
+          <div className="section-header">
+            <p className="eyebrow">My Journey</p>
+            <h3>About Me</h3>
+          </div>
+          <div className="about-content">
+            <div className="about-text">
+              <p>
+                My journey in technology began in Brad, Hunedoara, where I completed my primary and middle school
+                education. Driven by a growing passion for programming and personal development, I made the decision to
+                pursue my high school studies in Deva, Hunedoara—a choice that marked the beginning of my commitment to
+                following my interests, regardless of distance.
+              </p>
+              <p>
+                This dedication to growth led me further to Cluj-Napoca, Cluj, where I'm currently pursuing my degree
+                in Automation and Computer Science. Each step of this journey has been a conscious choice to prioritize
+                learning, growth, and the pursuit of what truly matters to me.
+              </p>
+              <div className="motto">
+                <p className="motto-text">
+                  "No distance is too far when passion is the destination."
+                </p>
+                <p className="motto-subtitle">
+                  I'm willing to go anywhere and do anything for what I'm passionate about.
+                </p>
+              </div>
+            </div>
+            <div className="journey-map">
+              <div className="map-container">
+                <div className="location-point" data-location="Brad">
+                  <div className="point-marker"></div>
+                  <div className="location-label">
+                    <span className="location-name">Brad</span>
+                    <span className="location-details">Primary & Middle School</span>
+                  </div>
+                </div>
+                <div className="journey-line">
+                  <div className="line-segment" style={{ '--distance': '25km' } as React.CSSProperties}>
+                    <span className="distance-label">25 km</span>
+                  </div>
+                </div>
+                <div className="location-point" data-location="Deva">
+                  <div className="point-marker"></div>
+                  <div className="location-label">
+                    <span className="location-name">Deva</span>
+                    <span className="location-details">High School</span>
+                  </div>
+                </div>
+                <div className="journey-line">
+                  <div className="line-segment" style={{ '--distance': '180km' } as React.CSSProperties}>
+                    <span className="distance-label">180 km</span>
+                  </div>
+                </div>
+                <div className="location-point" data-location="Cluj">
+                  <div className="point-marker"></div>
+                  <div className="location-label">
+                    <span className="location-name">Cluj-Napoca</span>
+                    <span className="location-details">University</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -468,20 +647,6 @@ function App() {
                 ))}
               </div>
             </div>
-            <div className="filter-group">
-              <label>Year</label>
-              <div className="filter-buttons">
-                {activityYears.map((year) => (
-                  <button
-                    key={year}
-                    className={`filter-btn ${activityYearFilter === year ? 'active' : ''}`}
-                    onClick={() => setActivityYearFilter(year)}
-                  >
-                    {year}
-                  </button>
-                ))}
-              </div>
-            </div>
           </div>
           <div className="activities-grid">
             {filteredActivities.length === 0 ? (
@@ -491,7 +656,6 @@ function App() {
                   className="clear-filters-btn"
                   onClick={() => {
                     setActivityTypeFilter('All')
-                    setActivityYearFilter('All')
                   }}
                 >
                   Clear Filters
@@ -690,6 +854,31 @@ function App() {
                   <p className="section-content highlight-content">{selectedActivity.details.impact}</p>
                 </div>
               )}
+              {selectedActivity.details.images && selectedActivity.details.images.length > 0 && (
+                <div className="modal-section">
+                  <div className="section-title">
+                    <h3>Gallery</h3>
+                  </div>
+                  <div className="activity-gallery">
+                    {selectedActivity.details.images.map((image, idx) => (
+                      <div
+                        key={idx}
+                        className="gallery-item"
+                        onClick={() => {
+                          setLightboxImages(selectedActivity.details.images)
+                          setLightboxIndex(idx)
+                          setLightboxImage(image)
+                        }}
+                      >
+                        <img src={image} alt={`${selectedActivity.title} - Image ${idx + 1}`} />
+                        <div className="gallery-overlay">
+                          <span>Click to enlarge</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
               <div className="modal-section">
                 <div className="section-title">
                   <h3>Skills Developed</h3>
@@ -704,6 +893,86 @@ function App() {
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      {lightboxImage && (
+        <div
+          className="lightbox-overlay"
+          onClick={() => {
+            setLightboxImage(null)
+            setLightboxImages([])
+            setLightboxIndex(0)
+          }}
+          onKeyDown={(e) => {
+            if (lightboxImages.length > 1) {
+              if (e.key === 'ArrowLeft') {
+                e.preventDefault()
+                const prevIndex = lightboxIndex > 0 ? lightboxIndex - 1 : lightboxImages.length - 1
+                setLightboxIndex(prevIndex)
+                setLightboxImage(lightboxImages[prevIndex])
+              } else if (e.key === 'ArrowRight') {
+                e.preventDefault()
+                const nextIndex = lightboxIndex < lightboxImages.length - 1 ? lightboxIndex + 1 : 0
+                setLightboxIndex(nextIndex)
+                setLightboxImage(lightboxImages[nextIndex])
+              } else if (e.key === 'Escape') {
+                setLightboxImage(null)
+                setLightboxImages([])
+                setLightboxIndex(0)
+              }
+            }
+          }}
+          tabIndex={0}
+        >
+          <button
+            className="lightbox-close"
+            onClick={() => {
+              setLightboxImage(null)
+              setLightboxImages([])
+              setLightboxIndex(0)
+            }}
+          >
+            ×
+          </button>
+          {lightboxImages.length > 1 && (
+            <>
+              <button
+                className="lightbox-nav lightbox-prev"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  const prevIndex = lightboxIndex > 0 ? lightboxIndex - 1 : lightboxImages.length - 1
+                  setLightboxIndex(prevIndex)
+                  setLightboxImage(lightboxImages[prevIndex])
+                }}
+              >
+                ‹
+              </button>
+              <button
+                className="lightbox-nav lightbox-next"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  const nextIndex = lightboxIndex < lightboxImages.length - 1 ? lightboxIndex + 1 : 0
+                  setLightboxIndex(nextIndex)
+                  setLightboxImage(lightboxImages[nextIndex])
+                }}
+              >
+                ›
+              </button>
+              <div className="lightbox-counter">
+                {lightboxIndex + 1} / {lightboxImages.length}
+              </div>
+            </>
+          )}
+          <img
+            src={lightboxImage}
+            alt="Gallery"
+            className="lightbox-image"
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          />
         </div>
       )}
 
