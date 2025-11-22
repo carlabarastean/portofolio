@@ -8,6 +8,26 @@ import redcross1 from './assets/images/redcross1.jpeg'
 import bd1 from './assets/images/bd1.jpeg'
 import bd2 from './assets/images/bd2.jpeg'
 import bd3 from './assets/images/bd3.jpeg'
+import budgetly2 from './assets/images/budgetly/personalized-overview-dashboard.png'
+import budgetly1 from './assets/images/budgetly/landing-dashboard-preview.png'
+import budgetly7 from './assets/images/budgetly/interface-settings-panel.png'
+import budgetly5 from './assets/images/budgetly/income-category.png'
+import budgetly6 from './assets/images/budgetly/friends-payments-module.png'
+import budgetly3 from './assets/images/budgetly/expenses-income-summary.png'
+import budgetly4 from './assets/images/budgetly/add-income.png'
+import rob0 from './assets/images/robo/rob0.jpg'
+import rob1_1 from './assets/images/robo/rob1-1.JPG'
+import rob1_2 from './assets/images/robo/rob1-2.jpg'
+import rob1 from './assets/images/robo/rob1.JPG'
+import rob4 from './assets/images/robo/rob4.jpeg'
+import rob5 from './assets/images/robo/rob5.jpg'
+import rob6 from './assets/images/robo/rob6.png'
+import lego1 from './assets/images/lego/lego1.jpeg'
+import lego2 from './assets/images/lego/lego2.jpg'
+import lego3 from './assets/images/lego/lego3.jpg'
+
+
+
 
 const experiences = [
   {
@@ -56,6 +76,7 @@ const projects = [
         'Future Roadmap & AI Integration: The architecture is designed to be scalable for future AI enhancements. The development roadmap includes integrating machine learning models for anomaly detection (flagging unusual subscription charges) and predictive analytics to offer personalized saving suggestions based on spending history',
       ],
       techStack: 'React.js, Node.js, Express, MongoDB, REST API, Git/GitHub',
+      images: [budgetly1, budgetly2, budgetly3, budgetly4, budgetly5, budgetly6, budgetly7],
     },
   },
   {
@@ -156,21 +177,24 @@ const activities = [
     type: 'Robotics / Competition',
     details: {
       overview:
-        'As a member and later mentor of RO060 Decebal Tech, I participated in the FIRST Tech Challenge robotics competition for three seasons. This experience combined engineering, programming, and teamwork to design and build robots capable of completing complex challenges.',
+        "For three seasons, I was a core member and later a mentor for Team RO060 Decebal Tech, competing in Romania's premier robotics championship. My journey involved building competitive robots from scratch, culminating in significant achievements such as the Control Award (1st Place) and the Finalist Alliance Award (1st Pick) at regional qualifiers. Beyond engineering, I actively engaged with the national robotics community, participating in technical inspections and judging sessions.",
       contributions: [
-        'Robot Design & Construction: Built complex robots using advanced technologies, integrating mechanical systems with electronic components and sensors',
-        'Software Development: Programmed robot control systems, implementing algorithms for autonomous navigation and task execution',
-        'Mathematical Application: Applied mathematical and physics concepts to optimize robot performance, including kinematics, dynamics, and control theory',
-        'Team Mentorship: In the third season, transitioned to a mentoring role, guiding new team members in construction techniques, software development, and competition strategy',
-        'Competition Strategy: Developed and executed game strategies, balancing technical capabilities with tactical decision-making',
+        'Software & Control: Developed Java algorithms for autonomous navigation and sensor integration, which was instrumental in winning the Control Award',
+        "The \"All-Rounder\" Phase: As a member of a startup team, I initially juggled multiple roles—Programming, Mechanics, and PR—ensuring the team's survival and growth during its early stages",
+        'Competition Strategy: Led the team through high-pressure Technical Inspections and presented our engineering portfolio to expert judges, defending our technical choices',
       ],
       impact:
-        'This experience developed my technical skills in robotics, programming, and systems integration, while also building strong leadership and teamwork capabilities. Mentoring others reinforced my understanding of complex systems and improved my ability to explain technical concepts clearly.',
-      skills: 'Robotics, Embedded Systems, C/C++, Team Leadership, Mentoring, Competition Strategy',
+        "This experience was a crash course in engineering management.\n\n**The Value of Design**: I learned \"the hard way\" that skipping the design phase is costly. After initial failures, I realized that 3D Modeling/CAD must precede physical assembly to ensure precision and efficiency.\n\n**Organizational Efficiency**: Handling Coding, Mechanics, and PR simultaneously taught me a crucial lesson: while versatility is good, a scalable team requires role specialization. This insight helped me restructure the team when I became a mentor.\n\n**Community**: Interacting with students and mentors nationally and internationally broadened my perspective on collaborative innovation.",
+      skills: 'Java, Robotics, CAD Concepts, Crisis Management, Public Speaking, Team Leadership',
       images: [
-        'https://placehold.co/600x400/1e293b/ef4444?text=FTC+Robot',
-        'https://placehold.co/600x400/1e293b/ef4444?text=Competition',
-        'https://placehold.co/600x400/1e293b/ef4444?text=Team+Work',
+        rob0,
+  
+        rob1_1,
+        rob1_2,
+        rob1,
+        rob4,
+        rob5,
+        rob6,
       ],
     },
   },
@@ -179,7 +203,7 @@ const activities = [
     title: 'Mathematics Olympiad',
     role: 'National Competition Participant',
     period: '2023',
-    location: 'Romania',
+    location: 'Iași, Romania',
     description:
       'Participated in the Traian Lalescu National Student Contest, demonstrating advanced problem-solving skills and mathematical reasoning.',
     color: '#93c5fd',
@@ -210,26 +234,25 @@ const activities = [
     period: '2018-2020',
     location: 'Deva, Romania',
     description:
-      'Guided younger students in robot development using LEGO Mindstorms and EV3, enhancing leadership and communication skills while coordinating team efforts.',
-    color: '#6ee7b7',
+      'Started as a core team member, then advanced to a technical mentor for Team Lego Warriors. Guided junior students in building autonomous robots with LEGO Mindstorms EV3, focusing on algorithmic logic, structural stability, and competitive strategy.',
+        color: '#6ee7b7',
     year: 2020,
     type: 'Robotics / Competition',
     details: {
       overview:
-        'Served as a mentor for a FIRST Lego League team, guiding younger students in robotics and programming using LEGO Mindstorms and EV3 platforms. This role focused on teaching fundamental concepts while fostering creativity and problem-solving skills.',
+        "FIRST LEGO League is an international competition for students (ages 9-16) that introduces them to science and technology through real-world challenges. As a Mentor for Team Lego Warriors, I transitioned from a \"builder\" role to a leadership position. I guided a team of younger students through the Robot Game (designing autonomous robots using LEGO Mindstorms EV3) and the Innovation Project, fostering their passion for STEM at an early age.",
       contributions: [
-        'Robot Development Guidance: Taught students to build and program robots using LEGO Mindstorms and EV3, covering basic mechanics, sensors, and programming logic',
-        'Leadership Development: Coordinated team efforts, organized practice sessions, and facilitated collaboration among team members',
-        'Competition Strategy: Helped develop game strategies and competition approaches, teaching students to balance technical skills with strategic thinking',
-        'Communication Skills: Improved ability to explain complex concepts in accessible ways, adapting teaching methods to different learning styles',
+        'Technical Mentorship: Taught students the fundamentals of block-based programming and structural stability using the LEGO Mindstorms EV3 platform. I helped them translate abstract logic into physical robot movements',
+        "Strategic Planning: Coordinated the team's competition strategy by analyzing the game field, prioritizing high-value missions, and optimizing the robot's run time (2.5 minutes)",
+        "Core Values: Instilled the philosophy of \"Gracious Professionalism\" and \"Coopertition,\" ensuring the team worked cohesively while respecting opponents",
       ],
       impact:
-        'Mentoring younger students reinforced my own understanding of fundamental concepts and developed my leadership and communication abilities. This experience taught me the value of patience, clear explanation, and fostering enthusiasm for STEM fields.',
-      skills: 'Mentoring, Leadership, Communication, LEGO Mindstorms, EV3 Programming, Team Coordination',
+        "Mentoring FLL was my first lesson in technical leadership.\n\n**The \"Teacher\" Insight**: I discovered that understanding a concept is different from explaining it. I had to break down complex engineering principles (gear ratios, sensors) into simple terms for younger students.\n\n**Patience & Delegation**: Unlike personal projects where I had full control, here I had to step back, guide, and let the students make (and learn from) their own mistakes.",
+      skills: 'Mentoring, LEGO Mindstorms EV3, Project Management, Communication, Youth Leadership',
       images: [
-        'https://placehold.co/600x400/1e293b/6ee7b7?text=LEGO+Robots',
-        'https://placehold.co/600x400/1e293b/6ee7b7?text=Mentoring',
-        'https://placehold.co/600x400/1e293b/6ee7b7?text=Team+Session',
+        lego1,
+        lego2,
+        lego3,
       ],
     },
   },
@@ -337,6 +360,7 @@ function App() {
   const [lightboxIndex, setLightboxIndex] = useState<number>(0)
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const [previewImages, setPreviewImages] = useState<string[] | null>(null)
   
   // Project filters
   const [projectCategoryFilter, setProjectCategoryFilter] = useState<string>('All')
@@ -364,9 +388,26 @@ function App() {
     return typeMatch
   })
 
+  // Function to format text with bold keywords
+  const formatImpactText = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g)
+    return parts.map((part, idx) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        const keyword = part.slice(2, -2)
+        return (
+          <span key={idx}>
+            <span className="impact-keyword">{keyword}</span>
+            {part.includes(':') ? ': ' : ''}
+          </span>
+        )
+      }
+      return <span key={idx}>{part}</span>
+    })
+  }
+
   // Block body scroll when modal is open
   useEffect(() => {
-    const isModalOpen = selectedProject !== null || selectedActivity !== null || lightboxImage !== null
+    const isModalOpen = selectedProject !== null || selectedActivity !== null || lightboxImage !== null || previewImages !== null
     
     if (isModalOpen) {
       document.body.style.overflow = 'hidden'
@@ -378,7 +419,7 @@ function App() {
     return () => {
       document.body.style.overflow = ''
     }
-  }, [selectedProject, selectedActivity, lightboxImage])
+  }, [selectedProject, selectedActivity, lightboxImage, previewImages])
 
   // Swipe handlers for lightbox
   const minSwipeDistance = 50
@@ -429,7 +470,7 @@ function App() {
             <div className="hero-text">
               <p className="eyebrow">Portfolio · 2025</p>
               <h1>
-                Carla - Maria <span>Bărăstean</span>
+                Carla - Maria <span>Bărăștean</span>
               </h1>
               <h2>4th year Automation and Computer Science Student</h2>
               <p className="description">
@@ -497,8 +538,8 @@ function App() {
                   </div>
                 </div>
                 <div className="journey-line">
-                  <div className="line-segment" style={{ '--distance': '25km' } as React.CSSProperties}>
-                    <span className="distance-label">25 km</span>
+                  <div className="line-segment" style={{ '--distance': '38km' } as React.CSSProperties}>
+                    <span className="distance-label">38 km</span>
                   </div>
                 </div>
                 <div className="location-point" data-location="Deva">
@@ -509,8 +550,8 @@ function App() {
                   </div>
                 </div>
                 <div className="journey-line">
-                  <div className="line-segment" style={{ '--distance': '180km' } as React.CSSProperties}>
-                    <span className="distance-label">180 km</span>
+                  <div className="line-segment" style={{ '--distance': '160km' } as React.CSSProperties}>
+                    <span className="distance-label">160 km</span>
                   </div>
                 </div>
                 <div className="location-point" data-location="Cluj">
@@ -773,6 +814,48 @@ function App() {
                   <p className="section-content highlight-content">{selectedProject.details.results}</p>
                 </div>
               )}
+              {selectedProject.details.images && selectedProject.details.images.length > 0 && (
+                <div className="modal-section">
+                  <div className="section-title">
+                    <h3>Gallery</h3>
+                  </div>
+                  <div className="activity-gallery">
+                    {selectedProject.details.images.slice(0, selectedProject.details.images.length > 3 ? 2 : selectedProject.details.images.length).map((image, idx) => (
+                      <div
+                        key={idx}
+                        className="gallery-item"
+                        onClick={() => {
+                          if (selectedProject.details.images) {
+                            setLightboxImages(selectedProject.details.images)
+                            setLightboxIndex(idx)
+                            setLightboxImage(image)
+                          }
+                        }}
+                      >
+                        <img src={image} alt={`${selectedProject.title} - Image ${idx + 1}`} />
+                        <div className="gallery-overlay">
+                          <span>Click to enlarge</span>
+                        </div>
+                      </div>
+                    ))}
+                    {selectedProject.details.images.length > 3 && (
+                      <div
+                        className="gallery-item gallery-more"
+                        onClick={() => {
+                          if (selectedProject.details.images) {
+                            setPreviewImages(selectedProject.details.images.slice(2))
+                          }
+                        }}
+                      >
+                        <div className="gallery-more-content">
+                          <span className="gallery-more-count">+{selectedProject.details.images.length - 2}</span>
+                          <span className="gallery-more-text">more images</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
               <div className="modal-section">
                 <div className="section-title">
                   <h3>Tech Stack</h3>
@@ -814,17 +897,17 @@ function App() {
               ×
             </button>
             <div className="modal-header">
-              <div>
+              <div className="modal-header-left">
                 <h2>{selectedActivity.title}</h2>
-                <div className="modal-subtitle-group">
-                  <p className="modal-subtitle">{selectedActivity.role}</p>
-                  {selectedActivity.period && (
-                    <span className="modal-period">{selectedActivity.period}</span>
-                  )}
-                  {selectedActivity.location && (
-                    <span className="modal-location">📍 {selectedActivity.location}</span>
-                  )}
-                </div>
+                <p className="modal-subtitle">{selectedActivity.role}</p>
+              </div>
+              <div className="modal-header-right">
+                {selectedActivity.period && (
+                  <span className="modal-period">{selectedActivity.period}</span>
+                )}
+                {selectedActivity.location && (
+                  <span className="modal-location">📍 {selectedActivity.location}</span>
+                )}
               </div>
             </div>
             <div className="modal-body">
@@ -851,7 +934,9 @@ function App() {
                   <div className="section-title">
                     <h3>Impact & Learning</h3>
                   </div>
-                  <p className="section-content highlight-content">{selectedActivity.details.impact}</p>
+                  <p className="section-content highlight-content">
+                    {formatImpactText(selectedActivity.details.impact)}
+                  </p>
                 </div>
               )}
               {selectedActivity.details.images && selectedActivity.details.images.length > 0 && (
@@ -860,7 +945,7 @@ function App() {
                     <h3>Gallery</h3>
                   </div>
                   <div className="activity-gallery">
-                    {selectedActivity.details.images.map((image, idx) => (
+                    {selectedActivity.details.images.slice(0, selectedActivity.details.images.length > 3 ? 2 : selectedActivity.details.images.length).map((image, idx) => (
                       <div
                         key={idx}
                         className="gallery-item"
@@ -876,6 +961,19 @@ function App() {
                         </div>
                       </div>
                     ))}
+                    {selectedActivity.details.images.length > 3 && (
+                      <div
+                        className="gallery-item gallery-more"
+                        onClick={() => {
+                          setPreviewImages(selectedActivity.details.images.slice(2))
+                        }}
+                      >
+                        <div className="gallery-more-content">
+                          <span className="gallery-more-count">+{selectedActivity.details.images.length - 2}</span>
+                          <span className="gallery-more-text">more images</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
@@ -976,8 +1074,48 @@ function App() {
         </div>
       )}
 
+      {previewImages && previewImages.length > 0 && (
+        <div
+          className="preview-overlay"
+          onClick={() => setPreviewImages(null)}
+        >
+          <div
+            className="preview-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="preview-close"
+              onClick={() => setPreviewImages(null)}
+            >
+              ×
+            </button>
+            <h3>Select an image to view</h3>
+            <div className="preview-grid">
+              {previewImages.map((image, idx) => {
+                const allImages = selectedProject?.details.images || selectedActivity?.details.images || []
+                const actualIndex = allImages.indexOf(image)
+                return (
+                  <div
+                    key={idx}
+                    className="preview-item"
+                    onClick={() => {
+                      setLightboxImages(allImages)
+                      setLightboxIndex(actualIndex)
+                      setLightboxImage(image)
+                      setPreviewImages(null)
+                    }}
+                  >
+                    <img src={image} alt={`Preview ${idx + 1}`} />
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
       <footer>
-        <p>© {new Date().getFullYear()} Carla - Maria Bărăstean. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Carla - Maria Bărăștean. All rights reserved.</p>
       </footer>
     </div>
   )
