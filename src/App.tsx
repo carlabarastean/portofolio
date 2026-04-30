@@ -5,6 +5,8 @@ import './App.css'
 
 import photo1 from './assets/images/photo1.jpeg'
 import redcross1 from './assets/images/redcross1.jpeg'
+import redcross2 from './assets/images/redcross2.jpeg'
+import redcross3 from './assets/images/redcross3.jpeg'
 import bd1 from './assets/images/bd1.jpeg'
 import bd2 from './assets/images/bd2.jpeg'
 import bd3 from './assets/images/bd3.jpeg'
@@ -25,8 +27,25 @@ import rob6 from './assets/images/robo/rob6.png'
 import lego1 from './assets/images/lego/lego1.jpeg'
 import lego2 from './assets/images/lego/lego2.jpg'
 import lego3 from './assets/images/lego/lego3.jpg'
-
-
+import leo1 from './assets/images/leo/leo1.jpeg'
+import leo2 from './assets/images/leo/leo2.jpg'
+import leo3 from './assets/images/leo/leo3.jpg'
+import leo4 from './assets/images/leo/leo4.jpg'
+import sleep1 from './assets/images/sleep/1.jpg'
+import sleep2 from './assets/images/sleep/2.jpg'
+import sleep3 from './assets/images/sleep/3.jpg'
+import sleep4 from './assets/images/sleep/4.jpg'
+import sleep5 from './assets/images/sleep/5.jpg'
+import sleep6 from './assets/images/sleep/6.jpg'
+import sleep7 from './assets/images/sleep/7.jpg'
+import eeg1 from './assets/images/eeg/1.jpg'
+import eeg2 from './assets/images/eeg/2.jpg'
+import eeg3 from './assets/images/eeg/3.jpg'
+import eeg4 from './assets/images/eeg/4.jpg'
+import eeg5 from './assets/images/eeg/5.jpg'
+import eeg6 from './assets/images/eeg/6.jpg'
+import eeg7 from './assets/images/eeg/7.jpg'
+import eeg8 from './assets/images/eeg/8.jpg'
 
 
 const experiences = [
@@ -52,88 +71,137 @@ const experiences = [
     ],
   },
 ]
-
 const projects = [
   {
     id: 'budgetly',
     title: 'BudgetLy – Collaborative Finance Platform',
-    subtitle: 'A Full-Stack MERN Application for Personal & Social Financial Management',
+    subtitle: 'Full-Stack Finance Platform with Shared Payments',
+    period: 'May 2025',
     stack: 'React · Node.js · MongoDB · Express',
     description:
-      'Modern finance platform with interactive dashboards, social expense sharing, and personalized financial insights.',
+      'A full-stack web application for tracking income, expenses, subscriptions, and shared payments. Features a modern dashboard, monthly financial summaries, transaction management, chart visualizations, friend-based debt tracking, and customizable interface settings.',
     repository: 'https://github.com/carlabarastean/budgetLy_app',
     color: '#6ee7b7',
     year: 2025,
     category: 'Full-Stack Development',
     details: {
       overview:
-        'BudgetLy is a modern, responsive web application designed to modernize how users interact with their finances. Built as a collaborative team project, it addresses two core needs: distinct personal budgeting and the management of shared financial responsibilities. The application moves beyond simple expense logging, offering a data-driven dashboard that transforms raw transaction data into actionable visual insights.',
-      contributions: [
-        'Interactive Dashboard: Developed a comprehensive overview system that aggregates financial data into real-time summaries. Users can visualize net flow, monitor upcoming payments, and analyze spending habits through dynamic charts',
-        'Social Finance Module: Engineered a complex "Friends & Payments" system that allows users to track shared expenses. This required implementing relational logic in the database to manage debts, track repayments, and send payment reminders between users',
-        'Robust Transaction Management: Implemented a secure RESTful API to handle CRUD operations for incomes and expenses, ensuring data consistency across categorized transaction logs',
-        'User-Centric Customization: Focused on UX/UI flexibility, allowing users to personalize their environment with theme toggles (Dark/Light mode), currency preferences, and widget visibility settings',
-        'Future Roadmap & AI Integration: The architecture is designed to be scalable for future AI enhancements. The development roadmap includes integrating machine learning models for anomaly detection (flagging unusual subscription charges) and predictive analytics to offer personalized saving suggestions based on spending history',
+        'BudgetLy is a full-stack finance management web application developed as a team project. The platform helps users organize their personal finances by tracking income, expenses, subscriptions, upcoming payments, and shared debts in a single, centralized dashboard.\n\n' +
+        'The main goal was to build a practical and intuitive budgeting tool that combines financial tracking, visual summaries, and collaborative payment management in a modern web interface.',
+      features: [
+        'Personal Finance Tracking: Users can manage income, expenses, subscriptions, and upcoming payments while viewing their monthly financial activity in one place.',
+        'Interactive Dashboard: Displays key indicators such as monthly expenses, expected income, active subscriptions, net flow, spending categories, and recent activity.',
+        'Transaction Management: Add income or expense transactions through interactive forms, assign categories, select dates, and view transactions in a structured overview.',
+        'Friends & Shared Payments: Track debts between friends, split payments, view payment history, and send reminders.',
+        'Interface Customization: Personalize the app with dark mode, compact view, chart visibility settings, and currency selection (RON, EUR, USD).'
       ],
-      techStack: 'React.js, Node.js, Express, MongoDB, REST API, Git/GitHub',
+      contributions: [
+        'Full-Stack Development: Contributed to frontend and backend implementation using React.js, Node.js with Express, and MongoDB.',
+        'Frontend Implementation: Built React components for dashboards, forms, modals, transaction flows, and settings pages.',
+        'Financial Data Management: Implemented logic for organizing transactions, subscriptions, and monthly summaries.',
+        'Shared Payments Module: Contributed to debt tracking, split payments, payment status handling, and reminder functionality.',
+        'User Experience: Helped design a responsive, dark-themed interface focused on clarity and usability.'
+      ],
+      results:
+        'BudgetLy demonstrates a complete full-stack web application that integrates personal budgeting, collaborative expense tracking, and visual analytics.\n\n' +
+        'This project strengthened my experience in full-stack development, database design, API structure, and team-based software delivery.',
+      techStack: 'React.js, Node.js, Express.js, MongoDB, JavaScript, HTML5, CSS, REST API, CRUD Operations, State Management, Data Visualization',
       images: [budgetly1, budgetly2, budgetly3, budgetly4, budgetly5, budgetly6, budgetly7],
     },
   },
   {
     id: 'sleep-ai',
     title: 'AI-Based Sleep Quality Prediction System',
-    subtitle: 'Comparative Analysis of Ensemble Methods vs. CNNs on Physiological Data',
-    stack: 'Python · TensorFlow · XGBoost · LightGBM',
+    subtitle: 'Academic Machine Learning Project for Predicting Sleep Quality from Questionnaire Data',
+    period: 'April 2025',
+    stack: 'Python · Machine Learning · Deep Learning · SMOTE',
     description:
-      'Predicted sleep quality at 91% accuracy using CNN ensembles trained on survey and health signals.',
-    repository: 'https://github.com/carlabarastean/sleep-quality-prediction',
+      'Developed an AI-based system for predicting sleep quality using questionnaire data, feature selection, SMOTE balancing, CNN models, and ensemble learning.',
+    repository: '',
     color: '#a78bfa',
     year: 2025,
     category: 'Machine Learning',
     details: {
       overview:
-        'Developed during a specialized internship, this project aimed to construct a robust machine learning solution for estimating sleep quality. Using a dataset collected from active military personnel, the goal was to transform subjective questionnaire data into an objective, quantifiable metric. The project addresses the challenge of diagnosing sleep patterns by correlating physiological, behavioral, and environmental factors.',
+        'AI-Based Sleep Quality Prediction System is an academic machine learning project focused on estimating sleep quality using questionnaire-based data collected from active military personnel. I developed a custom composite sleep score from multiple indicators, including subjective sleep quality, sleep duration, insomnia frequency, sleep latency, and daytime sleepiness, then transformed the task into a binary classification problem for model comparison.',
       contributions: [
-        'Target Variable Engineering: Designed a composite sleep_score by aggregating five key indicators: subjective quality, sleep duration, latency, insomnia frequency, and daytime sleepiness',
-        'Feature Selection: Utilized Pearson and Spearman correlation analysis to isolate the 7 most impactful factors, including diet quality, thermal discomfort, and sleep apnea frequency',
-        'Advanced Preprocessing: Implemented SMOTE (Synthetic Minority Over-sampling Technique) to address class imbalance and normalized data using MinMax scaling',
-        'Model Architecture: Designed and compared multiple architectures including CNNs optimized for pattern recognition, XGBoost and LightGBM for gradient boosting, and a Stacking Ensemble meta-model',
-        'Optimization: Automated hyperparameter tuning using the Optuna framework to maximize model performance',
+        'Custom Sleep Score: Created a composite sleep_score by combining subjective sleep quality, sleep duration, insomnia frequency, sleep latency, and daytime sleepiness',
+        'Feature Selection: Used statistical correlation analysis to identify the most relevant predictors, including diet quality, sports activity, snoring frequency, night pain, breathing difficulties, breathing pauses, and thermal discomfort during sleep',
+        'Data Preprocessing: Cleaned, normalized, and encoded the questionnaire data before applying SMOTE to balance the target classes',
+        'Model Comparison: Trained and evaluated Logistic Regression, Random Forest, LightGBM, XGBoost, CNN, and a StackingClassifier to compare different approaches on the same dataset',
+        'Pipeline Ownership: Handled the full workflow from preprocessing and feature engineering to training, validation, and result analysis',
       ],
       results:
-        'The comparative analysis demonstrated that while CNNs achieved a competitive accuracy of ~89%, the Stacking Ensemble model outperformed all others. It achieved a final accuracy of 91.64% with balanced F1-scores (0.91 for Class 0 and 0.92 for Class 1), proving that combining boosting algorithms yields the most robust prediction for tabular medical data.',
+        'The best results were obtained with a StackingClassifier, which achieved approximately 91.9% accuracy in classifying sleep quality. A Random Forest Regressor also achieved an R² score of approximately 0.87 for continuous sleep score prediction. The comparative analysis showed that while CNNs performed competitively, the stacking ensemble delivered the strongest overall results for this tabular health-data problem.',
       techStack:
-        'Python, TensorFlow/Keras, Scikit-learn, XGBoost, LightGBM, Optuna, Pandas, SMOTE',
+        'Python, Scikit-learn, TensorFlow/Keras, XGBoost, LightGBM, Random Forest, StackingClassifier, SMOTE, Optuna, Pandas, NumPy',
+      images: [sleep1, sleep2, sleep3, sleep4, sleep5, sleep6, sleep7],
     },
   },
   {
     id: 'eeg-bci',
-    title: 'EEG-Based Prosthetic Control System',
-    subtitle: 'Brain-Computer Interface (BCI) for Motor Intention Detection using CNNs',
-    stack: 'PyTorch · CNN · Signal Processing',
+    title: 'EEG-Based Motor Intention Classification System',
+    subtitle: 'Brain-Computer Interface Pipeline for Hand Movement Detection using CNNs',
+    period: 'November 2024',
+    stack: 'Python · PyTorch · CNN · Signal Processing',
     description:
-      'Classified motor intentions from EEG signals using CNNs to enable prosthetic hand control for individuals with motor disabilities.',
-    repository: '',
+      'Developed a Brain-Computer Interface pipeline to classify EEG signals into rest, left-hand, and right-hand movement intentions using deep learning and signal-processing methods.',
+    repository: 'https://github.com/carlabarastean/eeg-prosthetic-control',
     color: '#67e8f9',
     year: 2024,
     category: 'Deep Learning / BCI',
     details: {
       overview:
-        'This project explores the intersection of Neuroscience and Artificial Intelligence by developing a control system for prosthetic hands based on Electroencephalography (EEG) signals. The primary objective was to classify motor intentions (Rest, Left Hand Movement, Right Hand Movement) to aid individuals with motor disabilities. Using the PhysioNet Motor Movement/Imagery Dataset, I engineered a deep learning pipeline to interpret noisy brain signals into actionable commands.',
+        'This project explores the use of AI and EEG signal processing to detect motor intentions from brain activity. Using the PhysioNet Motor Movement/Imagery Dataset, I built a research-oriented pipeline for preprocessing EEG signals, extracting frequency-time features, and training CNN models to classify hand movement intentions.',
       contributions: [
-        'Signal Processing & Noise Reduction: Implemented a rigorous preprocessing pipeline. Applied a Band-Pass Butterworth filter (7.5-30 Hz) to isolate motor-related frequencies and a Notch filter to remove 50Hz power line interference',
-        'Feature Engineering: Reduced dimensionality by selecting 4 critical channels located on the motor cortex (Fc5, Fc3, Fc1, FCz). Converted time-series data into Spectrograms using Short-Time Fourier Transform (STFT) to capture frequency changes over time',
-        'Deep Learning Architecture: Designed and trained Convolutional Neural Networks (CNN) using PyTorch. I conducted an extensive comparative analysis between a baseline architecture and optimized versions (V1-V4) introducing Dropout, Batch Normalization, and Learning Rate Schedulers',
-        'Experimental Analysis: The study revealed that simpler architectures generalized better, achieving a peak accuracy of ~60.3%, while deeper models suffered from overfitting despite regularization attempts',
+        'EEG Data Analysis: Processed recordings from the PhysioNet Motor Movement/Imagery Dataset (64 channels, 160 Hz) to extract motor-relevant segments.',
+        'Signal Preprocessing: Implemented band-pass (7.5–30 Hz) and notch filtering, channel standardization, artifact removal, and normalization to improve signal quality.',
+        'Channel Selection: Reduced dimensionality by selecting motor-cortex channels (FC5, FC3, FC1, FCz) to focus the model on relevant signals.',
+        'Feature Engineering: Converted time-series EEG into spectrogram and frequency-domain representations using STFT and Welch methods.',
+        'Deep Learning Modeling: Designed and iterated multiple CNN architectures with regularization (dropout, batch norm), learning-rate schedules, and early stopping using PyTorch.',
+        'Evaluation & Analysis: Measured accuracy, precision, recall, F1-score, and confusion matrices to analyze class separability and model generalization.'
       ],
       results:
-        'The system successfully established a baseline for distinguishing motor imagery tasks. The confusion matrix analysis highlighted the challenge of separating "Left" vs. "Right" movements compared to the "Rest" state, providing clear direction for future hybrid models (CNN-RNN).',
-      techStack: 'Python, PyTorch, NumPy, SciPy, Signal Processing (STFT, Welch), Jupyter Notebook',
+        'Implemented a full EEG-to-decision pipeline and identified that simpler CNNs generalized better on noisy EEG data. The best model reached ~60.3% accuracy; analysis showed stronger detection of the Rest class and challenges separating left vs right movement—insights useful for future hybrid or larger-scale models.',
+      techStack: 'Python, PyTorch, NumPy, SciPy, STFT, Welch, Spectrograms, Jupyter Notebook',
+      images: [eeg1, eeg2, eeg3, eeg4, eeg5, eeg6, eeg7, eeg8],
     },
   },
 ]
 
 const activities = [
+  {
+    id: 'cassini-aquagraph',
+    title: 'CASSINI Hackathon - AquaGraph',
+    role: 'Satellite Data Processing Contributor',
+    period: 'April 2026',
+    location: 'Cluj-Napoca, Romania',
+    description:
+      'Competed in the 11th CASSINI Hackathon: EU Space for Water with AquaGraph and won 3rd place nationally in Romania, which also meant 1st place in the Cluj-Napoca local hub.',
+    color: '#38bdf8',
+    year: 2026,
+    type: 'Hackathon / Space Data',
+    details: {
+      overview:
+        'I participated in the 11th CASSINI Hackathon: EU Space for Water, a European innovation event where multidisciplinary teams built solutions for major water-related challenges using services such as Copernicus and Galileo. Our team, AquaGraph, competed in the "Tracking and preventing water pollution" category and developed a satellite-based platform for near real-time pollution monitoring in Romanian rivers.',
+      contributions: [
+        'Achievement: Won 3rd place nationally in Romania; because the first two ranked teams were from Bucharest, our team also achieved 1st place in the Cluj-Napoca local hub',
+        'Project Scope: Helped build AquaGraph, an interactive platform that visualizes river pollution risk, combines water-related news, and supports community cleanup initiatives',
+        'Sentinel-1 Radar Analysis: Focused on processing Sentinel-1 data to identify potential oil pollution signatures, including dark and smooth patches linked to changes in water surface roughness',
+        'Data Fusion Design: Contributed to integrating Sentinel-2 multispectral indicators, EU-Hydro river graph modeling, and GloFAS discharge/forecast data to estimate downstream contamination spread',
+        'Team Collaboration: Worked in a six-student interdisciplinary team from Babeș-Bolyai University and the Technical University of Cluj-Napoca, aligned across frontend, backend, and satellite processing tracks',
+      ],
+      impact:
+        'AquaGraph addresses the delay between a pollution event and official detection by combining Earth observation with graph-based river propagation modeling. The approach improves monitoring coverage beyond isolated sampling points and can support faster intervention by authorities, NGOs, and local communities to protect ecosystems and public health.',
+      skills:
+        'Sentinel-1 Processing, Remote Sensing, Geospatial Data Analysis, Graph Modeling, Environmental Monitoring, Hackathon Collaboration',
+      images: [
+        'https://placehold.co/600x400/0f172a/38bdf8?text=CASSINI+Hackathon',
+        'https://placehold.co/600x400/0f172a/38bdf8?text=AquaGraph+Platform',
+        'https://placehold.co/600x400/0f172a/38bdf8?text=Sentinel-1+Water+Monitoring',
+      ],
+    },
+  },
   {
     id: 'ieee-saci',
     title: 'Panel Speaker – IEEE SACI 2025',
@@ -220,11 +288,6 @@ const activities = [
       impact:
         'This competition sharpened my analytical thinking and problem-solving abilities, skills that directly translate to tackling complex challenges in computer science and engineering.',
       skills: 'Mathematical Problem Solving, Analytical Thinking, Competitive Mathematics',
-      images: [
-        'https://placehold.co/600x400/1e293b/93c5fd?text=Math+Olympiad',
-        'https://placehold.co/600x400/1e293b/93c5fd?text=Competition',
-        'https://placehold.co/600x400/1e293b/93c5fd?text=Problem+Solving',
-      ],
     },
   },
   {
@@ -282,26 +345,27 @@ const activities = [
       skills: 'First Aid, Emergency Response, Counseling, Communication, Community Service, Crisis Management',
       images: [
         redcross1,
-        'https://placehold.co/600x400/1e293b/ef4444?text=First+Aid',
-        'https://placehold.co/600x400/1e293b/ef4444?text=Community+Service',
+        redcross2,
+        redcross3,
       ],
     },
   },
   {
     id: 'leo-club',
     title: 'LEO Club Sarmizegetusa',
-    role: 'Member & Project Leader',
+    role: 'Volunteer Member & Treasurer',
     period: '2018-2022',
     location: 'Deva, Romania',
     description:
-      'Led projects supporting health initiatives, elderly care, and disability aid, organizing educational and community development programs.',
+      'Served as an active volunteer and member of the Coordinator Board in Deva as Treasurer, while also leading projects supporting health initiatives, elderly care, and disability aid.',
     color: '#a78bfa',
     year: 2022,
     type: 'Volunteering',
     details: {
       overview:
-        'Active member of LEO Club Sarmizegetusa in Deva from 2018 to 2022, where I led projects supporting health initiatives, elderly care, and disability aid. This experience focused on organizing community development programs and educational initiatives.',
+        'Active member of LEO Club Sarmizegetusa in Deva from 2018 to 2022, where I contributed both as a volunteer and as part of the Coordinator Board, serving as Treasurer. Alongside this leadership role, I also supported projects focused on health initiatives, elderly care, and disability aid. This experience centered on organizing community development programs and educational initiatives.',
       contributions: [
+        'Coordinator Board Leadership: Served on the Coordinator Board in Deva as Treasurer, helping oversee financial coordination and organizational responsibilities',
         'Project Leadership: Led projects supporting health initiatives, elderly care, and disability aid, coordinating volunteer efforts and managing project logistics',
         'Community Development: Organized initiatives focused on education, skills development, and healthy living within the community',
         'Event Organization: Planned and executed community events, managing logistics, coordination, and volunteer participation',
@@ -312,9 +376,10 @@ const activities = [
         'Leading community projects enhanced my organizational and leadership capabilities. This experience taught me the importance of giving back to the community and provided valuable skills in project management, event organization, and working with diverse groups of people.',
       skills: 'Project Leadership, Event Organization, Community Development, Volunteer Coordination, Youth Engagement, Program Management',
       images: [
-        'https://placehold.co/600x400/1e293b/a78bfa?text=LEO+Club',
-        'https://placehold.co/600x400/1e293b/a78bfa?text=Community+Event',
-        'https://placehold.co/600x400/1e293b/a78bfa?text=Leadership',
+        leo1,
+        leo2,
+        leo3,
+        leo4,
       ],
     },
   },
@@ -341,11 +406,6 @@ const activities = [
       impact:
         'This course provided a foundation in leadership principles that I\'ve applied throughout my academic and professional journey, particularly in mentoring roles and team collaborations.',
       skills: 'Leadership, Personal Development, Professional Communication, Team Management',
-      images: [
-        'https://placehold.co/600x400/1e293b/f9a8d4?text=Leadership+Course',
-        'https://placehold.co/600x400/1e293b/f9a8d4?text=Development',
-        'https://placehold.co/600x400/1e293b/f9a8d4?text=Learning',
-      ],
     },
   },
 ]
@@ -358,6 +418,7 @@ function App() {
   const [lightboxImage, setLightboxImage] = useState<string | null>(null)
   const [lightboxImages, setLightboxImages] = useState<string[]>([])
   const [lightboxIndex, setLightboxIndex] = useState<number>(0)
+  const [lightboxVariant, setLightboxVariant] = useState<'default' | 'sleep-ai'>('default')
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const [previewImages, setPreviewImages] = useState<string[] | null>(null)
@@ -649,6 +710,9 @@ function App() {
                   <div className="project-meta">
                     <h4>{project.title}</h4>
                     <p className="project-subtitle">{project.subtitle}</p>
+                    {project.period && (
+                      <span className="project-period">{project.period}</span>
+                    )}
                     <div className="project-stack">
                       {project.stack.split(' · ').map((tech) => (
                         <span key={tech} className="tech-badge">
@@ -778,9 +842,14 @@ function App() {
               ×
             </button>
             <div className="modal-header">
-              <div>
+              <div className="modal-header-left">
                 <h2>{selectedProject.title}</h2>
                 <p className="modal-subtitle">{selectedProject.subtitle}</p>
+              </div>
+              <div className="modal-header-right">
+                {selectedProject.period && (
+                  <span className="modal-period">{selectedProject.period}</span>
+                )}
               </div>
             </div>
             <div className="modal-body">
@@ -789,6 +858,13 @@ function App() {
                   <h3>Project Overview</h3>
                 </div>
                 <p className="section-content">{selectedProject.details.overview}</p>
+                {selectedProject.details.features && (
+                  <ul className="feature-list">
+                    {selectedProject.details.features.map((f: string, i: number) => (
+                      <li key={i}>{f}</li>
+                    ))}
+                  </ul>
+                )}
               </div>
               <div className="modal-section">
                 <div className="section-title">
@@ -817,7 +893,11 @@ function App() {
               {selectedProject.details.images && selectedProject.details.images.length > 0 && (
                 <div className="modal-section">
                   <div className="section-title">
-                    <h3>Gallery</h3>
+                    <h3>
+                      {(selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') && 'Presentation Slides'}
+                      {selectedProject.id === 'budgetly' && 'Features & Interface Screenshots'}
+                      {selectedProject.id !== 'sleep-ai' && selectedProject.id !== 'budgetly' && 'Gallery'}
+                    </h3>
                   </div>
                   <div className="activity-gallery">
                     {selectedProject.details.images.slice(0, selectedProject.details.images.length > 3 ? 2 : selectedProject.details.images.length).map((image, idx) => (
@@ -828,11 +908,19 @@ function App() {
                           if (selectedProject.details.images) {
                             setLightboxImages(selectedProject.details.images)
                             setLightboxIndex(idx)
+                            setLightboxVariant((selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') ? 'sleep-ai' : 'default')
                             setLightboxImage(image)
                           }
                         }}
                       >
-                        <img src={image} alt={`${selectedProject.title} - Image ${idx + 1}`} />
+                        <img
+                          src={image}
+                          alt={`${selectedProject.title} - ${
+                            (selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') ? 'Slide' :
+                            selectedProject.id === 'budgetly' ? 'Screenshot' :
+                            'Image'
+                          } ${idx + 1}`}
+                        />
                         <div className="gallery-overlay">
                           <span>Click to enlarge</span>
                         </div>
@@ -849,7 +937,11 @@ function App() {
                       >
                         <div className="gallery-more-content">
                           <span className="gallery-more-count">+{selectedProject.details.images.length - 2}</span>
-                          <span className="gallery-more-text">more images</span>
+                          <span className="gallery-more-text">
+                            {(selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') && 'more slides'}
+                            {selectedProject.id === 'budgetly' && 'more screenshots'}
+                            {selectedProject.id !== 'sleep-ai' && selectedProject.id !== 'budgetly' && 'more images'}
+                          </span>
                         </div>
                       </div>
                     )}
@@ -950,8 +1042,9 @@ function App() {
                         key={idx}
                         className="gallery-item"
                         onClick={() => {
-                          setLightboxImages(selectedActivity.details.images)
+                          setLightboxImages(selectedActivity.details.images!)
                           setLightboxIndex(idx)
+                          setLightboxVariant('default')
                           setLightboxImage(image)
                         }}
                       >
@@ -965,7 +1058,7 @@ function App() {
                       <div
                         className="gallery-item gallery-more"
                         onClick={() => {
-                          setPreviewImages(selectedActivity.details.images.slice(2))
+                          setPreviewImages(selectedActivity.details.images!.slice(2))
                         }}
                       >
                         <div className="gallery-more-content">
@@ -996,11 +1089,12 @@ function App() {
 
       {lightboxImage && (
         <div
-          className="lightbox-overlay"
+          className={`lightbox-overlay ${lightboxVariant === 'sleep-ai' ? 'lightbox-overlay--sleep-ai' : ''}`}
           onClick={() => {
             setLightboxImage(null)
             setLightboxImages([])
             setLightboxIndex(0)
+            setLightboxVariant('default')
           }}
           onKeyDown={(e) => {
             if (lightboxImages.length > 1) {
@@ -1018,6 +1112,7 @@ function App() {
                 setLightboxImage(null)
                 setLightboxImages([])
                 setLightboxIndex(0)
+                setLightboxVariant('default')
               }
             }
           }}
@@ -1029,6 +1124,7 @@ function App() {
               setLightboxImage(null)
               setLightboxImages([])
               setLightboxIndex(0)
+              setLightboxVariant('default')
             }}
           >
             ×
@@ -1065,7 +1161,7 @@ function App() {
           <img
             src={lightboxImage}
             alt="Gallery"
-            className="lightbox-image"
+            className={`lightbox-image ${lightboxVariant === 'sleep-ai' ? 'lightbox-image--sleep-ai' : ''}`}
             onClick={(e) => e.stopPropagation()}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
@@ -1101,6 +1197,7 @@ function App() {
                     onClick={() => {
                       setLightboxImages(allImages)
                       setLightboxIndex(actualIndex)
+                      setLightboxVariant((selectedProject?.id === 'sleep-ai' || selectedProject?.id === 'eeg-bci') ? 'sleep-ai' : 'default')
                       setLightboxImage(image)
                       setPreviewImages(null)
                     }}

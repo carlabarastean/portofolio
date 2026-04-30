@@ -686,6 +686,15 @@ main {
   -webkit-user-drag: none;
 }
 
+.lightbox-overlay--sleep-ai {
+  padding: 0.5rem;
+}
+
+.lightbox-overlay--sleep-ai .lightbox-image {
+  max-width: 98vw;
+  max-height: 98vh;
+}
+
 .lightbox-nav {
   position: absolute;
   top: 50%;
@@ -772,6 +781,15 @@ main {
   .lightbox-image {
     max-width: 95vw;
     max-height: 85vh;
+  }
+
+  .lightbox-overlay--sleep-ai {
+    padding: 0.25rem;
+  }
+
+  .lightbox-overlay--sleep-ai .lightbox-image {
+    max-width: 99vw;
+    max-height: 92vh;
   }
 
   .lightbox-nav {
@@ -1051,6 +1069,17 @@ main {
 .activity-period {
   font-size: 0.85rem;
   color: var(--activity-color, var(--accent));
+  padding: 0.25rem 0.75rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+/* Project period badge (used on project cards and modal header right) */
+.project-period,
+.modal-period {
+  font-size: 0.85rem;
+  color: var(--project-color, var(--accent));
   padding: 0.25rem 0.75rem;
   background: rgba(15, 23, 42, 0.6);
   border: 1px solid var(--border);
@@ -1416,6 +1445,18 @@ footer {
 
 .section-title {
   margin-bottom: 1.25rem;
+}
+
+.feature-list {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+  line-height: 1.7;
+  padding-left: 1.15rem;
+}
+
+.feature-list li {
+  margin-bottom: 0.75rem;
 }
 
 .modal-section h3 {
