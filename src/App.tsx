@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 
@@ -46,6 +46,40 @@ import eeg5 from './assets/images/eeg/5.jpg'
 import eeg6 from './assets/images/eeg/6.jpg'
 import eeg7 from './assets/images/eeg/7.jpg'
 import eeg8 from './assets/images/eeg/8.jpg'
+import cassini1 from './assets/images/cassini/cassini_1.jpeg'
+import cassini2 from './assets/images/cassini/cassini_2.jpeg'
+import cassini3 from './assets/images/cassini/cassini_3.jpeg'
+import cassini4 from './assets/images/cassini/cassini_4.jpeg'
+// Dynamically import any presentation slide images placed in the cassini/pptx or
+// cassini/pptx_cassini folders. This accepts both locations so you can keep the
+// older folder or the new `pptx_cassini` (higher-quality PNGs) without editing
+// this file again. Files will be sorted by filename.
+const cassiniPptSlides = [
+  ...Object.values(
+    import.meta.glob('./assets/images/cassini/pptx/*.{png,jpg,jpeg}', { eager: true }) as Record<
+      string,
+      { default: string }
+    >
+  ).map((m) => m.default),
+  ...Object.values(
+    import.meta.glob('./assets/images/cassini/pptx_cassini/*.{png,jpg,jpeg}', { eager: true }) as Record<
+      string,
+      { default: string }
+    >
+  ).map((m) => m.default),
+].sort((a: string, b: string) => a.localeCompare(b))
+
+// Dynamically import any images placed in the waste-recognition folder for the EcoSort project.
+// Files will be sorted by filename so previews are deterministic.
+const ecoSortImages = Object.values(
+  import.meta.glob('./assets/images/waste-recognition/*.{png,jpg,jpeg}', { eager: true }) as Record<
+    string,
+    { default: string }
+  >
+)
+  .map((m) => m.default)
+  .sort((a: string, b: string) => a.localeCompare(b))
+
 
 
 const experiences = [
@@ -71,6 +105,7 @@ const experiences = [
     ],
   },
 ]
+
 const projects = [
   {
     id: 'budgetly',
@@ -120,7 +155,7 @@ const projects = [
     repository: '',
     color: '#a78bfa',
     year: 2025,
-    category: 'Machine Learning',
+    category: 'Machine/Deep Learning',
     details: {
       overview:
         'AI-Based Sleep Quality Prediction System is an academic machine learning project focused on estimating sleep quality using questionnaire-based data collected from active military personnel. I developed a custom composite sleep score from multiple indicators, including subjective sleep quality, sleep duration, insomnia frequency, sleep latency, and daytime sleepiness, then transformed the task into a binary classification problem for model comparison.',
@@ -149,7 +184,7 @@ const projects = [
     repository: 'https://github.com/carlabarastean/eeg-prosthetic-control',
     color: '#67e8f9',
     year: 2024,
-    category: 'Deep Learning / BCI',
+    category: 'Machine/Deep Learning',
     details: {
       overview:
         'This project explores the use of AI and EEG signal processing to detect motor intentions from brain activity. Using the PhysioNet Motor Movement/Imagery Dataset, I built a research-oriented pipeline for preprocessing EEG signals, extracting frequency-time features, and training CNN models to classify hand movement intentions.',
@@ -167,7 +202,42 @@ const projects = [
       images: [eeg1, eeg2, eeg3, eeg4, eeg5, eeg6, eeg7, eeg8],
     },
   },
-]
+  {
+    id: 'ecosort',
+    title: 'EcoSort - Intelligent Waste Recognition & Sorting System',
+    subtitle: 'Real-time Waste Classification with EfficientNetB3 & OpenCV',
+    period: 'January 2026',
+    stack: 'Python · TensorFlow · OpenCV · Arduino',
+    description:
+      'EcoSort is a deep-learning driven waste classification and sorting prototype that recognizes common waste materials (paper, metal, plastic) and supports real-time webcam inference and optional Arduino-controlled sorting.',
+    repository: 'https://github.com/carlabarastean/smart-waste-sorting',
+    color: '#16a34a',
+    year: 2026,
+    category: 'Machine/Deep Learning',
+    details: {
+      overview:
+        'EcoSort is a deep learning waste classification project that identifies waste materials as paper, metal, or plastic. The system uses transfer learning with EfficientNetB3, evaluates model performance with classification metrics, and supports real-time webcam inference through OpenCV. It can also be extended with Arduino serial communication for automatic sorting commands.',
+      features: [
+        'Classifies waste images into paper, metal, or plastic',
+        'Uses EfficientNetB3 with a custom classification head',
+        'Applies image preprocessing and data augmentation for robustness',
+        'Two-stage training: head training followed by EfficientNet fine-tuning',
+        'Evaluates with accuracy, precision, recall, F1-score, and confusion matrix',
+        'Supports real-time webcam inference and optional Arduino integration',
+      ],
+      contributions: [
+        'Model design and transfer-learning setup using EfficientNetB3',
+        'Data pipeline and augmentation in TensorFlow/Keras',
+        'Real-time webcam inference demo using OpenCV',
+        'Evaluation scripts and result reporting (classification report, confusion matrix)',
+      ],
+      results:
+        'Test Accuracy: 95.6% (44/46 correct). The model shows strong per-class performance with weighted F1 ~0.96 on the held-out test set.',
+      techStack: 'Python, TensorFlow/Keras, OpenCV, NumPy, Pandas, Scikit-learn, Jupyter Notebook, PySerial (optional)',
+      images: ecoSortImages,
+    },
+  },
+  ]
 
 const activities = [
   {
@@ -196,10 +266,12 @@ const activities = [
       skills:
         'Sentinel-1 Processing, Remote Sensing, Geospatial Data Analysis, Graph Modeling, Environmental Monitoring, Hackathon Collaboration',
       images: [
-        'https://placehold.co/600x400/0f172a/38bdf8?text=CASSINI+Hackathon',
-        'https://placehold.co/600x400/0f172a/38bdf8?text=AquaGraph+Platform',
-        'https://placehold.co/600x400/0f172a/38bdf8?text=Sentinel-1+Water+Monitoring',
+        cassini1,
+        cassini2,
+        cassini3,
+        cassini4,
       ],
+      presentationSlides: cassiniPptSlides,
     },
   },
   {
@@ -410,7 +482,25 @@ const activities = [
   },
 ]
 
-const techStack = ['React', 'Node.js', 'Python', 'C/C++', 'MATLAB', 'Simulink', 'Git']
+const techStack = [
+  'React',
+  'TypeScript',
+  'Node.js',
+  'Express',
+  'Vite',
+  'Tailwind CSS',
+  'Python',
+  'TensorFlow',
+  'PyTorch',
+  'OpenCV',
+  'Docker',
+  'MongoDB',
+  'Git',
+  'GitHub Actions',
+  'MATLAB',
+  'Simulink',
+]
+const ACTIVITY_AUTOPLAY_INTERVAL_MS = 3000
 
 function App() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
@@ -422,22 +512,49 @@ function App() {
   const [touchStart, setTouchStart] = useState<number | null>(null)
   const [touchEnd, setTouchEnd] = useState<number | null>(null)
   const [previewImages, setPreviewImages] = useState<string[] | null>(null)
-  
+  const [activityAutoplay, setActivityAutoplay] = useState<boolean>(false)
+  const activityAutoplayRef = useRef<number | null>(null)
+  // Timeout ref used to delay auto-start when the slides section enters view
+  const activityAutoplayStartTimeoutRef = useRef<number | null>(null)
+  const [activityAutoplayUserPaused, setActivityAutoplayUserPaused] = useState<boolean>(false)
+  const slidesSectionRef = useRef<HTMLDivElement | null>(null)
+  const slidePreviewRef = useRef<HTMLDivElement | null>(null)
+  const [activityPreviewIndex, setActivityPreviewIndex] = useState<number>(0)
+  const [isSlideFullscreen, setIsSlideFullscreen] = useState<boolean>(false)
+  // Project presentation slides (sleep-ai, eeg-bci) - same behavior as activity slideshow
+  const projectPreviewRef = useRef<HTMLDivElement | null>(null)
+  const [projectPreviewIndex, setProjectPreviewIndex] = useState<number>(0)
+  const [projectAutoplay, setProjectAutoplay] = useState<boolean>(false)
+  const projectAutoplayRef = useRef<number | null>(null)
+  const projectAutoplayStartTimeoutRef = useRef<number | null>(null)
+  const [projectAutoplayUserPaused, setProjectAutoplayUserPaused] = useState<boolean>(false)
+  const [isProjectFullscreen, setIsProjectFullscreen] = useState<boolean>(false)
+
+
   // Project filters
   const [projectCategoryFilter, setProjectCategoryFilter] = useState<string>('All')
   const [projectYearFilter, setProjectYearFilter] = useState<string>('All')
-  
+
   // Activity filters
   const [activityTypeFilter, setActivityTypeFilter] = useState<string>('All')
-  
+
+  // Sort projects chronologically (newest first) for default display
+  // We keep the original `projects` array untouched and derive a sorted copy for rendering.
+  const sortedProjects = [...projects].sort((a, b) => {
+    if (b.year !== a.year) return b.year - a.year
+    // Fallback: compare period strings when years are equal (keeps ordering deterministic)
+    return (b.period || '').localeCompare(a.period || '', undefined, { numeric: true, sensitivity: 'base' })
+  })
+
   // Get unique values for filters
   const projectCategories = ['All', ...Array.from(new Set(projects.map((p) => p.category)))]
-  const projectYears = ['All', ...Array.from(new Set(projects.map((p) => p.year.toString()))).sort((a, b) => Number(b) - Number(a))]
-  
+  // Use sortedProjects to produce year filters in descending order
+  const projectYears = ['All', ...Array.from(new Set(sortedProjects.map((p) => p.year.toString()))).sort((a, b) => Number(b) - Number(a))]
+
   const activityTypes = ['All', ...Array.from(new Set(activities.map((a) => a.type)))]
-  
-  // Filter projects
-  const filteredProjects = projects.filter((project) => {
+
+  // Filter projects (apply filters on the chronologically-sorted list)
+  const filteredProjects = sortedProjects.filter((project) => {
     const categoryMatch = projectCategoryFilter === 'All' || project.category === projectCategoryFilter
     const yearMatch = projectYearFilter === 'All' || project.year.toString() === projectYearFilter
     return categoryMatch && yearMatch
@@ -508,6 +625,244 @@ function App() {
       const prevIndex = lightboxIndex > 0 ? lightboxIndex - 1 : lightboxImages.length - 1
       setLightboxIndex(prevIndex)
       setLightboxImage(lightboxImages[prevIndex])
+    }
+  }
+
+  // NOTE: autoplay is stopped when the lightbox is closed (handled in the overlay/close handlers below)
+
+  // Manage autoplay interval for activity presentation slides (preview mode)
+  useEffect(() => {
+    if (!activityAutoplay) {
+      if (activityAutoplayRef.current) {
+        clearInterval(activityAutoplayRef.current)
+        activityAutoplayRef.current = null
+      }
+      return
+    }
+
+    const slides = selectedActivity?.details.presentationSlides || []
+    if (!slides || slides.length === 0) {
+      setActivityAutoplay(false)
+      return
+    }
+
+    activityAutoplayRef.current = window.setInterval(() => {
+      setActivityPreviewIndex((prev) => {
+        return (prev + 1) % slides.length
+      })
+    }, ACTIVITY_AUTOPLAY_INTERVAL_MS) as unknown as number
+
+    return () => {
+      if (activityAutoplayRef.current) {
+        clearInterval(activityAutoplayRef.current)
+        activityAutoplayRef.current = null
+      }
+    }
+  }, [activityAutoplay, selectedActivity])
+
+  // Project autoplay (for selectedProject presentation slides)
+  useEffect(() => {
+    if (!projectAutoplay) {
+      if (projectAutoplayRef.current) {
+        clearInterval(projectAutoplayRef.current)
+        projectAutoplayRef.current = null
+      }
+      return
+    }
+
+    const slides = selectedProject?.details.images || []
+    if (!slides || slides.length === 0) {
+      setProjectAutoplay(false)
+      return
+    }
+
+    projectAutoplayRef.current = window.setInterval(() => {
+      setProjectPreviewIndex((prev) => {
+        return (prev + 1) % slides.length
+      })
+    }, ACTIVITY_AUTOPLAY_INTERVAL_MS) as unknown as number
+
+    return () => {
+      if (projectAutoplayRef.current) {
+        clearInterval(projectAutoplayRef.current)
+        projectAutoplayRef.current = null
+      }
+    }
+  }, [projectAutoplay, selectedProject])
+
+  // Start project autoplay when project slides section enters view
+  useEffect(() => {
+    if (!projectPreviewRef.current) return
+    const el = projectPreviewRef.current
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (!projectAutoplayUserPaused && !projectAutoplay) {
+              if (projectAutoplayStartTimeoutRef.current) {
+                clearTimeout(projectAutoplayStartTimeoutRef.current)
+                projectAutoplayStartTimeoutRef.current = null
+              }
+              projectAutoplayStartTimeoutRef.current = window.setTimeout(() => {
+                setProjectAutoplay(true)
+                projectAutoplayStartTimeoutRef.current = null
+              }, ACTIVITY_AUTOPLAY_INTERVAL_MS) as unknown as number
+            }
+          } else {
+            if (projectAutoplayStartTimeoutRef.current) {
+              clearTimeout(projectAutoplayStartTimeoutRef.current)
+              projectAutoplayStartTimeoutRef.current = null
+            }
+            setProjectAutoplay(false)
+          }
+        })
+      },
+      { threshold: 0.5 }
+    )
+    obs.observe(el)
+    return () => {
+      obs.disconnect()
+      if (projectAutoplayStartTimeoutRef.current) {
+        clearTimeout(projectAutoplayStartTimeoutRef.current)
+        projectAutoplayStartTimeoutRef.current = null
+      }
+    }
+  }, [selectedProject, projectAutoplayUserPaused, projectAutoplay])
+
+  // Start autoplay automatically when the Presentation Slides section enters the viewport.
+  // Delay the auto-start by the chosen interval (e.g. 3s) so the user can settle on the content.
+  useEffect(() => {
+    if (!slidesSectionRef.current) return
+    const el = slidesSectionRef.current
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // only schedule auto-start if user hasn't manually paused
+            if (!activityAutoplayUserPaused && !activityAutoplay) {
+              // clear any previous scheduled start
+              if (activityAutoplayStartTimeoutRef.current) {
+                clearTimeout(activityAutoplayStartTimeoutRef.current)
+                activityAutoplayStartTimeoutRef.current = null
+              }
+              // schedule autoplay to start after the selected interval
+              activityAutoplayStartTimeoutRef.current = window.setTimeout(() => {
+                setActivityAutoplay(true)
+                activityAutoplayStartTimeoutRef.current = null
+              }, ACTIVITY_AUTOPLAY_INTERVAL_MS) as unknown as number
+            }
+          } else {
+            // clear scheduled start if user scrolls away and stop autoplay
+            if (activityAutoplayStartTimeoutRef.current) {
+              clearTimeout(activityAutoplayStartTimeoutRef.current)
+              activityAutoplayStartTimeoutRef.current = null
+            }
+            setActivityAutoplay(false)
+          }
+        })
+      },
+      { threshold: 0.5 }
+    )
+    obs.observe(el)
+    return () => {
+      obs.disconnect()
+      if (activityAutoplayStartTimeoutRef.current) {
+        clearTimeout(activityAutoplayStartTimeoutRef.current)
+        activityAutoplayStartTimeoutRef.current = null
+      }
+    }
+  }, [selectedActivity, activityAutoplayUserPaused, activityAutoplay])
+
+  useEffect(() => {
+    const docWithWebkit = document as Document & { webkitFullscreenElement?: Element | null }
+    const onFullscreenChange = () => {
+      const fullscreenElement = document.fullscreenElement || docWithWebkit.webkitFullscreenElement || null
+      setIsSlideFullscreen(fullscreenElement === slidePreviewRef.current)
+      setIsProjectFullscreen(fullscreenElement === projectPreviewRef.current)
+    }
+
+    document.addEventListener('fullscreenchange', onFullscreenChange)
+    document.addEventListener('webkitfullscreenchange', onFullscreenChange)
+
+    return () => {
+      document.removeEventListener('fullscreenchange', onFullscreenChange)
+      document.removeEventListener('webkitfullscreenchange', onFullscreenChange)
+    }
+  }, [])
+
+  const toggleSlideFullscreen = async (e?: React.MouseEvent | React.KeyboardEvent) => {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
+    if (!slidePreviewRef.current) return
+
+    const docWithWebkit = document as Document & {
+      webkitExitFullscreen?: () => Promise<void> | void
+      webkitFullscreenElement?: Element | null
+    }
+    const previewWithWebkit = slidePreviewRef.current as HTMLDivElement & {
+      webkitRequestFullscreen?: () => Promise<void> | void
+    }
+
+    const fullscreenElement = document.fullscreenElement || docWithWebkit.webkitFullscreenElement || null
+
+    try {
+      if (fullscreenElement === slidePreviewRef.current) {
+        if (document.exitFullscreen) {
+          await document.exitFullscreen()
+        } else if (docWithWebkit.webkitExitFullscreen) {
+          await docWithWebkit.webkitExitFullscreen()
+        }
+        return
+      }
+
+      if (slidePreviewRef.current.requestFullscreen) {
+        await slidePreviewRef.current.requestFullscreen()
+      } else if (previewWithWebkit.webkitRequestFullscreen) {
+        await previewWithWebkit.webkitRequestFullscreen()
+      }
+    } catch {
+      // Ignore if fullscreen is blocked by browser policy.
+    }
+  }
+
+  const toggleProjectFullscreen = async (e?: React.MouseEvent | React.KeyboardEvent) => {
+    if (e) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
+    if (!projectPreviewRef.current) return
+
+    const docWithWebkit = document as Document & {
+      webkitExitFullscreen?: () => Promise<void> | void
+      webkitFullscreenElement?: Element | null
+    }
+    const previewWithWebkit = projectPreviewRef.current as HTMLDivElement & {
+      webkitRequestFullscreen?: () => Promise<void> | void
+    }
+
+    const fullscreenElement = document.fullscreenElement || docWithWebkit.webkitFullscreenElement || null
+
+    try {
+      if (fullscreenElement === projectPreviewRef.current) {
+        if (document.exitFullscreen) {
+          await document.exitFullscreen()
+        } else if (docWithWebkit.webkitExitFullscreen) {
+          await docWithWebkit.webkitExitFullscreen()
+        }
+        return
+      }
+
+      if (projectPreviewRef.current.requestFullscreen) {
+        await projectPreviewRef.current.requestFullscreen()
+      } else if (previewWithWebkit.webkitRequestFullscreen) {
+        await previewWithWebkit.webkitRequestFullscreen()
+      }
+    } catch {
+      // ignore
     }
   }
 
@@ -771,7 +1126,17 @@ function App() {
                 <article
                   key={activity.id}
                   className="activity-card"
-                  onClick={() => setSelectedActivity(activity)}
+                  onClick={() => {
+                    // Always open the activity slideshow from the first slide.
+                    setActivityPreviewIndex(0)
+                    setActivityAutoplay(false)
+                    setActivityAutoplayUserPaused(false)
+                    if (activityAutoplayStartTimeoutRef.current) {
+                      clearTimeout(activityAutoplayStartTimeoutRef.current)
+                      activityAutoplayStartTimeoutRef.current = null
+                    }
+                    setSelectedActivity(activity)
+                  }}
                   style={{ '--activity-color': activity.color } as React.CSSProperties}
                 >
                   <div className="activity-header">
@@ -890,65 +1255,106 @@ function App() {
                   <p className="section-content highlight-content">{selectedProject.details.results}</p>
                 </div>
               )}
-              {selectedProject.details.images && selectedProject.details.images.length > 0 && (
+                {selectedProject.details.images && selectedProject.details.images.length > 0 && (
+                        <div className="modal-section">
+                          <div className="section-title">
+                            <h3>
+                              {(selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') && 'Presentation Slides'}
+                              {selectedProject.id === 'budgetly' && 'Features & Interface Screenshots'}
+                              {selectedProject.id !== 'sleep-ai' && selectedProject.id !== 'budgetly' && 'Gallery'}
+                            </h3>
+                          </div>
+                          { (selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') ? (
+                            <div className="activity-gallery">
+                              <div
+                                ref={projectPreviewRef}
+                                className={`slide-preview slide-preview--full gallery-item ${isProjectFullscreen ? 'is-fullscreen' : ''}`}
+                                onClick={() => {
+                                  if (projectAutoplayStartTimeoutRef.current) {
+                                    clearTimeout(projectAutoplayStartTimeoutRef.current)
+                                    projectAutoplayStartTimeoutRef.current = null
+                                  }
+                                  setProjectAutoplay((prev) => {
+                                    const next = !prev
+                                    setProjectAutoplayUserPaused(!next)
+                                    return next
+                                  })
+                                }}
+                              >
+                                <div
+                                  className={`slide-fullscreen-trigger ${isProjectFullscreen ? 'is-active' : ''}`}
+                                  role="button"
+                                  tabIndex={0}
+                                  title={isProjectFullscreen ? 'Exit full screen' : 'View full screen'}
+                                  aria-label={isProjectFullscreen ? 'Exit full screen' : 'View full screen'}
+                                  onClick={(e) => { void toggleProjectFullscreen(e) }}
+                                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { void toggleProjectFullscreen(e) } }}
+                                >
+                                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                  </svg>
+                                  <span>{isProjectFullscreen ? 'Exit' : 'Fullscreen'}</span>
+                                </div>
+                                <img
+                                  src={selectedProject.details.images[projectPreviewIndex]}
+                                  alt={`${selectedProject.title} - Slide ${projectPreviewIndex + 1}`}
+                                />
+                                <div className="gallery-overlay">
+                                  <span>{projectAutoplay ? 'Playing...' : 'Click to play'}</span>
+                                </div>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="activity-gallery">
+                              {selectedProject.details.images.slice(0, selectedProject.details.images.length > 3 ? 2 : selectedProject.details.images.length).map((image, idx) => (
+                                <div
+                                  key={idx}
+                                  className="gallery-item"
+                                  onClick={() => {
+                                    if (selectedProject.details.images) {
+                                      setLightboxImages(selectedProject.details.images)
+                                      setLightboxIndex(idx)
+                                      setLightboxVariant((selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') ? 'sleep-ai' : 'default')
+                                      setLightboxImage(image)
+                                    }
+                                  }}
+                                >
+                                  <img
+                                    src={image}
+                                    alt={`${selectedProject.title} - ${
+                                      (selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') ? 'Slide' :
+                                      selectedProject.id === 'budgetly' ? 'Screenshot' :
+                                      'Image'
+                                    } ${idx + 1}`}
+                                  />
+                                  <div className="gallery-overlay">
+                                    <span>Click to enlarge</span>
+                                  </div>
+                                </div>
+                              ))}
+                              {selectedProject.details.images.length > 3 && (
+                                <div
+                                  className="gallery-item gallery-more"
+                                  onClick={() => {
+                                    if (selectedProject.details.images) {
+                                      setPreviewImages(selectedProject.details.images.slice(2))
+                                    }
+                                  }}
+                                >
+                                  <div className="gallery-more-content">
+                                    <span className="gallery-more-count">+{selectedProject.details.images.length - 2}</span>
+                                    <span className="gallery-more-text">
+                                      {selectedProject.id === 'budgetly' && 'more screenshots'}
+                                      {selectedProject.id !== 'budgetly' && 'more images'}
+                                    </span>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      )}
                 <div className="modal-section">
-                  <div className="section-title">
-                    <h3>
-                      {(selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') && 'Presentation Slides'}
-                      {selectedProject.id === 'budgetly' && 'Features & Interface Screenshots'}
-                      {selectedProject.id !== 'sleep-ai' && selectedProject.id !== 'budgetly' && 'Gallery'}
-                    </h3>
-                  </div>
-                  <div className="activity-gallery">
-                    {selectedProject.details.images.slice(0, selectedProject.details.images.length > 3 ? 2 : selectedProject.details.images.length).map((image, idx) => (
-                      <div
-                        key={idx}
-                        className="gallery-item"
-                        onClick={() => {
-                          if (selectedProject.details.images) {
-                            setLightboxImages(selectedProject.details.images)
-                            setLightboxIndex(idx)
-                            setLightboxVariant((selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') ? 'sleep-ai' : 'default')
-                            setLightboxImage(image)
-                          }
-                        }}
-                      >
-                        <img
-                          src={image}
-                          alt={`${selectedProject.title} - ${
-                            (selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') ? 'Slide' :
-                            selectedProject.id === 'budgetly' ? 'Screenshot' :
-                            'Image'
-                          } ${idx + 1}`}
-                        />
-                        <div className="gallery-overlay">
-                          <span>Click to enlarge</span>
-                        </div>
-                      </div>
-                    ))}
-                    {selectedProject.details.images.length > 3 && (
-                      <div
-                        className="gallery-item gallery-more"
-                        onClick={() => {
-                          if (selectedProject.details.images) {
-                            setPreviewImages(selectedProject.details.images.slice(2))
-                          }
-                        }}
-                      >
-                        <div className="gallery-more-content">
-                          <span className="gallery-more-count">+{selectedProject.details.images.length - 2}</span>
-                          <span className="gallery-more-text">
-                            {(selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') && 'more slides'}
-                            {selectedProject.id === 'budgetly' && 'more screenshots'}
-                            {selectedProject.id !== 'sleep-ai' && selectedProject.id !== 'budgetly' && 'more images'}
-                          </span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-              <div className="modal-section">
                 <div className="section-title">
                   <h3>Tech Stack</h3>
                 </div>
@@ -1031,6 +1437,60 @@ function App() {
                   </p>
                 </div>
               )}
+              {selectedActivity.details.presentationSlides && selectedActivity.details.presentationSlides.length > 0 && (
+                <div className="modal-section" ref={slidesSectionRef}>
+                  <div className="section-title">
+                    <h3>Presentation Slides</h3>
+                  </div>
+                  <div className="activity-gallery">
+                    {/* Single preview image that autoplays when in view. Click toggles pause/resume. */}
+                    <div
+                      ref={slidePreviewRef}
+                      className="slide-preview slide-preview--full gallery-item"
+                      onClick={() => {
+                        // Prevent a delayed auto-start callback from overriding manual pause/resume.
+                        if (activityAutoplayStartTimeoutRef.current) {
+                          clearTimeout(activityAutoplayStartTimeoutRef.current)
+                          activityAutoplayStartTimeoutRef.current = null
+                        }
+                        // toggle autoplay (user click pauses/resumes)
+                        setActivityAutoplay((prev) => {
+                          const next = !prev
+                          setActivityAutoplayUserPaused(!next)
+                          return next
+                        })
+                      }}
+                    >
+                      <div className={`slide-fullscreen-trigger ${isSlideFullscreen ? 'is-active' : ''}`}
+                        role="button"
+                        tabIndex={0}
+                        title={isSlideFullscreen ? 'Exit full screen' : 'View full screen'}
+                        aria-label={isSlideFullscreen ? 'Exit full screen' : 'View full screen'}
+                        onClick={(e) => {
+                          void toggleSlideFullscreen(e)
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            void toggleSlideFullscreen(e)
+                          }
+                        }}
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <span>{isSlideFullscreen ? 'Exit' : 'Fullscreen'}</span>
+                      </div>
+                      <img
+                        src={selectedActivity.details.presentationSlides[activityPreviewIndex]}
+                        alt={`${selectedActivity.title} - Slide ${activityPreviewIndex + 1}`}
+                      />
+                      <div className="gallery-overlay">
+                        <span>{activityAutoplay ? 'Playing...' : 'Click to play'}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
               {selectedActivity.details.images && selectedActivity.details.images.length > 0 && (
                 <div className="modal-section">
                   <div className="section-title">
@@ -1089,13 +1549,14 @@ function App() {
 
       {lightboxImage && (
         <div
-          className={`lightbox-overlay ${lightboxVariant === 'sleep-ai' ? 'lightbox-overlay--sleep-ai' : ''}`}
-          onClick={() => {
-            setLightboxImage(null)
-            setLightboxImages([])
-            setLightboxIndex(0)
-            setLightboxVariant('default')
-          }}
+            className={`lightbox-overlay ${lightboxVariant === 'sleep-ai' ? 'lightbox-overlay--sleep-ai' : ''}`}
+            onClick={() => {
+              setLightboxImage(null)
+              setLightboxImages([])
+              setLightboxIndex(0)
+              setLightboxVariant('default')
+              setActivityAutoplay(false)
+            }}
           onKeyDown={(e) => {
             if (lightboxImages.length > 1) {
               if (e.key === 'ArrowLeft') {
@@ -1113,6 +1574,7 @@ function App() {
                 setLightboxImages([])
                 setLightboxIndex(0)
                 setLightboxVariant('default')
+                setActivityAutoplay(false)
               }
             }
           }}
@@ -1125,6 +1587,7 @@ function App() {
               setLightboxImages([])
               setLightboxIndex(0)
               setLightboxVariant('default')
+              setActivityAutoplay(false)
             }}
           >
             ×
@@ -1162,7 +1625,19 @@ function App() {
             src={lightboxImage}
             alt="Gallery"
             className={`lightbox-image ${lightboxVariant === 'sleep-ai' ? 'lightbox-image--sleep-ai' : ''}`}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation()
+              // Toggle autoplay when user clicks the slide while viewing activity slides
+              if (selectedActivity && selectedActivity.details.presentationSlides?.includes(lightboxImage!)) {
+                if (activityAutoplay) {
+                  setActivityAutoplay(false)
+                  setActivityAutoplayUserPaused(true)
+                } else {
+                  setActivityAutoplay(true)
+                  setActivityAutoplayUserPaused(false)
+                }
+              }
+            }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -1219,3 +1694,4 @@ function App() {
 }
 
 export default App
+
