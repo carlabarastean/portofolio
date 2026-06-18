@@ -3,7 +3,9 @@ import './App.css'
 
 
 
-import photo1 from './assets/images/photo1.jpeg'
+import profile1 from './assets/images/profile/1.JPG'
+import profile2 from './assets/images/profile/2.JPG'
+import profile3 from './assets/images/profile/3.JPG'
 import redcross1 from './assets/images/redcross1.jpeg'
 import redcross2 from './assets/images/redcross2.jpeg'
 import redcross3 from './assets/images/redcross3.jpeg'
@@ -530,6 +532,9 @@ function App() {
   const [projectAutoplayUserPaused, setProjectAutoplayUserPaused] = useState<boolean>(false)
   const [isProjectFullscreen, setIsProjectFullscreen] = useState<boolean>(false)
 
+  // Profile image cycling (hero section)
+  const profileImages = [profile1, profile2, profile3]
+  const [profileImageIndex, setProfileImageIndex] = useState<number>(0)
 
   // Project filters
   const [projectCategoryFilter, setProjectCategoryFilter] = useState<string>('All')
@@ -910,8 +915,13 @@ function App() {
               </button>
             </div>
             <div className="hero-visual">
-              <div className="hero-image-wrapper">
-                <img src={photo1} alt="Carla Maria Bărăstean" />
+              <div className="hero-image-wrapper" style={{ cursor: 'pointer' }} onClick={() => setProfileImageIndex((prev) => (prev + 1) % profileImages.length)}>
+                <img 
+                  src={profileImages[profileImageIndex]} 
+                  alt="Carla Maria Bărăstean" 
+                  title="Click to cycle through photos"
+                  style={{ objectPosition: profileImageIndex === 2 ? 'top' : 'center' }}
+                />
               </div>
             </div>
           </div>
