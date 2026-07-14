@@ -3,9 +3,9 @@ import './App.css'
 
 
 
-import profile1 from './assets/images/profile/1.JPG'
-import profile2 from './assets/images/profile/2.JPG'
-import profile3 from './assets/images/profile/3.JPG'
+import profileGraduationDiploma from './assets/images/profile/graduation-diploma.jpg'
+import profileGraduationCap from './assets/images/profile/graduation-cap.jpg'
+import profileEngineerBadge from './assets/images/profile/engineer-badge.png'
 import redcross1 from './assets/images/redcross1.jpeg'
 import redcross2 from './assets/images/redcross2.jpeg'
 import redcross3 from './assets/images/redcross3.jpeg'
@@ -52,6 +52,26 @@ import cassini1 from './assets/images/cassini/cassini_1.jpeg'
 import cassini2 from './assets/images/cassini/cassini_2.jpeg'
 import cassini3 from './assets/images/cassini/cassini_3.jpeg'
 import cassini4 from './assets/images/cassini/cassini_4.jpeg'
+import researchPaperFirstPage from './assets/images/research/iccp-2026-paper-first-page.png'
+import bachelorThesisCover from './assets/images/research/bachelor-thesis-cover.png'
+
+const profileImages = [
+  {
+    src: profileGraduationDiploma,
+    alt: 'Carla Maria Bărăștean at her graduation ceremony, holding her diploma and a rose',
+    objectPosition: 'center 43%',
+  },
+  {
+    src: profileGraduationCap,
+    alt: 'Carla Maria Bărăștean holding her personalized graduation cap',
+    objectPosition: 'center 42%',
+  },
+  {
+    src: profileEngineerBadge,
+    alt: 'Carla Maria Bărăștean holding her engineer name badge',
+    objectPosition: 'center 36%',
+  },
+]
 // Dynamically import any presentation slide images placed in the cassini/pptx or
 // cassini/pptx_cassini folders. This accepts both locations so you can keep the
 // older folder or the new `pptx_cassini` (higher-quality PNGs) without editing
@@ -88,7 +108,7 @@ const experiences = [
   {
     role: 'Model-Based Software Developer',
     company: 'BOSCH · Cluj-Napoca',
-    period: 'July 2024 – Jan 2025',
+    period: 'July 2024 - Jan 2025',
     details: [
       'Modeled an EV drivetrain using six critical components',
       'Implemented Simulink/ASCET models and validated in TPT',
@@ -99,7 +119,7 @@ const experiences = [
   {
     role: 'Computer and Network Operator',
     company: 'ALBALUX COM',
-    period: '2019 – Present',
+    period: '2019 - Present',
     details: [
       'Installed and configured hardware for SMEs',
       'Diagnosed network and workstation issues',
@@ -111,7 +131,7 @@ const experiences = [
 const projects = [
   {
     id: 'budgetly',
-    title: 'BudgetLy – Collaborative Finance Platform',
+    title: 'BudgetLy - Collaborative Finance Platform',
     subtitle: 'Full-Stack Finance Platform with Shared Payments',
     period: 'May 2025',
     stack: 'React · Node.js · MongoDB · Express',
@@ -192,14 +212,14 @@ const projects = [
         'This project explores the use of AI and EEG signal processing to detect motor intentions from brain activity. Using the PhysioNet Motor Movement/Imagery Dataset, I built a research-oriented pipeline for preprocessing EEG signals, extracting frequency-time features, and training CNN models to classify hand movement intentions.',
       contributions: [
         'EEG Data Analysis: Processed recordings from the PhysioNet Motor Movement/Imagery Dataset (64 channels, 160 Hz) to extract motor-relevant segments.',
-        'Signal Preprocessing: Implemented band-pass (7.5–30 Hz) and notch filtering, channel standardization, artifact removal, and normalization to improve signal quality.',
+        'Signal Preprocessing: Implemented band-pass (7.5-30 Hz) and notch filtering, channel standardization, artifact removal, and normalization to improve signal quality.',
         'Channel Selection: Reduced dimensionality by selecting motor-cortex channels (FC5, FC3, FC1, FCz) to focus the model on relevant signals.',
         'Feature Engineering: Converted time-series EEG into spectrogram and frequency-domain representations using STFT and Welch methods.',
         'Deep Learning Modeling: Designed and iterated multiple CNN architectures with regularization (dropout, batch norm), learning-rate schedules, and early stopping using PyTorch.',
         'Evaluation & Analysis: Measured accuracy, precision, recall, F1-score, and confusion matrices to analyze class separability and model generalization.'
       ],
       results:
-        'Implemented a full EEG-to-decision pipeline and identified that simpler CNNs generalized better on noisy EEG data. The best model reached ~60.3% accuracy; analysis showed stronger detection of the Rest class and challenges separating left vs right movement—insights useful for future hybrid or larger-scale models.',
+        'Implemented a full EEG-to-decision pipeline and identified that simpler CNNs generalized better on noisy EEG data. The best model reached ~60.3% accuracy; analysis showed stronger detection of the Rest class and challenges separating left vs right movement - insights useful for future hybrid or larger-scale models.',
       techStack: 'Python, PyTorch, NumPy, SciPy, STFT, Welch, Spectrograms, Jupyter Notebook',
       images: [eeg1, eeg2, eeg3, eeg4, eeg5, eeg6, eeg7, eeg8],
     },
@@ -278,7 +298,7 @@ const activities = [
   },
   {
     id: 'ieee-saci',
-    title: 'Panel Speaker – IEEE SACI 2025',
+    title: 'Panel Speaker - IEEE SACI 2025',
     role: 'International Conference Speaker',
     period: 'May 2025',
     location: 'Budapest, Hungary',
@@ -308,7 +328,7 @@ const activities = [
   },
   {
     id: 'robotics-ftc',
-    title: 'FIRST Tech Challenge – RO060 Decebal Tech',
+    title: 'FIRST Tech Challenge - RO060 Decebal Tech',
     role: 'Team Member & Mentor',
     period: '2019-2022',
     location: 'Deva, Romania',
@@ -322,7 +342,7 @@ const activities = [
         "For three seasons, I was a core member and later a mentor for Team RO060 Decebal Tech, competing in Romania's premier robotics championship. My journey involved building competitive robots from scratch, culminating in significant achievements such as the Control Award (1st Place) and the Finalist Alliance Award (1st Pick) at regional qualifiers. Beyond engineering, I actively engaged with the national robotics community, participating in technical inspections and judging sessions.",
       contributions: [
         'Software & Control: Developed Java algorithms for autonomous navigation and sensor integration, which was instrumental in winning the Control Award',
-        "The \"All-Rounder\" Phase: As a member of a startup team, I initially juggled multiple roles—Programming, Mechanics, and PR—ensuring the team's survival and growth during its early stages",
+        "The \"All-Rounder\" Phase: As a member of a startup team, I initially juggled multiple roles - Programming, Mechanics, and PR - ensuring the team's survival and growth during its early stages",
         'Competition Strategy: Led the team through high-pressure Technical Inspections and presented our engineering portfolio to expert judges, defending our technical choices',
       ],
       impact:
@@ -502,11 +522,29 @@ const techStack = [
   'MATLAB',
   'Simulink',
 ]
+
+const projectNoteColors: Record<string, string> = {
+  All: '#96607d',
+  'Full-Stack Development': '#168878',
+  'Machine/Deep Learning': '#5f67bd',
+}
+
+const activityNoteColors: Record<string, string> = {
+  All: '#96607d',
+  'Hackathon / Space Data': '#26899a',
+  'Conference / Speaking': '#a34f7a',
+  'Robotics / Competition': '#aa6e28',
+  'Academic Competition': '#526bb0',
+  Volunteering: '#4f8965',
+  'Professional Development': '#835fa6',
+}
+
 const ACTIVITY_AUTOPLAY_INTERVAL_MS = 3000
 
 function App() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
   const [selectedActivity, setSelectedActivity] = useState<typeof activities[0] | null>(null)
+  const [isThesisOpen, setIsThesisOpen] = useState<boolean>(false)
   const [lightboxImage, setLightboxImage] = useState<string | null>(null)
   const [lightboxImages, setLightboxImages] = useState<string[]>([])
   const [lightboxIndex, setLightboxIndex] = useState<number>(0)
@@ -533,7 +571,6 @@ function App() {
   const [isProjectFullscreen, setIsProjectFullscreen] = useState<boolean>(false)
 
   // Profile image cycling (hero section)
-  const profileImages = [profile1, profile2, profile3]
   const [profileImageIndex, setProfileImageIndex] = useState<number>(0)
 
   // Project filters
@@ -542,6 +579,9 @@ function App() {
 
   // Activity filters
   const [activityTypeFilter, setActivityTypeFilter] = useState<string>('All')
+
+  const projectNoteColor = projectNoteColors[projectCategoryFilter] ?? projectNoteColors.All
+  const activityNoteColor = activityNoteColors[activityTypeFilter] ?? activityNoteColors.All
 
   // Sort projects chronologically (newest first) for default display
   // We keep the original `projects` array untouched and derive a sorted copy for rendering.
@@ -590,7 +630,7 @@ function App() {
 
   // Block body scroll when modal is open
   useEffect(() => {
-    const isModalOpen = selectedProject !== null || selectedActivity !== null || lightboxImage !== null || previewImages !== null
+    const isModalOpen = isThesisOpen || selectedProject !== null || selectedActivity !== null || lightboxImage !== null || previewImages !== null
     
     if (isModalOpen) {
       document.body.style.overflow = 'hidden'
@@ -602,7 +642,18 @@ function App() {
     return () => {
       document.body.style.overflow = ''
     }
-  }, [selectedProject, selectedActivity, lightboxImage, previewImages])
+  }, [isThesisOpen, selectedProject, selectedActivity, lightboxImage, previewImages])
+
+  useEffect(() => {
+    if (!isThesisOpen) return
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsThesisOpen(false)
+    }
+
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [isThesisOpen])
 
   // Swipe handlers for lightbox
   const minSwipeDistance = 50
@@ -880,6 +931,7 @@ function App() {
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
+          <a href="#research">Research</a>
           <a href="#activities">Activities</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -889,13 +941,13 @@ function App() {
         <section id="home" className="hero">
           <div className="hero-content">
             <div className="hero-text">
-              <p className="eyebrow">Portfolio · 2025</p>
+              <p className="eyebrow">Portfolio · 2026</p>
               <h1>
                 Carla - Maria <span>Bărăștean</span>
               </h1>
-              <h2>4th year Automation and Computer Science Student</h2>
+              <h2>Automation and Computer Science Graduate</h2>
               <p className="description">
-                I'm a Computer Science student driven by a simple question:{' '}
+                I'm an Automation and Computer Science graduate driven by a simple question:{' '}
                 <span className="highlight-quote">"How does this actually work?"</span> This curiosity took me from
                 building robots in high school to optimizing Electric Vehicle models at Bosch and developing AI-powered
                 apps.
@@ -907,22 +959,34 @@ function App() {
                 <br />
                 <span className="highlight-insight">
                   And if there's one thing I've discovered, it's that the correct solution is usually the simplest
-                  one—even if I occasionally try the hard way first.
+                  one - even if I occasionally try the hard way first.
                 </span>
               </p>
               <button onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
-                View My Work
+                Explore selected work
               </button>
+              <div className="hero-notes" aria-label="Areas of focus">
+                <span>Control systems</span>
+                <span>Software engineering</span>
+                <span>Applied AI</span>
+              </div>
             </div>
             <div className="hero-visual">
+              <svg className="portrait-sparkle" viewBox="0 0 64 64" aria-hidden="true">
+                <path d="M32 3C34.5 20.5 43.5 29.5 61 32C43.5 34.5 34.5 43.5 32 61C29.5 43.5 20.5 34.5 3 32C20.5 29.5 29.5 20.5 32 3Z" />
+              </svg>
               <div className="hero-image-wrapper" style={{ cursor: 'pointer' }} onClick={() => setProfileImageIndex((prev) => (prev + 1) % profileImages.length)}>
                 <img 
-                  src={profileImages[profileImageIndex]} 
-                  alt="Carla Maria Bărăstean" 
+                  src={profileImages[profileImageIndex].src}
+                  alt={profileImages[profileImageIndex].alt}
                   title="Click to cycle through photos"
-                  style={{ objectPosition: profileImageIndex === 2 ? 'top' : 'center' }}
+                  style={{ objectPosition: profileImages[profileImageIndex].objectPosition }}
                 />
               </div>
+              <p className="portrait-caption">
+                <span>Portrait / {String(profileImageIndex + 1).padStart(2, '0')}</span>
+                Click the photograph to cycle
+              </p>
             </div>
           </div>
         </section>
@@ -937,21 +1001,30 @@ function App() {
               <p>
                 My journey in technology began in Brad, Hunedoara, where I completed my primary and middle school
                 education. Driven by a growing passion for programming and personal development, I made the decision to
-                pursue my high school studies in Deva, Hunedoara—a choice that marked the beginning of my commitment to
+                pursue my high school studies in Deva, Hunedoara - a choice that marked the beginning of my commitment to
                 following my interests, regardless of distance.
               </p>
               <p>
-                This dedication to growth led me further to Cluj-Napoca, Cluj, where I'm currently pursuing my degree
-                in Automation and Computer Science. Each step of this journey has been a conscious choice to prioritize
-                learning, growth, and the pursuit of what truly matters to me.
+                This dedication to growth led me further to Cluj-Napoca, Cluj, where I graduated in Automation and
+                Computer Science with a final average of 9.25/10. Each step of this journey has been a conscious choice
+                to prioritize learning, growth, and the pursuit of what truly matters to me.
               </p>
-              <div className="motto">
-                <p className="motto-text">
-                  "No distance is too far when passion is the destination."
-                </p>
-                <p className="motto-subtitle">
-                  I'm willing to go anywhere and do anything for what I'm passionate about.
-                </p>
+              <div className="academic-highlight" aria-label="Bachelor's degree achievement">
+                <div className="academic-highlight-header">
+                  <span className="academic-label">Bachelor's Degree</span>
+                  <span className="academic-grade">
+                    <strong>9.25</strong>
+                    <span>/ 10 final average</span>
+                  </span>
+                </div>
+                <div className="thesis-info">
+                  <span className="thesis-label">Bachelor's Thesis</span>
+                  <p>Automation of Nonlinear Control Analysis and Design: A MATLAB Implementation Based on Feedback Linearization</p>
+                  <button className="thesis-explore-btn" onClick={() => setIsThesisOpen(true)}>
+                    <span>Explore thesis & toolbox</span>
+                    <span>↗</span>
+                  </button>
+                </div>
               </div>
             </div>
             <div className="journey-map">
@@ -984,9 +1057,17 @@ function App() {
                   <div className="point-marker"></div>
                   <div className="location-label">
                     <span className="location-name">Cluj-Napoca</span>
-                    <span className="location-details">University</span>
+                    <span className="location-details">Automation &amp; Computer Science Graduate</span>
                   </div>
                 </div>
+              </div>
+              <div className="motto">
+                <p className="motto-text">
+                  "No distance is too far when passion is the destination."
+                </p>
+                <p className="motto-subtitle">
+                  I'm willing to go anywhere and do anything for what I'm passionate about.
+                </p>
               </div>
             </div>
           </div>
@@ -1015,10 +1096,14 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="projects">
+        <section
+          id="projects"
+          className="projects"
+          style={{ '--note-color': projectNoteColor } as React.CSSProperties}
+        >
           <div className="section-header">
             <p className="eyebrow">Selected Work</p>
-            <h3>Projects</h3>
+            <h3><span className="heading-annotation">Projects</span></h3>
           </div>
           <div className="filters">
             <div className="filter-group">
@@ -1028,6 +1113,7 @@ function App() {
                   <button
                     key={category}
                     className={`filter-btn ${projectCategoryFilter === category ? 'active' : ''}`}
+                    aria-pressed={projectCategoryFilter === category}
                     onClick={() => setProjectCategoryFilter(category)}
                   >
                     {category}
@@ -1042,6 +1128,7 @@ function App() {
                   <button
                     key={year}
                     className={`filter-btn ${projectYearFilter === year ? 'active' : ''}`}
+                    aria-pressed={projectYearFilter === year}
                     onClick={() => setProjectYearFilter(year)}
                   >
                     {year}
@@ -1049,6 +1136,13 @@ function App() {
                 ))}
               </div>
             </div>
+          </div>
+          <div className="results-note" aria-hidden="true">
+            <span>Filtered results</span>
+            <svg viewBox="0 0 30 34">
+              <path d="M5 2C5 18 20 12 19 27" />
+              <path d="M13 22L19 28L25 22" />
+            </svg>
           </div>
           <div className="project-grid">
             {filteredProjects.length === 0 ? (
@@ -1097,10 +1191,75 @@ function App() {
           </div>
         </section>
 
-        <section id="activities" className="activities">
+        <section
+          id="research"
+          className="research"
+          style={{ '--note-color': '#26899a' } as React.CSSProperties}
+        >
+          <div className="section-header">
+            <p className="eyebrow">Submitted Manuscript</p>
+            <h3><span className="heading-annotation">Research</span></h3>
+          </div>
+          <article className="research-paper">
+            <div className="research-copy">
+              <div className="research-meta">
+                <span className="research-status">Submitted to ICCP 2026</span>
+                <span>Paper / 2026</span>
+              </div>
+              <h4>
+                As the Crow Flies, or as the River Flows? Graph Topology vs. Proximity in
+                Satellite Water-Quality Monitoring
+              </h4>
+              <p className="research-authors">
+                Doru Leșe · Monica Vătafu · Carla Bărăștean · Ciprian Oprișa
+              </p>
+              <p className="research-description">
+                A controlled study of whether physical river-flow topology adds predictive value beyond
+                geographic proximity in satellite-based water-quality monitoring. Using matched connectivity
+                baselines across national-scale river networks in Germany and Romania, the work examines where
+                flow-aware graph structure is informative - especially for dynamic temporal behavior - and where
+                proximity alone is sufficient.
+              </p>
+              <div className="research-tags" aria-label="Research topics">
+                <span>Remote sensing</span>
+                <span>River networks</span>
+                <span>Graph learning</span>
+                <span>Controlled evaluation</span>
+              </div>
+              <p className="research-note">
+                Manuscript submitted for review. The full text is not publicly available.
+              </p>
+            </div>
+            <button
+              className="research-preview"
+              aria-label="Open a preview of the paper's first page"
+              onClick={() => {
+                setLightboxImages([researchPaperFirstPage])
+                setLightboxIndex(0)
+                setLightboxVariant('default')
+                setLightboxImage(researchPaperFirstPage)
+              }}
+            >
+              <img
+                src={researchPaperFirstPage}
+                alt="First page of the manuscript submitted to ICCP 2026"
+              />
+              <span className="research-preview-caption">
+                <span>First-page preview</span>
+                <span>Open image ↗</span>
+              </span>
+            </button>
+          </article>
+        </section>
+
+        <section
+          id="activities"
+          className="activities"
+          style={{ '--note-color': activityNoteColor } as React.CSSProperties}
+        >
           <div className="section-header">
             <p className="eyebrow">Beyond Coursework</p>
-            <h3>Activities & Leadership</h3>
+            <h3>Activities & <span className="heading-annotation">Leadership</span></h3>
           </div>
           <div className="filters">
             <div className="filter-group">
@@ -1110,6 +1269,7 @@ function App() {
                   <button
                     key={type}
                     className={`filter-btn ${activityTypeFilter === type ? 'active' : ''}`}
+                    aria-pressed={activityTypeFilter === type}
                     onClick={() => setActivityTypeFilter(type)}
                   >
                     {type}
@@ -1117,6 +1277,13 @@ function App() {
                 ))}
               </div>
             </div>
+          </div>
+          <div className="results-note" aria-hidden="true">
+            <span>Filtered results</span>
+            <svg viewBox="0 0 30 34">
+              <path d="M5 2C5 18 20 12 19 27" />
+              <path d="M13 22L19 28L25 22" />
+            </svg>
           </div>
           <div className="activities-grid">
             {filteredActivities.length === 0 ? (
@@ -1205,6 +1372,197 @@ function App() {
           </div>
       </section>
       </main>
+
+      {isThesisOpen && (
+        <div className="modal-overlay thesis-overlay" onClick={() => setIsThesisOpen(false)}>
+          <article
+            className="thesis-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="thesis-modal-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="modal-close thesis-modal-close"
+              aria-label="Close thesis details"
+              onClick={() => setIsThesisOpen(false)}
+            >
+              ×
+            </button>
+
+            <header className="thesis-modal-header">
+              <div className="thesis-modal-intro">
+                <p className="eyebrow">Bachelor's Thesis / 2026</p>
+                <h2 id="thesis-modal-title">RobustFBL<wbr />Toolbox</h2>
+                <p className="thesis-modal-subtitle">
+                  Automation of Nonlinear Control Analysis and Design: A MATLAB Implementation Based on
+                  Feedback Linearization
+                </p>
+                <div className="thesis-facts" aria-label="Thesis facts">
+                  <span><strong>70</strong> pages</span>
+                  <span><strong>8</strong> chapters</span>
+                  <span><strong>5</strong> public API functions</span>
+                  <span><strong>.mltbx</strong> MATLAB Add-On</span>
+                </div>
+              </div>
+              <figure className="thesis-cover">
+                <img src={bachelorThesisCover} alt="Cover of Carla Bărăștean's bachelor's thesis" />
+                <figcaption>Technical University of Cluj-Napoca / 2026</figcaption>
+              </figure>
+            </header>
+
+            <div className="thesis-modal-body">
+              <section className="thesis-section thesis-overview">
+                <div className="thesis-section-label">01 / What I built</div>
+                <div>
+                  <h3>A reusable nonlinear-control workflow</h3>
+                  <p>
+                    I designed and implemented a modular MATLAB toolbox that takes a symbolic, input-affine
+                    nonlinear SISO model - <code>x_dot = f(x) + g(x)u, y = h(x)</code> - through analysis,
+                    nominal controller design, closed-loop simulation, perturbation diagnostics and numerical
+                    validation. The goal was to turn feedback-linearization calculations that are manageable by
+                    hand only for small examples into a reproducible software workflow.
+                  </p>
+                </div>
+              </section>
+
+              <section className="thesis-section">
+                <div className="thesis-section-label">02 / Workflow</div>
+                <div>
+                  <h3>From symbolic model to validated controller</h3>
+                  <ol className="thesis-workflow">
+                    <li>
+                      <span>01</span>
+                      <strong>Analyze geometry</strong>
+                      <p>Lie derivatives, relative degree, decoupling term and input-output coordinates.</p>
+                    </li>
+                    <li>
+                      <span>02</span>
+                      <strong>Design nominal control</strong>
+                      <p>Feedback-linearizing law and linear pole placement in the transformed coordinates.</p>
+                    </li>
+                    <li>
+                      <span>03</span>
+                      <strong>Simulate the closed loop</strong>
+                      <p>Nominal trajectories, convergence checks and structured MATLAB results.</p>
+                    </li>
+                    <li>
+                      <span>04</span>
+                      <strong>Compare perturbations</strong>
+                      <p>The same controller is applied to nominal and perturbed models for a fair comparison.</p>
+                    </li>
+                    <li>
+                      <span>05</span>
+                      <strong>Evaluate robustness</strong>
+                      <p>Channel diagnostics, Lyapunov and LMI checks, pole tuning and linear L2 indicators.</p>
+                    </li>
+                    <li>
+                      <span>06</span>
+                      <strong>Validate and reproduce</strong>
+                      <p>Automated tests, report generation and traceable examples across relative degrees 1 to 4.</p>
+                    </li>
+                  </ol>
+                </div>
+              </section>
+
+              <div className="thesis-columns">
+                <section className="thesis-panel">
+                  <div className="thesis-section-label">03 / Theory & literature</div>
+                  <h3>Literature translated into software</h3>
+                  <p>
+                    The literature review connects exact input-output feedback linearization with relative degree,
+                    zero dynamics and control-channel perturbations. It then links these ideas to Lyapunov stability,
+                    linear matrix inequalities, L2 performance and the symbolic and optimization tools available in
+                    MATLAB.
+                  </p>
+                  <div className="thesis-theory-tags">
+                    <span>Feedback linearization</span>
+                    <span>Lie derivatives</span>
+                    <span>Relative degree</span>
+                    <span>Zero dynamics</span>
+                    <span>Lyapunov stability</span>
+                    <span>LMI / SDP</span>
+                    <span>L2 gain</span>
+                    <span>Symbolic computation</span>
+                  </div>
+                </section>
+
+                <section className="thesis-panel">
+                  <div className="thesis-section-label">04 / MATLAB architecture</div>
+                  <h3>A small public API over modular internals</h3>
+                  <p>
+                    Geometry, controller design, simulation, Lyapunov analysis, perturbation diagnostics and
+                    numerical optimization are separated into MATLAB packages. Users interact through five public
+                    entry points and receive structured results that can be reused in scripts, tests and reports.
+                  </p>
+                  <div className="thesis-api-list" aria-label="Public MATLAB API">
+                    <code>rfbl.analyzeSISO</code>
+                    <code>rfbl.designNominalSISO</code>
+                    <code>rfbl.simulateNominalSISO</code>
+                    <code>rfbl.comparePerturbedSISO</code>
+                    <code>rfbl.tuneRobustAwareSISO</code>
+                  </div>
+                </section>
+              </div>
+
+              <section className="thesis-section thesis-installation">
+                <div className="thesis-section-label">05 / Install as a MATLAB Add-On</div>
+                <div>
+                  <h3>Packaged for normal use and source-level development</h3>
+                  <p>
+                    For normal use, RobustFBLToolbox is packaged as a <code>.mltbx</code> file. It can be installed
+                    by double-clicking the package or directly from MATLAB. Once installed, the <code>rfbl.*</code>
+                    functions are available without running the project's startup script.
+                  </p>
+                  <div className="thesis-install-grid">
+                    <div className="thesis-dependencies">
+                      <div>
+                        <span>Core requirements</span>
+                        <strong>MATLAB</strong>
+                        <strong>Symbolic Math Toolbox</strong>
+                      </div>
+                      <div>
+                        <span>Optional LMI checks</span>
+                        <strong>YALMIP</strong>
+                        <strong>MOSEK, SeDuMi or SDPT3</strong>
+                      </div>
+                    </div>
+                    <pre className="thesis-code"><code>{`matlab.addons.toolbox.installToolbox( ...
+    'path/to/RobustFBLToolbox.mltbx')
+
+rfbl.version()
+which rfbl.analyzeSISO`}</code></pre>
+                  </div>
+                  <p className="thesis-source-note">
+                    Development mode is also supported by opening the source project and running
+                    <code> startup.m</code>, which adds the local <code>src</code> package to the MATLAB path.
+                  </p>
+                </div>
+              </section>
+
+              <section className="thesis-section thesis-validation">
+                <div className="thesis-section-label">06 / Validation & scope</div>
+                <div>
+                  <h3>Tested behavior, with explicit limits</h3>
+                  <p>
+                    Validation covers symbolic analysis, nominal design, closed-loop simulation,
+                    nominal-versus-perturbed comparison, Lyapunov checks, LMI prototypes, robust-aware pole
+                    selection, a linear L2 indicator and reproducible report generation. The public interface was
+                    audited on examples with relative degrees from 1 to 4, including a state-dependent decoupling
+                    term.
+                  </p>
+                  <p className="thesis-scope-note">
+                    Scope: the current toolbox targets symbolically defined, input-affine nonlinear SISO systems.
+                    LMI and L2 results apply to the linearized dynamics in transformed coordinates and should be
+                    interpreted with the assumptions of the feedback-linearization model, not as an unrestricted
+                    nonlinear robustness guarantee.
+                  </p>
+                </div>
+              </section>
+            </div>
+          </article>
+        </div>
+      )}
 
       {selectedProject && (
         <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
@@ -1452,7 +1810,7 @@ function App() {
                   <div className="section-title">
                     <h3>Presentation Slides</h3>
                   </div>
-                  <div className="activity-gallery">
+                  <div className="activity-gallery activity-gallery--slides">
                     {/* Single preview image that autoplays when in view. Click toggles pause/resume. */}
                     <div
                       ref={slidePreviewRef}
@@ -1503,14 +1861,16 @@ function App() {
               )}
               {selectedActivity.details.images && selectedActivity.details.images.length > 0 && (
                 <div className="modal-section">
-                  <div className="section-title">
+                  <div className="section-title gallery-section-title">
                     <h3>Gallery</h3>
+                    <span>{selectedActivity.details.images.length} images</span>
                   </div>
-                  <div className="activity-gallery">
+                  <div className={`activity-gallery activity-gallery--photos activity-gallery--count-${Math.min(selectedActivity.details.images.length, 3)}`}>
                     {selectedActivity.details.images.slice(0, selectedActivity.details.images.length > 3 ? 2 : selectedActivity.details.images.length).map((image, idx) => (
                       <div
                         key={idx}
                         className="gallery-item"
+                        data-index={String(idx + 1).padStart(2, '0')}
                         onClick={() => {
                           setLightboxImages(selectedActivity.details.images!)
                           setLightboxIndex(idx)
@@ -1704,4 +2064,3 @@ function App() {
 }
 
 export default App
-
