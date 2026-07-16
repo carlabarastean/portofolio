@@ -30,8 +30,8 @@ test('approval tokens reject tampering and expiration', async () => {
 
 test('a valid request is stored and emails a signed review link without PII in the token', async () => {
   process.env.FEEDBACK_APPROVAL_SECRET = secret
-  process.env.RESEND_API_KEY = 'test-api-key'
-  process.env.FEEDBACK_REQUEST_FROM = 'Portfolio <requests@example.test>'
+  process.env.GMAIL_USER = 'carla@example.test'
+  process.env.GMAIL_APP_PASSWORD = 'test-app-password'
   process.env.FEEDBACK_REQUEST_TO = 'carla@example.test'
 
   const values = new Map()
@@ -42,9 +42,9 @@ test('a valid request is stored and emails a signed review link without PII in t
   let emailPayload
   const handler = createRequestHandler({
     openStore: () => store,
-    sendEmail: async (_url, options) => {
-      emailPayload = JSON.parse(options.body)
-      return Response.json({ id: 'request-email-id' })
+    notifyOwner: async (options) => {
+      emailPayload = options
+      return { messageId: 'request-email-id' }
     },
   })
 
@@ -70,7 +70,7 @@ test('a valid request is stored and emails a signed review link without PII in t
   assert.match(requestKey, /^requests\/[a-f0-9-]{36}$/)
   assert.equal(requestRecord.status, 'pending')
   assert.equal(requestRecord.email, 'alex@engineering.example')
-  assert.equal(emailPayload.to[0], 'carla@example.test')
+  assert.equal(emailPayload.to, 'carla@example.test')
   assert.match(emailPayload.html, /Review request/)
 
   const approvalHref = emailPayload.html.match(/href="([^"]+\/api\/approve-bosch-feedback\?token=[^"]+)"/)?.[1]
@@ -83,9 +83,8 @@ test('a valid request is stored and emails a signed review link without PII in t
 
 test('opening a review link does not send, while POST approval sends once', async () => {
   process.env.FEEDBACK_APPROVAL_SECRET = secret
-  process.env.RESEND_API_KEY = 'test-api-key'
-  process.env.FEEDBACK_REQUEST_FROM = 'Portfolio <requests@example.test>'
-  process.env.FEEDBACK_DOCUMENT_FROM = 'Carla <documents@example.test>'
+  process.env.GMAIL_USER = 'carla@example.test'
+  process.env.GMAIL_APP_PASSWORD = 'test-app-password'
   process.env.FEEDBACK_REQUEST_TO = 'carla@example.test'
 
   const token = await createApprovalToken({
@@ -107,7 +106,12 @@ test('opening a review link does not send, while POST approval sends once', asyn
   ])
   const store = {
     get: async (key) => values.get(key) ?? null,
-    setJSON: async (key, value) => values.set(key, value),
+    setJSON: async (key, value, options = {}) => {
+      if (options.onlyIfNew && values.has(key)) return { modified: false }
+      values.set(key, value)
+      return { modified: true }
+    },
+    delete: async (key) => values.delete(key),
   }
 
   let deliveryCount = 0
@@ -116,7 +120,7 @@ test('opening a review link does not send, while POST approval sends once', asyn
     assert.equal(requestRecord.email, 'alex@engineering.example')
     assert.equal(deliveredRequestId, requestId)
     assert.equal(new TextDecoder().decode(pdf).startsWith('%PDF'), true)
-    return Response.json({ id: 'test-delivery-id' })
+    return { messageId: 'test-delivery-id' }
   }
   const handler = createApprovalHandler({
     openStore: () => store,
@@ -143,6 +147,7 @@ test('opening a review link does not send, while POST approval sends once', asyn
   assert.equal(deliveryCount, 1)
   assert.match(await approvalResponse.text(), /Document sent/)
   assert.equal(values.get(requestKey).status, 'sent')
+  assert.equal(values.get(`deliveries/${requestId}`).status, 'sent')
 
   const repeatedReviewResponse = await handler(new Request(approvalUrl))
   assert.equal(repeatedReviewResponse.status, 200)

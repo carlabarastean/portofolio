@@ -4,6 +4,7 @@ import {
   FEEDBACK_STORE_NAME,
   verifyApprovalToken,
 } from '../lib/feedback-approval.mjs'
+import { sendGmailMessage } from '../lib/gmail-mailer.mjs'
 
 const escapeHtml = (value) => String(value)
   .replaceAll('&', '&amp;')
@@ -73,7 +74,15 @@ const loadRequest = async (store, requestId) => store.get(`requests/${requestId}
   consistency: 'strong',
 })
 
-export const sendDocument = async ({ requestRecord, requestId, pdf, apiKey, sender, ownerEmail }) => {
+export const sendDocument = async ({
+  requestRecord,
+  requestId,
+  pdf,
+  gmailUser,
+  gmailAppPassword,
+  ownerEmail,
+  sendMessage = sendGmailMessage,
+}) => {
   const firstName = requestRecord.fullName.split(/\s+/)[0]
   const emailHtml = `
     <div style="margin:0;background:#f7e9df;padding:32px 16px;color:#21172f;font-family:Arial,sans-serif;">
@@ -101,26 +110,21 @@ export const sendDocument = async ({ requestRecord, requestId, pdf, apiKey, send
     'Carla Bărăștean',
   ].join('\n')
 
-  return fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-      'Idempotency-Key': `bosch-feedback-${requestId}`,
-      'User-Agent': 'carla-portfolio/1.0',
-    },
-    body: JSON.stringify({
-      from: sender,
-      to: [requestRecord.email],
-      reply_to: ownerEmail,
-      subject: 'Bosch internship evaluation - Carla Bărăștean',
-      html: emailHtml,
-      text: emailText,
-      attachments: [{
-        content: Buffer.from(pdf).toString('base64'),
-        filename: 'Carla_Barastean_Bosch_Feedback.pdf',
-      }],
-    }),
+  return sendMessage({
+    gmailUser,
+    gmailAppPassword,
+    fromName: 'Carla Bărăștean',
+    to: requestRecord.email,
+    replyTo: ownerEmail,
+    subject: 'Bosch internship evaluation - Carla Bărăștean',
+    html: emailHtml,
+    text: emailText,
+    messageId: `<bosch-feedback-${requestId}@portfolio.local>`,
+    attachments: [{
+      content: Buffer.from(pdf),
+      filename: 'Carla_Barastean_Bosch_Feedback.pdf',
+      contentType: 'application/pdf',
+    }],
   })
 }
 
@@ -172,6 +176,19 @@ export const createApprovalHandler = ({
     })
   }
 
+  const deliveryKey = `deliveries/${approval.requestId}`
+  const deliveryState = await store.get(deliveryKey, {
+    type: 'json',
+    consistency: 'strong',
+  }).catch(() => null)
+  if (deliveryState?.status === 'sent') {
+    return pageResponse(200, {
+      eyebrow: 'Already approved',
+      title: 'Document sent',
+      message: 'The Bosch feedback document has already been delivered for this request.',
+    })
+  }
+
   if (request.method === 'GET') {
     const content = `
       <dl>
@@ -193,11 +210,35 @@ export const createApprovalHandler = ({
     })
   }
 
-  const apiKey = process.env.RESEND_API_KEY
-  const sender = process.env.FEEDBACK_DOCUMENT_FROM || process.env.FEEDBACK_REQUEST_FROM
   const ownerEmail = process.env.FEEDBACK_REQUEST_TO || 'carlabarastean@gmail.com'
-  if (!apiKey || !sender) {
+  const gmailUser = process.env.GMAIL_USER || ownerEmail
+  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD
+  if (!gmailUser || !gmailAppPassword) {
     return errorPage(503, 'The document email service is not configured yet.')
+  }
+
+  if (deliveryState?.status === 'sending') {
+    const startedAt = Date.parse(deliveryState.startedAt || '')
+    if (Number.isFinite(startedAt) && Date.now() - startedAt < 5 * 60 * 1000) {
+      return pageResponse(202, {
+        eyebrow: 'Delivery in progress',
+        title: 'Sending document',
+        message: 'This request is already being processed. Please check the recipient inbox shortly.',
+      })
+    }
+    await store.delete(deliveryKey).catch(() => {})
+  }
+
+  const lockResult = await store.setJSON(deliveryKey, {
+    status: 'sending',
+    startedAt: new Date().toISOString(),
+  }, { onlyIfNew: true }).catch(() => null)
+  if (!lockResult?.modified) {
+    return pageResponse(202, {
+      eyebrow: 'Delivery in progress',
+      title: 'Sending document',
+      message: 'This request is already being processed. Please check the recipient inbox shortly.',
+    })
   }
 
   const pdf = await store.get(FEEDBACK_PDF_KEY, {
@@ -205,6 +246,7 @@ export const createApprovalHandler = ({
     consistency: 'strong',
   }).catch(() => null)
   if (!pdf) {
+    await store.delete(deliveryKey).catch(() => {})
     console.error('The Bosch feedback PDF is missing from the private Blob store.')
     return errorPage(503, 'The private document has not been uploaded yet.')
   }
@@ -212,30 +254,37 @@ export const createApprovalHandler = ({
   const pdfBytes = new Uint8Array(pdf)
   const hasPdfHeader = pdfBytes.length >= 4 && String.fromCharCode(...pdfBytes.slice(0, 4)) === '%PDF'
   if (!hasPdfHeader || pdfBytes.length > 25 * 1024 * 1024) {
+    await store.delete(deliveryKey).catch(() => {})
     console.error('The private Bosch feedback Blob is not a valid PDF attachment.')
     return errorPage(500, 'The stored document could not be validated.')
   }
 
-  const resendResponse = await deliverDocument({
-    requestRecord,
-    requestId: approval.requestId,
-    pdf,
-    apiKey,
-    sender,
-    ownerEmail,
-  })
-
-  if (!resendResponse.ok) {
-    console.error(`Resend rejected the approved Bosch document email with status ${resendResponse.status}.`)
+  let deliveryResult
+  try {
+    deliveryResult = await deliverDocument({
+      requestRecord,
+      requestId: approval.requestId,
+      pdf,
+      gmailUser,
+      gmailAppPassword,
+      ownerEmail,
+    })
+  } catch {
+    await store.delete(deliveryKey).catch(() => {})
+    console.error('Gmail rejected the approved Bosch document email.')
     return errorPage(502, 'The document could not be sent. Please try the approval again later.')
   }
 
-  const resendResult = await resendResponse.json().catch(() => ({}))
+  await store.setJSON(deliveryKey, {
+    status: 'sent',
+    sentAt: new Date().toISOString(),
+    messageId: typeof deliveryResult?.messageId === 'string' ? deliveryResult.messageId : null,
+  })
   await store.setJSON(`requests/${approval.requestId}`, {
     ...requestRecord,
     status: 'sent',
     approvedAt: new Date().toISOString(),
-    deliveryId: typeof resendResult.id === 'string' ? resendResult.id : null,
+    deliveryId: typeof deliveryResult?.messageId === 'string' ? deliveryResult.messageId : null,
   })
 
   return pageResponse(200, {

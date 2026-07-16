@@ -4,6 +4,7 @@ import {
   createApprovalToken,
   FEEDBACK_STORE_NAME,
 } from '../lib/feedback-approval.mjs'
+import { sendGmailMessage } from '../lib/gmail-mailer.mjs'
 
 const jsonResponse = (status, body) => new Response(JSON.stringify(body), {
   status,
@@ -26,7 +27,7 @@ const validEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(email)
 
 export const createRequestHandler = ({
   openStore = getStore,
-  sendEmail = fetch,
+  notifyOwner = sendGmailMessage,
 } = {}) => async (request) => {
   if (request.method !== 'POST') {
     return new Response(JSON.stringify({ error: 'Method not allowed.' }), {
@@ -76,12 +77,12 @@ export const createRequestHandler = ({
     return jsonResponse(400, { error: 'Please enter a valid email address.' })
   }
 
-  const apiKey = process.env.RESEND_API_KEY
-  const sender = process.env.FEEDBACK_REQUEST_FROM
   const recipient = process.env.FEEDBACK_REQUEST_TO || 'carlabarastean@gmail.com'
+  const gmailUser = process.env.GMAIL_USER || recipient
+  const gmailAppPassword = process.env.GMAIL_APP_PASSWORD
   const approvalSecret = process.env.FEEDBACK_APPROVAL_SECRET
 
-  if (!apiKey || !sender || !approvalSecret || approvalSecret.length < 32) {
+  if (!gmailUser || !gmailAppPassword || !approvalSecret || approvalSecret.length < 32) {
     console.error('Feedback request email is not configured: required environment variables are missing.')
     return jsonResponse(503, {
       error: 'The request form is temporarily unavailable. Please contact me by email instead.',
@@ -149,26 +150,21 @@ export const createRequestHandler = ({
     'Opening the link does not send the document. A separate confirmation is required.',
   ].join('\n')
 
-  const resendResponse = await sendEmail('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-      'User-Agent': 'carla-portfolio/1.0',
-    },
-    body: JSON.stringify({
-      from: sender,
-      to: [recipient],
-      reply_to: email,
+  try {
+    await notifyOwner({
+      gmailUser,
+      gmailAppPassword,
+      fromName: 'Carla Portfolio Requests',
+      to: recipient,
+      replyTo: email,
       subject: `Bosch feedback request - ${fullName} at ${company}`,
       html: emailHtml,
       text: emailText,
-    }),
-  })
-
-  if (!resendResponse.ok) {
+      messageId: `<bosch-feedback-request-${requestId}@portfolio.local>`,
+    })
+  } catch {
     await requests.delete(`requests/${requestId}`).catch(() => {})
-    console.error(`Resend rejected a feedback request email with status ${resendResponse.status}.`)
+    console.error('Gmail rejected a Bosch feedback request notification.')
     return jsonResponse(502, { error: 'The request could not be sent. Please try again later.' })
   }
 
