@@ -199,33 +199,33 @@ const projects = [
     period: 'November 2025',
     stack: 'MATLAB · Simulink · Process Control · System Identification',
     description:
-      'A nonlinear level-control project for a Festo process workstation, covering physical plant modeling, experimental identification, PI design, cascade control, feedforward compensation, and inlet/outlet disturbance rejection.',
+      'A hands-on exploration of nonlinear process control using a Festo workstation, from physical modeling and system identification to PI design, cascade control, feedforward compensation, and disturbance rejection.',
     repository: '',
     color: '#168878',
     year: 2025,
     category: 'Control Engineering',
     details: {
       overview:
-        'This project models and controls the water level in the primary tank of a Festo didactic process workstation. The manipulated variable is the amplifier command voltage that drives the DC motor and centrifugal pump, while the controlled output is the tank level measured through the sensor chain. I built the nonlinear plant from its physical subsystems - amplifier, motor, pump, pump efficiency, rotor current, hydraulic filter, reservoir, and level sensor - rather than replacing the process with a single transfer function.\n\n' +
-        'The implementation uses my assigned parameters C = 5.15, u0 = 4.1 V, and k = 0.0210, with a 332.5 cm² tank area. After identifying first-order models around the operating point, I designed PI controllers for the inner flow loop and outer level loop, then evaluated classical feedback, feedforward, cascade, and combined cascade + feedforward structures.',
+        'I developed this project to deepen my understanding of how advanced control strategies behave on a realistic nonlinear process rather than an idealized textbook plant. The system controls the water level in the primary tank of a Festo process workstation. Its manipulated variable is the amplifier command voltage that drives the DC motor and centrifugal pump, while the controlled output is the tank level measured through the sensor chain. I built the nonlinear plant from its physical subsystems - amplifier, motor, pump, pump efficiency, rotor current, hydraulic filter, reservoir, and level sensor - instead of replacing the entire process with a single transfer function.\n\n' +
+        'For the simulation study, I configured the model with C = 5.15, u0 = 4.1 V, k = 0.0210, and a 332.5 cm² tank area. After identifying first-order models around the operating point, I designed PI controllers for the inner flow loop and outer level loop, then compared classical feedback, feedforward, cascade, and combined cascade + feedforward structures.',
       features: [
         'Nonlinear component-level model of the Festo hydraulic workstation in Simulink',
-        'Personalized operating point and hydraulic parameters used throughout the simulations',
-        'Experimental-style first-order identification for pump flow and tank level dynamics',
+        'Defined operating point and hydraulic parameter set used throughout the simulations',
+        'Step-response identification of the pump-flow and tank-level dynamics',
         'PI control with separate inner flow and outer level loops',
         'Inlet-flow and outlet-flow disturbance scenarios',
         'Classical feedback, feedforward, cascade, and combined cascade + feedforward control structures',
       ],
       contributions: [
         'Physical Process Modeling: Connected amplifier, DC motor, centrifugal pump, efficiency, current, filter, reservoir, and sensing subsystems into a nonlinear plant model',
-        'Personalized Parameterization: Implemented the assigned values C = 5.15, u0 = 4.1 V, k = 0.0210, and the corresponding operating point',
+        'Process Parameterization: Configured C = 5.15, u0 = 4.1 V, k = 0.0210, and the corresponding operating point for the simulation study',
         'System Identification: Extracted inner-loop flow and outer-loop level step responses and approximated both dynamics with first-order models',
         'PI Controller Design: Designed and implemented regulators for the flow and level loops using the identified process behavior',
         'Advanced Control Structures: Built feedforward compensation, cascade control, and a combined architecture for simultaneous inlet and outlet disturbances',
         'Simulation Validation: Compared full responses and detailed tracking-error behavior using signals logged directly from the Simulink models',
       ],
       results:
-        'All five relevant Simulink models execute end-to-end in MATLAB R2025a with the personalized parameters. The inner-loop identification moves the pump flow from 18.4679 to approximately 30.025 cm³/s over a 6 s simulation, while the external loop captures the much slower tank dynamics from 12.8493 to approximately 17.6547 cm. Both the cascade and combined cascade + feedforward structures converge to the 17.6625 cm reference. When inlet and outlet disturbances are introduced, the combined structure rejects them with only small transient level deviations - on the order of 10^-3 cm in the simulated scenario - before returning toward zero tracking error.',
+        'All five relevant Simulink models execute end-to-end in MATLAB R2025a with the selected parameter set. The inner-loop identification moves the pump flow from 18.4679 to approximately 30.025 cm³/s over a 6 s simulation, while the external loop captures the much slower tank dynamics from 12.8493 to approximately 17.6547 cm. Both the cascade and combined cascade + feedforward structures converge to the 17.6625 cm reference. When inlet and outlet disturbances are introduced, the combined structure rejects them with only small transient level deviations - on the order of 10^-3 cm in the simulated scenario - before returning toward zero tracking error.',
       techStack:
         'MATLAB, Simulink, Control System Toolbox, Nonlinear Process Modeling, System Identification, PI Control, Cascade Control, Feedforward Control, Disturbance Rejection, Hydraulic Process Control',
       images: scpcLevelControlImages,
