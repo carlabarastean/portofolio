@@ -102,6 +102,15 @@ const ecoSortImages = Object.values(
   .map((m) => m.default)
   .sort((a: string, b: string) => a.localeCompare(b))
 
+const segwayControlImages = Object.values(
+  import.meta.glob('./assets/images/segway-control/*.{png,jpg,jpeg}', { eager: true }) as Record<
+    string,
+    { default: string }
+  >
+)
+  .map((m) => m.default)
+  .sort((a: string, b: string) => a.localeCompare(b))
+
 
 
 const experiences = [
@@ -130,6 +139,44 @@ const experiences = [
 ]
 
 const projects = [
+  {
+    id: 'segway-control-estimation',
+    title: 'Segway Control & State Estimation Suite',
+    subtitle: 'Nonlinear modeling, state-feedback control, observers and Kalman filtering',
+    period: 'March 2026',
+    stack: 'MATLAB · Simulink · Control Systems · State Estimation',
+    description:
+      'A complete control-engineering workflow for an unstable nonlinear Segway: modeling, equilibrium analysis, linearization, pole-placement control, Luenberger observation, Kalman filtering, EKF estimation, and unknown-input reconstruction.',
+    repository: '',
+    color: '#4054d8',
+    year: 2026,
+    category: 'Control Engineering',
+    details: {
+      overview:
+        'This project follows a nonlinear Segway from its physical state equations to a controlled and observable implementation. I modeled the three-state plant in MATLAB and Simulink, found the upright equilibrium, linearized the dynamics through symbolic Jacobians, and compared the linear approximation with the original nonlinear system.\n\n' +
+        'The work then extends the same plant through continuous and forward-Euler discrete models, state-feedback control, observer design, stochastic estimation, and disturbance reconstruction. I also built an interactive MATLAB interface that switches between open-loop, closed-loop, Luenberger, linear Kalman, and nonlinear EKF scenarios while visualizing the Segway and its states in real time.',
+      features: [
+        'Three-state nonlinear Segway model with a translational state, body angle, angular rate, and one control input',
+        'Continuous and discrete linear/nonlinear implementations with a 20 ms sampling period',
+        'State-feedback regulation, reference prefiltering, actuator saturation, and linear-versus-nonlinear comparison',
+        'Luenberger observer, discrete Kalman filter, extended Kalman filter, and unknown-input estimation',
+        'Interactive response viewer with selectable plant, estimator, input signal, noise covariance, and initial conditions',
+      ],
+      contributions: [
+        'Nonlinear Plant Modeling: Implemented the coupled Segway dynamics using MATLAB Function blocks and state integration in Simulink',
+        'Linearization & Stability Analysis: Computed symbolic Jacobians at x0 = [0, 0, 0] and identified the unstable open-loop pole at +2.8172',
+        'Controller Design: Verified full controllability, placed the closed-loop poles, added a reference prefilter, and tested the controller on both linear and nonlinear plants',
+        'State Estimation: Verified full observability and implemented Luenberger, linear Kalman, and extended Kalman estimators',
+        'Disturbance Reconstruction: Extended the state to estimate piecewise-constant unknown inputs and tested an unknown-input-decoupling observer',
+        'Interactive Engineering UI: Built a MATLAB application for switching scenarios and observing the plant, control effort, estimated states, and estimation error live',
+      ],
+      results:
+        'The complete code executes end-to-end in MATLAB R2025a. Both controllability and observability matrices have full rank 3. With Ts = 0.02 s, the designed controller places the closed-loop poles at approximately 0.9231, 0.9418, and 0.9608 - all inside the discrete-time unit circle. Near the equilibrium, the controlled linear and nonlinear responses closely overlap and track the reference. The experiments also make the model limits visible: the linear Luenberger observer converges on the linear plant but degrades under strong nonlinear mismatch, while the Kalman and EKF implementations provide noise-aware estimates and the augmented observer reconstructs piecewise-constant disturbances after each transient.',
+      techStack:
+        'MATLAB, Simulink, Symbolic Math Toolbox, Control System Toolbox, State-Space Modeling, Pole Placement, Luenberger Observer, Kalman Filter, Extended Kalman Filter, Unknown-Input Observer, GUI Development',
+      images: segwayControlImages,
+    },
+  },
   {
     id: 'budgetly',
     title: 'BudgetLy - Collaborative Finance Platform',
@@ -526,6 +573,7 @@ const techStack = [
 
 const projectNoteColors: Record<string, string> = {
   All: '#96607d',
+  'Control Engineering': '#4054d8',
   'Full-Stack Development': '#168878',
   'Machine/Deep Learning': '#5f67bd',
 }
@@ -541,6 +589,11 @@ const activityNoteColors: Record<string, string> = {
 }
 
 const ACTIVITY_AUTOPLAY_INTERVAL_MS = 3000
+const usesProjectSlidePreview = (projectId: string) => (
+  projectId === 'sleep-ai' ||
+  projectId === 'eeg-bci' ||
+  projectId === 'segway-control-estimation'
+)
 
 function App() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
@@ -814,6 +867,12 @@ function App() {
       }
     }
   }, [projectAutoplay, selectedProject])
+
+  useEffect(() => {
+    setProjectPreviewIndex(0)
+    setProjectAutoplay(false)
+    setProjectAutoplayUserPaused(false)
+  }, [selectedProject?.id])
 
   // Start project autoplay when project slides section enters view
   useEffect(() => {
@@ -1825,15 +1884,16 @@ which rfbl.analyzeSISO`}</code></pre>
                           <div className="section-title">
                             <h3>
                               {(selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') && 'Presentation Slides'}
+                              {selectedProject.id === 'segway-control-estimation' && 'Implementation & Simulation Results'}
                               {selectedProject.id === 'budgetly' && 'Features & Interface Screenshots'}
-                              {selectedProject.id !== 'sleep-ai' && selectedProject.id !== 'budgetly' && 'Gallery'}
+                              {!usesProjectSlidePreview(selectedProject.id) && selectedProject.id !== 'budgetly' && 'Gallery'}
                             </h3>
                           </div>
-                          { (selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') ? (
+                          {usesProjectSlidePreview(selectedProject.id) ? (
                             <div className="activity-gallery">
                               <div
                                 ref={projectPreviewRef}
-                                className={`slide-preview slide-preview--full gallery-item ${isProjectFullscreen ? 'is-fullscreen' : ''}`}
+                                className={`slide-preview slide-preview--full gallery-item ${selectedProject.id === 'segway-control-estimation' ? 'slide-preview--technical' : ''} ${isProjectFullscreen ? 'is-fullscreen' : ''}`}
                                 onClick={() => {
                                   if (projectAutoplayStartTimeoutRef.current) {
                                     clearTimeout(projectAutoplayStartTimeoutRef.current)
@@ -1862,12 +1922,43 @@ which rfbl.analyzeSISO`}</code></pre>
                                 </div>
                                 <img
                                   src={selectedProject.details.images[projectPreviewIndex]}
-                                  alt={`${selectedProject.title} - Slide ${projectPreviewIndex + 1}`}
+                                  alt={`${selectedProject.title} - ${selectedProject.id === 'segway-control-estimation' ? 'Technical view' : 'Slide'} ${projectPreviewIndex + 1}`}
                                 />
                                 <div className="gallery-overlay">
                                   <span>{projectAutoplay ? 'Playing...' : 'Click to play'}</span>
                                 </div>
                               </div>
+                              {selectedProject.id === 'segway-control-estimation' && (
+                                <div className="project-slide-controls" aria-label="Technical gallery controls">
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      setProjectAutoplay(false)
+                                      setProjectAutoplayUserPaused(true)
+                                      setProjectPreviewIndex((current) => (
+                                        current > 0 ? current - 1 : selectedProject.details.images.length - 1
+                                      ))
+                                    }}
+                                  >
+                                    ← Previous
+                                  </button>
+                                  <span>
+                                    Technical capture {String(projectPreviewIndex + 1).padStart(2, '0')} / {String(selectedProject.details.images.length).padStart(2, '0')}
+                                  </span>
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      setProjectAutoplay(false)
+                                      setProjectAutoplayUserPaused(true)
+                                      setProjectPreviewIndex((current) => (
+                                        (current + 1) % selectedProject.details.images.length
+                                      ))
+                                    }}
+                                  >
+                                    Next →
+                                  </button>
+                                </div>
+                              )}
                             </div>
                           ) : (
                             <div className="activity-gallery">
