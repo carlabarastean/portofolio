@@ -109,7 +109,13 @@ const segwayControlImages = Object.values(
   >
 )
   .map((m) => m.default)
-  .sort((a: string, b: string) => a.localeCompare(b))
+  .sort((a: string, b: string) => {
+    const aIsInterface = a.includes('08-interactive-ekf-viewer')
+    const bIsInterface = b.includes('08-interactive-ekf-viewer')
+
+    if (aIsInterface !== bIsInterface) return aIsInterface ? -1 : 1
+    return a.localeCompare(b)
+  })
 
 
 
