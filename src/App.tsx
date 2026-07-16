@@ -117,6 +117,15 @@ const segwayControlImages = Object.values(
     return a.localeCompare(b)
   })
 
+const scpcLevelControlImages = Object.values(
+  import.meta.glob('./assets/images/scpc-level-control/*.{png,jpg,jpeg}', { eager: true }) as Record<
+    string,
+    { default: string }
+  >
+)
+  .map((m) => m.default)
+  .sort((a: string, b: string) => a.localeCompare(b))
+
 
 
 const experiences = [
@@ -181,6 +190,45 @@ const projects = [
       techStack:
         'MATLAB, Simulink, Symbolic Math Toolbox, Control System Toolbox, State-Space Modeling, Pole Placement, Luenberger Observer, Kalman Filter, Extended Kalman Filter, Unknown-Input Observer, GUI Development',
       images: segwayControlImages,
+    },
+  },
+  {
+    id: 'festo-level-control',
+    title: 'Festo Level Control - Cascade & Feedforward',
+    subtitle: 'Nonlinear process modeling, PI control and disturbance rejection',
+    period: 'November 2025',
+    stack: 'MATLAB · Simulink · Process Control · System Identification',
+    description:
+      'A nonlinear level-control project for a Festo process workstation, covering physical plant modeling, experimental identification, PI design, cascade control, feedforward compensation, and inlet/outlet disturbance rejection.',
+    repository: '',
+    color: '#168878',
+    year: 2025,
+    category: 'Control Engineering',
+    details: {
+      overview:
+        'This project models and controls the water level in the primary tank of a Festo didactic process workstation. The manipulated variable is the amplifier command voltage that drives the DC motor and centrifugal pump, while the controlled output is the tank level measured through the sensor chain. I built the nonlinear plant from its physical subsystems - amplifier, motor, pump, pump efficiency, rotor current, hydraulic filter, reservoir, and level sensor - rather than replacing the process with a single transfer function.\n\n' +
+        'The implementation uses my assigned parameters C = 5.15, u0 = 4.1 V, and k = 0.0210, with a 332.5 cm² tank area. After identifying first-order models around the operating point, I designed PI controllers for the inner flow loop and outer level loop, then evaluated classical feedback, feedforward, cascade, and combined cascade + feedforward structures.',
+      features: [
+        'Nonlinear component-level model of the Festo hydraulic workstation in Simulink',
+        'Personalized operating point and hydraulic parameters used throughout the simulations',
+        'Experimental-style first-order identification for pump flow and tank level dynamics',
+        'PI control with separate inner flow and outer level loops',
+        'Inlet-flow and outlet-flow disturbance scenarios',
+        'Classical feedback, feedforward, cascade, and combined cascade + feedforward control structures',
+      ],
+      contributions: [
+        'Physical Process Modeling: Connected amplifier, DC motor, centrifugal pump, efficiency, current, filter, reservoir, and sensing subsystems into a nonlinear plant model',
+        'Personalized Parameterization: Implemented the assigned values C = 5.15, u0 = 4.1 V, k = 0.0210, and the corresponding operating point',
+        'System Identification: Extracted inner-loop flow and outer-loop level step responses and approximated both dynamics with first-order models',
+        'PI Controller Design: Designed and implemented regulators for the flow and level loops using the identified process behavior',
+        'Advanced Control Structures: Built feedforward compensation, cascade control, and a combined architecture for simultaneous inlet and outlet disturbances',
+        'Simulation Validation: Compared full responses and detailed tracking-error behavior using signals logged directly from the Simulink models',
+      ],
+      results:
+        'All five relevant Simulink models execute end-to-end in MATLAB R2025a with the personalized parameters. The inner-loop identification moves the pump flow from 18.4679 to approximately 30.025 cm³/s over a 6 s simulation, while the external loop captures the much slower tank dynamics from 12.8493 to approximately 17.6547 cm. Both the cascade and combined cascade + feedforward structures converge to the 17.6625 cm reference. When inlet and outlet disturbances are introduced, the combined structure rejects them with only small transient level deviations - on the order of 10^-3 cm in the simulated scenario - before returning toward zero tracking error.',
+      techStack:
+        'MATLAB, Simulink, Control System Toolbox, Nonlinear Process Modeling, System Identification, PI Control, Cascade Control, Feedforward Control, Disturbance Rejection, Hydraulic Process Control',
+      images: scpcLevelControlImages,
     },
   },
   {
@@ -595,10 +643,14 @@ const activityNoteColors: Record<string, string> = {
 }
 
 const ACTIVITY_AUTOPLAY_INTERVAL_MS = 3000
+const usesTechnicalProjectPreview = (projectId: string) => (
+  projectId === 'segway-control-estimation' ||
+  projectId === 'festo-level-control'
+)
 const usesProjectSlidePreview = (projectId: string) => (
   projectId === 'sleep-ai' ||
   projectId === 'eeg-bci' ||
-  projectId === 'segway-control-estimation'
+  usesTechnicalProjectPreview(projectId)
 )
 
 function App() {
@@ -1890,7 +1942,7 @@ which rfbl.analyzeSISO`}</code></pre>
                           <div className="section-title">
                             <h3>
                               {(selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') && 'Presentation Slides'}
-                              {selectedProject.id === 'segway-control-estimation' && 'Implementation & Simulation Results'}
+                              {usesTechnicalProjectPreview(selectedProject.id) && 'Implementation & Simulation Results'}
                               {selectedProject.id === 'budgetly' && 'Features & Interface Screenshots'}
                               {!usesProjectSlidePreview(selectedProject.id) && selectedProject.id !== 'budgetly' && 'Gallery'}
                             </h3>
@@ -1899,7 +1951,7 @@ which rfbl.analyzeSISO`}</code></pre>
                             <div className="activity-gallery">
                               <div
                                 ref={projectPreviewRef}
-                                className={`slide-preview slide-preview--full gallery-item ${selectedProject.id === 'segway-control-estimation' ? 'slide-preview--technical' : ''} ${isProjectFullscreen ? 'is-fullscreen' : ''}`}
+                                className={`slide-preview slide-preview--full gallery-item ${usesTechnicalProjectPreview(selectedProject.id) ? 'slide-preview--technical' : ''} ${isProjectFullscreen ? 'is-fullscreen' : ''}`}
                                 onClick={() => {
                                   if (projectAutoplayStartTimeoutRef.current) {
                                     clearTimeout(projectAutoplayStartTimeoutRef.current)
@@ -1928,13 +1980,13 @@ which rfbl.analyzeSISO`}</code></pre>
                                 </div>
                                 <img
                                   src={selectedProject.details.images[projectPreviewIndex]}
-                                  alt={`${selectedProject.title} - ${selectedProject.id === 'segway-control-estimation' ? 'Technical view' : 'Slide'} ${projectPreviewIndex + 1}`}
+                                  alt={`${selectedProject.title} - ${usesTechnicalProjectPreview(selectedProject.id) ? 'Technical view' : 'Slide'} ${projectPreviewIndex + 1}`}
                                 />
                                 <div className="gallery-overlay">
                                   <span>{projectAutoplay ? 'Playing...' : 'Click to play'}</span>
                                 </div>
                               </div>
-                              {selectedProject.id === 'segway-control-estimation' && (
+                              {usesTechnicalProjectPreview(selectedProject.id) && (
                                 <div className="project-slide-controls" aria-label="Technical gallery controls">
                                   <button
                                     type="button"
