@@ -136,12 +136,10 @@ export const createApprovalHandler = ({
     return errorPage(405, 'This approval page accepts only review and confirmation requests.')
   }
 
-  if (request.method === 'POST') {
-    const requestOrigin = request.headers.get('origin')
-    if (requestOrigin && requestOrigin !== new URL(request.url).origin) {
-      return errorPage(403, 'This confirmation did not originate from the portfolio approval page.')
-    }
-  }
+  // The signed, expiring approval token is the authorization boundary for this
+  // action. Comparing the browser Origin with request.url is unreliable behind
+  // Netlify's proxy and in mobile email browsers, where the public and internal
+  // request origins may differ even for the legitimate confirmation form.
 
   const approvalSecret = process.env.FEEDBACK_APPROVAL_SECRET
   if (!approvalSecret || approvalSecret.length < 32) {

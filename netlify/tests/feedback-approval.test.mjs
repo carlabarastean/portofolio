@@ -81,7 +81,7 @@ test('a valid request is stored and emails a signed review link without PII in t
   assert.equal(JSON.stringify(tokenPayload).includes('alex@engineering.example'), false)
 })
 
-test('opening a review link does not send, while POST approval sends once', async () => {
+test('opening a review link does not send, while mobile-compatible POST approval sends once', async () => {
   process.env.FEEDBACK_APPROVAL_SECRET = secret
   process.env.GMAIL_USER = 'carla@example.test'
   process.env.GMAIL_APP_PASSWORD = 'test-app-password'
@@ -139,7 +139,10 @@ test('opening a review link does not send, while POST approval sends once', asyn
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      Origin: 'https://portfolio.example',
+      // Mobile email browsers can report a proxy or in-app browser origin that
+      // differs from the public Netlify URL. The signed token still authorizes
+      // this exact, expiring request.
+      Origin: 'https://mobile-email-browser.example',
     },
     body: new URLSearchParams({ token }),
   }))
