@@ -1,0 +1,142 @@
+Carla - Maria Bărăs, tean
+Automation and Computer Science Graduate
+Contact
+Email: carlabarastean@gmail.com
+
+Portfolio: website
+
+Phone: +40 771 732 396
+
+GitHub: github.com/carlabarastean
+
+Location: Cluj-Napoca, Romania
+
+LinkedIn: profile
+
+Experience
+Profile
+Automation and Computer Science graduate
+focused on nonlinear control, model-based
+development and applied AI.
+I build reproducible engineering software,
+from MATLAB toolboxes and embeddedcontrol models to full-stack applications.
+
+Focus
+
+Model-Based Software Developer
+
+Jul 2024 - Jan 2025
+Bosch, Cluj-Napoca
+
+Built and validated a six-component electric-vehicle drivetrain model in Simulink, ASCET and TPT.
+Generated production C code for STM32 controllers and developed a monitoring interface.
+
+Computer and Network Operator
+
+2019 - Present
+ALBALUX COM
+
+Install and configure hardware and networks; diagnose workstation and connectivity issues;
+provide on-site and remote technical support.
+
+Control Systems
+Software Engineering
+
+Education
+
+Applied AI
+
+B.Sc. Automation and Computer Science
+
+Hard skills
+Control
+MATLAB, Simulink, ASCET, TPT
+Programming
+Python, C/C++, JavaScript, TypeScript
+
+Graduated with a final average of 9.25/10.
+Thesis: Automation of Nonlinear Control Analysis and Design: A MATLAB Implementation Based
+on Feedback Linearization.
+
+Decebal National College
+
+AI / Vision
+TensorFlow, PyTorch, OpenCV
+
+Mathematics and Computer Science in English
+
+Web / Data
+React, Node.js, MongoDB
+
+Research
+As the Crow Flies, or as the River Flows?
+
+Tools
+Git, Docker, STM32
+
+Soft skills
+Leadership
+Analytical thinking
+
+2022 - 2026
+Technical University of Cluj-Napoca
+
+2018 - 2022
+Deva, Romania
+
+2026
+Co-author - manuscript submitted to ICCP 2026
+
+Graph Topology vs. Proximity in Satellite Water-Quality Monitoring.
+Controlled comparison of physical river-flow topology and geographic proximity for satellite
+water-quality monitoring across Germany and Romania.
+
+Selected Projects
+
+Adaptability
+
+EcoSort - Intelligent Waste Recognition
+
+Communication
+
+Real-time material classification and optional Arduino-controlled physical sorting.
+
+2026
+Python, TensorFlow, OpenCV, Arduino
+
+Attention to detail
+BudgetLy - Collaborative Finance Platform
+
+Languages
+Romanian
+English
+German
+Italian
+
+(Native)
+(C1)
+(A2)
+(A2)
+
+2025
+React, Node.js, MongoDB, Express
+
+Full-stack platform for financial analytics, recurring transactions and shared-payment tracking.
+
+Selected Activities
+CASSINI Hackathon - AquaGraph
+
+2026
+3rd in Romania, 1st at the Cluj-Napoca hub
+
+Developed a space-data solution for monitoring and preventing river pollution.
+
+Panel Speaker - IEEE SACI 2025
+
+2025
+ADAPTED Research Group
+
+Discussed innovation in STEM and academic entrepreneurship at an international conference
+workshop.
+
+

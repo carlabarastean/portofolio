@@ -7,13 +7,22 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "test:functions": "node --test netlify/tests/*.test.mjs",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@netlify/blobs": "^10.7.9",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.554.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
+  },
+  "overrides": {
+    "@netlify/otel": {
+      "@opentelemetry/core": "2.9.0",
+      "@opentelemetry/resources": "2.9.0",
+      "@opentelemetry/sdk-trace-node": "2.9.0"
+    }
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

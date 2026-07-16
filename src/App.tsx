@@ -109,6 +109,7 @@ const experiences = [
     role: 'Model-Based Software Developer',
     company: 'BOSCH · Cluj-Napoca',
     period: 'July 2024 - Jan 2025',
+    requestFeedback: true,
     details: [
       'Modeled an EV drivetrain using six critical components',
       'Implemented Simulink/ASCET models and validated in TPT',
@@ -545,6 +546,10 @@ function App() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
   const [selectedActivity, setSelectedActivity] = useState<typeof activities[0] | null>(null)
   const [isThesisOpen, setIsThesisOpen] = useState<boolean>(false)
+  const [isFeedbackRequestOpen, setIsFeedbackRequestOpen] = useState<boolean>(false)
+  const [feedbackRequestStatus, setFeedbackRequestStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [feedbackRequestError, setFeedbackRequestError] = useState<string>('')
+  const [feedbackFormStartedAt, setFeedbackFormStartedAt] = useState<number>(0)
   const [lightboxImage, setLightboxImage] = useState<string | null>(null)
   const [lightboxImages, setLightboxImages] = useState<string[]>([])
   const [lightboxIndex, setLightboxIndex] = useState<number>(0)
@@ -628,9 +633,60 @@ function App() {
     })
   }
 
+  const openFeedbackRequest = () => {
+    setFeedbackRequestStatus('idle')
+    setFeedbackRequestError('')
+    setFeedbackFormStartedAt(Date.now())
+    setIsFeedbackRequestOpen(true)
+  }
+
+  const closeFeedbackRequest = () => {
+    if (feedbackRequestStatus === 'submitting') return
+    setIsFeedbackRequestOpen(false)
+  }
+
+  const handleFeedbackRequest = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+    const request = {
+      fullName: String(formData.get('fullName') || '').trim(),
+      email: String(formData.get('email') || '').trim(),
+      company: String(formData.get('company') || '').trim(),
+      reason: String(formData.get('reason') || '').trim(),
+      website: String(formData.get('website') || ''),
+      elapsedMs: feedbackFormStartedAt ? Date.now() - feedbackFormStartedAt : 0,
+    }
+
+    setFeedbackRequestStatus('submitting')
+    setFeedbackRequestError('')
+
+    try {
+      const response = await fetch('/api/request-bosch-feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(request),
+      })
+      const responseBody = await response.json().catch(() => ({})) as { error?: string }
+
+      if (!response.ok) {
+        throw new Error(responseBody.error || 'The request could not be sent. Please try again.')
+      }
+
+      form.reset()
+      setFeedbackRequestStatus('success')
+    } catch (error) {
+      setFeedbackRequestError(
+        error instanceof Error ? error.message : 'The request could not be sent. Please try again.'
+      )
+      setFeedbackRequestStatus('error')
+    }
+  }
+
   // Block body scroll when modal is open
   useEffect(() => {
-    const isModalOpen = isThesisOpen || selectedProject !== null || selectedActivity !== null || lightboxImage !== null || previewImages !== null
+    const isModalOpen = isThesisOpen || isFeedbackRequestOpen || selectedProject !== null || selectedActivity !== null || lightboxImage !== null || previewImages !== null
     
     if (isModalOpen) {
       document.body.style.overflow = 'hidden'
@@ -642,7 +698,7 @@ function App() {
     return () => {
       document.body.style.overflow = ''
     }
-  }, [isThesisOpen, selectedProject, selectedActivity, lightboxImage, previewImages])
+  }, [isThesisOpen, isFeedbackRequestOpen, selectedProject, selectedActivity, lightboxImage, previewImages])
 
   useEffect(() => {
     if (!isThesisOpen) return
@@ -654,6 +710,19 @@ function App() {
     window.addEventListener('keydown', closeOnEscape)
     return () => window.removeEventListener('keydown', closeOnEscape)
   }, [isThesisOpen])
+
+  useEffect(() => {
+    if (!isFeedbackRequestOpen) return
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && feedbackRequestStatus !== 'submitting') {
+        setIsFeedbackRequestOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [isFeedbackRequestOpen, feedbackRequestStatus])
 
   // Swipe handlers for lightbox
   const minSwipeDistance = 50
@@ -1086,11 +1155,21 @@ function App() {
                   <p>{exp.company}</p>
                   <span>{exp.period}</span>
                 </div>
-                <ul>
-                  {exp.details.map((detail) => (
-                    <li key={detail}>{detail}</li>
-                  ))}
-                </ul>
+                <div className="experience-details">
+                  <ul>
+                    {exp.details.map((detail) => (
+                      <li key={detail}>{detail}</li>
+                    ))}
+                  </ul>
+                  {exp.requestFeedback && (
+                    <div className="feedback-request-note">
+                      <p>Official experience feedback is available after a brief identity review.</p>
+                      <button type="button" className="feedback-request-trigger" onClick={openFeedbackRequest}>
+                        Request verified feedback
+                      </button>
+                    </div>
+                  )}
+                </div>
               </article>
             ))}
           </div>
@@ -1372,6 +1451,124 @@ function App() {
           </div>
       </section>
       </main>
+
+      {isFeedbackRequestOpen && (
+        <div className="modal-overlay feedback-request-overlay" onClick={closeFeedbackRequest}>
+          <section
+            className="feedback-request-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="feedback-request-title"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="feedback-request-close"
+              aria-label="Close feedback request"
+              onClick={closeFeedbackRequest}
+              disabled={feedbackRequestStatus === 'submitting'}
+            >
+              ×
+            </button>
+
+            {feedbackRequestStatus === 'success' ? (
+              <div className="feedback-request-success" aria-live="polite">
+                <p className="eyebrow">Request received</p>
+                <h2 id="feedback-request-title">Thank you.</h2>
+                <p>
+                  I will review your details. If access is approved, the document will be sent automatically to
+                  the email address you provided.
+                </p>
+                <button type="button" className="feedback-request-submit" onClick={closeFeedbackRequest}>
+                  Close
+                </button>
+              </div>
+            ) : (
+              <>
+                <header className="feedback-request-header">
+                  <p className="eyebrow">Verified access</p>
+                  <h2 id="feedback-request-title">Request my Bosch feedback</h2>
+                  <p>
+                    This is an official professional document, so I share it individually rather than publishing
+                    it online. Please leave enough information for me to verify your request.
+                  </p>
+                </header>
+
+                <form className="feedback-request-form" onSubmit={handleFeedbackRequest}>
+                  <div className="feedback-request-field">
+                    <label htmlFor="feedback-full-name">Full name <span>required</span></label>
+                    <input
+                      id="feedback-full-name"
+                      name="fullName"
+                      type="text"
+                      autoComplete="name"
+                      maxLength={100}
+                      required
+                      autoFocus
+                    />
+                  </div>
+
+                  <div className="feedback-request-field">
+                    <label htmlFor="feedback-company">Company or organization <span>required</span></label>
+                    <input
+                      id="feedback-company"
+                      name="company"
+                      type="text"
+                      autoComplete="organization"
+                      maxLength={120}
+                      required
+                    />
+                  </div>
+
+                  <div className="feedback-request-field feedback-request-field-wide">
+                    <label htmlFor="feedback-email">Professional email <span>required</span></label>
+                    <input
+                      id="feedback-email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      inputMode="email"
+                      maxLength={180}
+                      required
+                    />
+                    <small>A company domain helps with verification, but is not mandatory.</small>
+                  </div>
+
+                  <div className="feedback-request-field feedback-request-field-wide">
+                    <label htmlFor="feedback-reason">Why would you like to see it? <span>optional</span></label>
+                    <textarea id="feedback-reason" name="reason" rows={3} maxLength={600} />
+                  </div>
+
+                  <div className="feedback-request-honeypot" aria-hidden="true">
+                    <label htmlFor="feedback-website">Website</label>
+                    <input id="feedback-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+                  </div>
+
+                  <div className="feedback-request-footer feedback-request-field-wide">
+                    <p>
+                      Your details are used only to review and answer this request. The document is sent only
+                      after I explicitly approve access.
+                    </p>
+                    <button
+                      type="submit"
+                      className="feedback-request-submit"
+                      disabled={feedbackRequestStatus === 'submitting'}
+                    >
+                      {feedbackRequestStatus === 'submitting' ? 'Sending request...' : 'Send request'}
+                    </button>
+                  </div>
+
+                  {feedbackRequestError && (
+                    <p className="feedback-request-error feedback-request-field-wide" role="alert">
+                      {feedbackRequestError}
+                    </p>
+                  )}
+                </form>
+              </>
+            )}
+          </section>
+        </div>
+      )}
 
       {isThesisOpen && (
         <div className="modal-overlay thesis-overlay" onClick={() => setIsThesisOpen(false)}>

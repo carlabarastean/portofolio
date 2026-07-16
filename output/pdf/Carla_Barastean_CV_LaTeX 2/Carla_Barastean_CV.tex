@@ -1,0 +1,147 @@
+\documentclass[10pt]{spidercv}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ragged2e}
+\usepackage{hyperref}
+
+\hypersetup{
+  pdftitle={Carla Maria Barastean - Curriculum Vitae},
+  pdfauthor={Carla Maria Barastean},
+  pdfsubject={Automation, control engineering, software development and applied AI}
+}
+
+\begin{document}
+
+% Contact header
+\begin{TopBar}{\ColorTextSide}
+  \Name{\ColorTextMain}{Carla - Maria Bărăștean}{Automation and Computer Science Graduate}{}
+
+  \TextSeparator{\ColorTextMain}{Contact}
+  \begin{DoubleColumns}
+    \begin{ItemList}{\ColorHighlight}
+      \item[\Large\faAt] \href{mailto:carlabarastean@gmail.com}{carlabarastean@gmail.com}
+      \item[\Large\faMobile] \href{tel:+40771732396}{+40 771 732 396}
+      \item[\Large\faMapMarker] Cluj-Napoca, Romania
+    \end{ItemList}
+    \nextcolumn
+    \begin{ItemList}{\ColorHighlight}
+      \item[\Large\faGlobe] \href{https://portofolio-carla-barastean.netlify.app}{\textbf{Portfolio website}}
+      \item[\Large\faGithub] \href{https://github.com/carlabarastean}{github.com/carlabarastean}
+      \item[\Large\faLinkedinSquare] \href{https://www.linkedin.com/in/carla-barastean-621326269/}{LinkedIn profile}
+    \end{ItemList}
+  \end{DoubleColumns}
+\end{TopBar}
+
+% Sidebar
+\begin{SideBar}{\ColorBackground}{\ColorTextSide}
+  \TextSeparatorBis{\ColorTextMain}{\faAngellist}{Profile}
+  {\small\RaggedRight
+    Automation and Computer Science graduate focused on nonlinear control, model-based development and applied AI.
+
+    \vspace{0.35cm}
+    I build reproducible engineering software, from MATLAB toolboxes and embedded-control models to full-stack applications.
+
+    \vspace{0.35cm}
+    \href{https://portofolio-carla-barastean.netlify.app}{\textbf{Projects, demos and galleries in my portfolio.}}
+    \par}
+
+  \vspace{0.55cm}
+  \TextSeparatorBis{\ColorTextMain}{\faCrosshairs}{Focus}
+  \Label{\ColorHighlight}{Control Systems}
+  \Label{\ColorHighlight}{Software Engineering}
+  \Label{\ColorHighlight}{Applied AI}
+
+  \vspace{0.65cm}
+  \TextSeparatorBis{\ColorTextMain}{\faGears}{Technical skills}
+  \begin{ItemList}{\ColorHighlight}
+    \item[\faCogs] \textbf{Control}\\ MATLAB, Simulink, ASCET, TPT
+    \item[\faCode] \textbf{Programming}\\ Python, C/C++, JavaScript, TypeScript
+    \item[\faLineChart] \textbf{AI / Vision}\\ TensorFlow, PyTorch, OpenCV
+    \item[\faLaptop] \textbf{Web / Data}\\ React, Node.js, MongoDB
+    \item[\faGitSquare] \textbf{Tools}\\ Git, Docker, STM32
+  \end{ItemList}
+
+  \vspace{0.55cm}
+  \TextSeparatorBis{\ColorTextMain}{\faLanguage}{Languages}
+  \begin{SkillGauges}
+    \addGauge{Romanian}{Native}
+    \addGauge{English}{C1}
+    \addGauge{German}{A2}
+    \addGauge{Italian}{A2}
+  \end{SkillGauges}
+\end{SideBar}
+
+\DefineProfile{\ColorOther}{\ColorTextSide}{img/profile.png}
+
+% Main column
+\begin{MainPart}
+
+  \MainTitleBis{\ColorTextBox}{\ColorTextMain}{Experience}{\faSuitcase}
+  \Experience
+    {\ColorHighlight}
+    {Model-Based Software Developer}
+    {Bosch, Cluj-Napoca}
+    {\textcolor{\ColorTextMain}{Jul 2024 - Jan 2025}}
+    {Built and validated a six-component electric-vehicle drivetrain model in Simulink, ASCET and TPT.\\
+     Generated production C code for STM32 controllers and developed a monitoring interface.}
+
+  \Experience
+    {\ColorHighlight}
+    {Computer and Network Operator}
+    {ALBALUX COM}
+    {\textcolor{\ColorTextMain}{2019 - Present}}
+    {Install and configure hardware and networks; diagnose workstation and connectivity issues; provide on-site and remote technical support.}
+
+  \MainTitleBis{\ColorTextBox}{\ColorTextMain}{Education}{\faGraduationCap}
+  \Experience
+    {\ColorHighlight}
+    {B.Sc. Automation and Computer Science}
+    {Technical University of Cluj-Napoca}
+    {\textcolor{\ColorTextMain}{2022 - 2026}}
+    {Graduated with a final average of \textbf{9.25/10}.\\
+     \textbf{Thesis:} \textit{Automation of Nonlinear Control Analysis and Design: A MATLAB Implementation Based on Feedback Linearization}.\\
+     Designed \texttt{RobustFBLToolbox}, a reusable MATLAB toolbox packaged as an installable \texttt{.mltbx} Add-On.}
+
+  \MainTitleBis{\ColorTextBox}{\ColorTextMain}{Research}{\faFlask}
+  \Experience
+    {\ColorHighlight}
+    {As the Crow Flies, or as the River Flows?}
+    {Co-author - manuscript submitted to ICCP 2026}
+    {\textcolor{\ColorTextMain}{2026}}
+    {\textit{Graph Topology vs. Proximity in Satellite Water-Quality Monitoring}.\\
+     Controlled comparison of physical river-flow topology and geographic proximity for satellite water-quality monitoring across Germany and Romania.}
+
+  \MainTitleBis{\ColorTextBox}{\ColorTextMain}{Selected Projects}{\faWrench}
+  \Experience
+    {\ColorHighlight}
+    {EcoSort - Intelligent Waste Recognition}
+    {Python, TensorFlow, OpenCV, Arduino}
+    {\textcolor{\ColorTextMain}{2026}}
+    {Real-time material classification and optional Arduino-controlled physical sorting.}
+
+  \Experience
+    {\ColorHighlight}
+    {BudgetLy - Collaborative Finance Platform}
+    {React, Node.js, MongoDB, Express}
+    {\textcolor{\ColorTextMain}{2025}}
+    {Full-stack platform for financial analytics, recurring transactions and shared-payment tracking.\\
+     \href{https://portofolio-carla-barastean.netlify.app/\#projects}{\textbf{View complete project case studies in the portfolio.}}}
+
+  \MainTitleBis{\ColorTextBox}{\ColorTextMain}{Selected Activities}{\faUsers}
+  \Experience
+    {\ColorHighlight}
+    {CASSINI Hackathon - AquaGraph}
+    {3rd in Romania, 1st at the Cluj-Napoca hub}
+    {\textcolor{\ColorTextMain}{2026}}
+    {Developed a space-data solution for monitoring and preventing river pollution.}
+
+  \Experience
+    {\ColorHighlight}
+    {Panel Speaker - IEEE SACI 2025}
+    {ADAPTED Research Group}
+    {\textcolor{\ColorTextMain}{2025}}
+    {Discussed innovation in STEM and academic entrepreneurship at an international conference workshop.}
+
+\end{MainPart}
+
+\end{document}
