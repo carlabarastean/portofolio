@@ -153,6 +153,50 @@ const experiences = [
   },
 ]
 
+const education = [
+  {
+    level: 'Upper Secondary Education',
+    period: '2018 - 2022',
+    status: 'Completed',
+    program: 'Mathematics and Computer Science - Bilingual English',
+    institution: 'Colegiul Național "Decebal" · Deva',
+    description:
+      'A science-focused education that strengthened my foundations in mathematics, algorithms, programming, logical reasoning, and technical communication in English. This is where technology moved from an interest to a direction I wanted to pursue seriously.',
+    highlights: ['Mathematics', 'Computer Science', 'English'],
+    links: [
+      { label: 'Official school website', href: 'https://cnd.ro/' },
+    ],
+  },
+  {
+    level: 'Bachelor of Engineering',
+    period: '2022 - 2026',
+    status: 'Graduated · 9.25 / 10',
+    program: 'Automation - Automation and Applied Informatics',
+    institution: 'Technical University of Cluj-Napoca · Faculty of Automation and Computer Science',
+    description:
+      'A four-year Systems Engineering program connecting control theory with process modeling, electronics, real-time and embedded systems, industrial informatics, and software development. I graduated with a final average of 9.25/10 and developed my bachelor thesis around nonlinear control analysis and feedback linearization in MATLAB.',
+    highlights: ['Control Systems', 'Process Modeling', 'Embedded Systems', 'Applied Informatics'],
+    links: [
+      { label: 'Faculty overview', href: 'https://ac.utcluj.ro/oferta-educationala.html' },
+      { label: 'Study plans', href: 'https://ac.utcluj.ro/planuri-de-invatamant.html' },
+    ],
+  },
+  {
+    level: "Master's Degree",
+    period: '2026 - 2028',
+    status: 'Starting in 2026',
+    program: 'Advanced Process Control',
+    institution: 'Technical University of Cluj-Napoca · Faculty of Automation and Computer Science',
+    description:
+      'The next step in my control engineering path is this two-year Systems Engineering master. Its curriculum advances from adaptive, optimal, robust, intelligent, nonlinear, and stochastic control to hybrid and embedded systems, dynamic-process automation, research, and applied control projects.',
+    highlights: ['Advanced Control', 'Adaptive & Optimal Control', 'Nonlinear Systems', 'Research'],
+    links: [
+      { label: 'Official master overview', href: 'https://admitereonline.utcluj.ro/facultatea-de-automatica-si-calculatoare-master/' },
+      { label: 'CAP curriculum', href: 'https://ac.utcluj.ro/planuri-de-invatamant.html' },
+    ],
+  },
+]
+
 const projects = [
   {
     id: 'segway-control-estimation',
@@ -1115,6 +1159,7 @@ function App() {
         <nav>
           <a href="#home">Home</a>
           <a href="#about">About</a>
+          <a href="#education">Education</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
           <a href="#research">Research</a>
@@ -1256,6 +1301,52 @@ function App() {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section id="education" className="education">
+          <div className="section-header">
+            <p className="eyebrow">Academic Path</p>
+            <h3><span className="education-heading-mark">Education</span></h3>
+          </div>
+          <div className="education-intro">
+            <p>
+              My education has followed one continuous thread - from a strong mathematics and computer science
+              foundation to automation, and now toward advanced process control.
+            </p>
+            <span>Deva → Cluj-Napoca</span>
+          </div>
+          <div className="education-list">
+            {education.map((entry, index) => (
+              <article
+                key={`${entry.period}-${entry.program}`}
+                className={`education-entry ${index === education.length - 1 ? 'education-entry--next' : ''}`}
+              >
+                <div className="education-when">
+                  <span className="education-index">0{index + 1}</span>
+                  <strong>{entry.period}</strong>
+                  <span className="education-status">{entry.status}</span>
+                </div>
+                <div className="education-details">
+                  <span className="education-level">{entry.level}</span>
+                  <h4>{entry.program}</h4>
+                  <p className="education-institution">{entry.institution}</p>
+                  <p className="education-description">{entry.description}</p>
+                  <div className="education-highlights" aria-label={`${entry.program} focus areas`}>
+                    {entry.highlights.map((highlight) => (
+                      <span key={highlight}>{highlight}</span>
+                    ))}
+                  </div>
+                  <div className="education-links">
+                    {entry.links.map((link) => (
+                      <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+                        {link.label} <span aria-hidden="true">↗</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
