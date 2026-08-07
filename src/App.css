@@ -1698,6 +1698,7 @@ main > section:not(.hero) {
 }
 
 .stack {
+  --stack-accent: var(--education-color);
   display: grid;
   grid-template-columns: minmax(250px, 0.65fr) minmax(0, 1.35fr);
   gap: clamp(2rem, 7vw, 7rem);
@@ -1705,7 +1706,7 @@ main > section:not(.hero) {
   padding-right: clamp(1.5rem, 4vw, 4rem) !important;
   padding-left: clamp(1.5rem, 4vw, 4rem) !important;
   color: var(--ink);
-  background: #eee8e5;
+  background: transparent;
   border-top: 1px solid var(--ink) !important;
 }
 
@@ -1721,37 +1722,82 @@ main > section:not(.hero) {
 
 .stack .section-header::before,
 .stack .eyebrow {
-  color: var(--accent-dark);
+  color: var(--stack-accent);
 }
 
-.stack-list {
+.stack-content {
+  min-width: 0;
+}
+
+.stack-intro {
+  max-width: 43rem;
+  margin: 0 0 clamp(2rem, 4vw, 3.5rem);
+  color: var(--muted);
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  line-height: 1.65;
+}
+
+.stack-groups {
+  border-top: 1px solid var(--ink);
+}
+
+.stack-group {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.stack-group-heading {
+  display: grid;
+  grid-template-columns: 1.7rem minmax(0, 1fr);
+  gap: 0.65rem;
+  align-items: baseline;
+}
+
+.stack-group-heading span {
+  color: var(--stack-accent);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+}
+
+.stack-group-heading h4 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.stack-tools {
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start;
-  gap: 0;
+  gap: 0.7rem 1.35rem;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
   list-style: none;
 }
 
-.stack-list li {
-  flex: 1 1 10rem;
-  padding: 0.9rem 1rem;
+.stack-tools li {
+  position: relative;
+  padding-left: 0.7rem;
   color: var(--muted);
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  text-align: center;
-  text-transform: uppercase;
-  transition: color 160ms ease, background 160ms ease;
+  font-size: 0.92rem;
+  line-height: 1.5;
 }
 
-.stack-list li:hover {
-  color: var(--ink);
-  background: var(--cream);
+.stack-tools li::before {
+  content: '';
+  position: absolute;
+  top: 0.68em;
+  left: 0;
+  width: 0.25rem;
+  height: 0.25rem;
+  background: var(--stack-accent);
+  border-radius: 50%;
 }
 
 .contact {
@@ -3008,6 +3054,10 @@ footer {
   .stack .section-header {
     margin-bottom: 3rem;
   }
+
+  .stack-group {
+    grid-template-columns: minmax(10rem, 0.75fr) minmax(0, 1.25fr);
+  }
 }
 
 @media (max-width: 720px) {
@@ -3104,6 +3154,15 @@ footer {
 
   .education-details h4 {
     font-size: clamp(1.7rem, 8vw, 2.5rem);
+  }
+
+  .stack-group {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stack-tools {
+    gap: 0.55rem 1rem;
   }
 
   .experience-card {
