@@ -693,7 +693,7 @@ main > section:not(.hero) {
   width: 0.65rem;
   height: 2.75rem;
   margin-left: -0.325rem;
-  background: var(--ink);
+  background: var(--education-color);
   border: 2px solid var(--paper);
   border-radius: 999px;
   box-shadow: 0 0 0 1px rgba(33, 23, 47, 0.22);
