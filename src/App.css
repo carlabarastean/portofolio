@@ -661,7 +661,97 @@ main > section:not(.hero) {
   text-transform: uppercase;
 }
 
+.education-timeline-shell {
+  display: grid;
+  grid-template-columns: 1.8rem minmax(0, 1fr);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+.education-retro-scrollbar {
+  position: sticky;
+  top: 6.5rem;
+  width: 1.8rem;
+  height: min(64vh, 32rem);
+  min-height: 19rem;
+  display: grid;
+  grid-template-rows: 1.7rem minmax(0, 1fr) 1.7rem;
+  overflow: hidden;
+  background: var(--paper-deep);
+  border: 2px solid var(--ink);
+  box-shadow:
+    inset 1px 1px 0 var(--cream),
+    inset -1px -1px 0 rgba(33, 23, 47, 0.24),
+    3px 3px 0 rgba(64, 84, 216, 0.2);
+}
+
+.education-scroll-button {
+  position: relative;
+  display: block;
+  background: var(--pink-soft);
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 248, 236, 0.86),
+    inset -2px -2px 0 rgba(165, 0, 92, 0.22);
+}
+
+.education-scroll-button--up {
+  border-bottom: 1px solid var(--ink);
+}
+
+.education-scroll-button--down {
+  border-top: 1px solid var(--ink);
+}
+
+.education-scroll-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-right: 0.34rem solid transparent;
+  border-left: 0.34rem solid transparent;
+  transform: translate(-50%, -50%);
+}
+
+.education-scroll-button--up::before {
+  border-bottom: 0.52rem solid var(--ink);
+}
+
+.education-scroll-button--down::before {
+  border-top: 0.52rem solid var(--ink);
+}
+
+.education-scroll-track {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: rgba(255, 248, 236, 0.7);
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 7px,
+    rgba(64, 84, 216, 0.08) 7px,
+    rgba(64, 84, 216, 0.08) 8px
+  );
+  box-shadow: inset 3px 0 0 rgba(33, 23, 47, 0.08);
+}
+
+.education-scroll-thumb {
+  position: absolute;
+  right: 2px;
+  left: 2px;
+  height: 1.35rem;
+  background: var(--cobalt);
+  border: 1px solid var(--ink);
+  box-shadow:
+    inset 0 3px 0 var(--cyan),
+    inset 0 -3px 0 var(--accent);
+  transition: top 80ms linear, transform 80ms linear;
+}
+
 .education-list {
+  min-width: 0;
   border-top: 1px solid var(--ink);
 }
 
@@ -693,26 +783,11 @@ main > section:not(.hero) {
 }
 
 .education-when {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.65rem;
   min-height: 7rem;
-  padding-left: 1.35rem;
-  border-left: 1px solid var(--line);
-}
-
-.education-when::before {
-  content: '';
-  position: absolute;
-  top: 0.12rem;
-  left: -0.36rem;
-  width: 0.68rem;
-  height: 0.68rem;
-  background: var(--cream);
-  border: 2px solid var(--entry-color);
-  border-radius: 50%;
 }
 
 .education-index {
@@ -3048,6 +3123,40 @@ footer {
   .education-intro {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .education-timeline-shell {
+    grid-template-columns: 1.35rem minmax(0, 1fr);
+    gap: 0.9rem;
+  }
+
+  .education-retro-scrollbar {
+    top: 5.35rem;
+    width: 1.35rem;
+    height: min(54vh, 25rem);
+    min-height: 16rem;
+    grid-template-rows: 1.25rem minmax(0, 1fr) 1.25rem;
+    border-width: 1px;
+    box-shadow: 2px 2px 0 rgba(64, 84, 216, 0.2);
+  }
+
+  .education-scroll-button::before {
+    border-right-width: 0.27rem;
+    border-left-width: 0.27rem;
+  }
+
+  .education-scroll-button--up::before {
+    border-bottom-width: 0.42rem;
+  }
+
+  .education-scroll-button--down::before {
+    border-top-width: 0.42rem;
+  }
+
+  .education-scroll-thumb {
+    right: 1px;
+    left: 1px;
+    height: 1.1rem;
   }
 
   .education-entry {

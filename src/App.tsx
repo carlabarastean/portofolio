@@ -745,6 +745,8 @@ function App() {
 
   // Activity filters
   const [activityTypeFilter, setActivityTypeFilter] = useState<string>('All')
+  const educationTimelineRef = useRef<HTMLDivElement | null>(null)
+  const [educationScrollProgress, setEducationScrollProgress] = useState<number>(0)
 
   const projectNoteColor = projectNoteColors[projectCategoryFilter] ?? projectNoteColors.All
   const activityNoteColor = activityNoteColors[activityTypeFilter] ?? activityNoteColors.All
@@ -776,6 +778,41 @@ function App() {
     const typeMatch = activityTypeFilter === 'All' || activity.type === activityTypeFilter
     return typeMatch
   })
+
+  useEffect(() => {
+    let animationFrame: number | null = null
+
+    const updateEducationProgress = () => {
+      animationFrame = null
+      const timeline = educationTimelineRef.current
+      if (!timeline) return
+
+      const rect = timeline.getBoundingClientRect()
+      const stickyOffset = window.innerWidth <= 720 ? 82 : 104
+      const visibleSectionHeight = Math.max(window.innerHeight - stickyOffset, 1)
+      const scrollableDistance = Math.max(rect.height - visibleSectionHeight, 1)
+      const progress = Math.min(1, Math.max(0, (stickyOffset - rect.top) / scrollableDistance))
+
+      setEducationScrollProgress((current) => (
+        Math.abs(current - progress) > 0.001 ? progress : current
+      ))
+    }
+
+    const requestProgressUpdate = () => {
+      if (animationFrame !== null) return
+      animationFrame = window.requestAnimationFrame(updateEducationProgress)
+    }
+
+    updateEducationProgress()
+    window.addEventListener('scroll', requestProgressUpdate, { passive: true })
+    window.addEventListener('resize', requestProgressUpdate)
+
+    return () => {
+      window.removeEventListener('scroll', requestProgressUpdate)
+      window.removeEventListener('resize', requestProgressUpdate)
+      if (animationFrame !== null) window.cancelAnimationFrame(animationFrame)
+    }
+  }, [])
 
   // Function to format text with bold keywords
   const formatImpactText = (text: string) => {
@@ -1322,41 +1359,63 @@ function App() {
             </p>
             <span>Deva → Cluj-Napoca</span>
           </div>
-          <div className="education-list">
-            {education.map((entry, index) => (
-              <article
-                key={`${entry.period}-${entry.program}`}
-                className={`education-entry ${index === education.length - 1 ? 'education-entry--next' : ''}`}
-              >
-                <div className="education-when">
-                  <span className="education-index">0{index + 1}</span>
-                  <strong>{entry.period}</strong>
-                  <span className="education-status">{entry.status}</span>
-                  <span className="education-result">
-                    <span>{entry.resultLabel}</span>
-                    <strong>{entry.result}</strong>
-                  </span>
-                </div>
-                <div className="education-details">
-                  <span className="education-level">{entry.level}</span>
-                  <h4>{entry.program}</h4>
-                  <p className="education-institution">{entry.institution}</p>
-                  <p className="education-description">{entry.description}</p>
-                  <div className="education-highlights" aria-label={`${entry.program} focus areas`}>
-                    {entry.highlights.map((highlight) => (
-                      <span key={highlight}>{highlight}</span>
-                    ))}
+          <div className="education-timeline-shell" ref={educationTimelineRef}>
+            <div
+              className="education-retro-scrollbar"
+              role="progressbar"
+              aria-label="Education section progress"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={Math.round(educationScrollProgress * 100)}
+            >
+              <span className="education-scroll-button education-scroll-button--up" aria-hidden="true" />
+              <span className="education-scroll-track" aria-hidden="true">
+                <span
+                  className="education-scroll-thumb"
+                  style={{
+                    top: `${educationScrollProgress * 100}%`,
+                    transform: `translateY(-${educationScrollProgress * 100}%)`,
+                  }}
+                />
+              </span>
+              <span className="education-scroll-button education-scroll-button--down" aria-hidden="true" />
+            </div>
+            <div className="education-list">
+              {education.map((entry, index) => (
+                <article
+                  key={`${entry.period}-${entry.program}`}
+                  className={`education-entry ${index === education.length - 1 ? 'education-entry--next' : ''}`}
+                >
+                  <div className="education-when">
+                    <span className="education-index">0{index + 1}</span>
+                    <strong>{entry.period}</strong>
+                    <span className="education-status">{entry.status}</span>
+                    <span className="education-result">
+                      <span>{entry.resultLabel}</span>
+                      <strong>{entry.result}</strong>
+                    </span>
                   </div>
-                  <div className="education-links">
-                    {entry.links.map((link) => (
-                      <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
-                        {link.label} <span aria-hidden="true">↗</span>
-                      </a>
-                    ))}
+                  <div className="education-details">
+                    <span className="education-level">{entry.level}</span>
+                    <h4>{entry.program}</h4>
+                    <p className="education-institution">{entry.institution}</p>
+                    <p className="education-description">{entry.description}</p>
+                    <div className="education-highlights" aria-label={`${entry.program} focus areas`}>
+                      {entry.highlights.map((highlight) => (
+                        <span key={highlight}>{highlight}</span>
+                      ))}
+                    </div>
+                    <div className="education-links">
+                      {entry.links.map((link) => (
+                        <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+                          {link.label} <span aria-hidden="true">↗</span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
