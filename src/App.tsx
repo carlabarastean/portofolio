@@ -1361,14 +1361,13 @@ function App() {
           </div>
           <div className="education-timeline-shell" ref={educationTimelineRef}>
             <div
-              className="education-retro-scrollbar"
+              className="education-scrollbar"
               role="progressbar"
               aria-label="Education section progress"
               aria-valuemin={0}
               aria-valuemax={100}
               aria-valuenow={Math.round(educationScrollProgress * 100)}
             >
-              <span className="education-scroll-button education-scroll-button--up" aria-hidden="true" />
               <span className="education-scroll-track" aria-hidden="true">
                 <span
                   className="education-scroll-thumb"
@@ -1378,7 +1377,6 @@ function App() {
                   }}
                 />
               </span>
-              <span className="education-scroll-button education-scroll-button--down" aria-hidden="true" />
             </div>
             <div className="education-list">
               {education.map((entry, index) => (
