@@ -161,7 +161,7 @@ const education = [
     program: 'Mathematics and Computer Science - Bilingual English',
     institution: 'Colegiul Național "Decebal" · Deva',
     description:
-      'A science-focused education that strengthened my foundations in mathematics, algorithms, programming, logical reasoning, and technical communication in English. This is where technology moved from an interest to a direction I wanted to pursue seriously.',
+      'The bilingual mathematics and computer science curriculum gave me extensive practice in algorithms, programming, logical reasoning, and technical communication in English. During these years, I decided that engineering and technology were worth pursuing seriously.',
     highlights: ['Mathematics', 'Computer Science', 'English'],
     links: [
       { label: 'Official school website', href: 'https://cnd.ro/' },
@@ -188,7 +188,7 @@ const education = [
     program: 'Advanced Process Control',
     institution: 'Technical University of Cluj-Napoca · Faculty of Automation and Computer Science',
     description:
-      'The next step in my control engineering path is this two-year Systems Engineering master. Its curriculum advances from adaptive, optimal, robust, intelligent, nonlinear, and stochastic control to hybrid and embedded systems, dynamic-process automation, research, and applied control projects.',
+      'This two-year Systems Engineering master is the next step in my control engineering path. The curriculum covers adaptive, optimal, robust, intelligent, nonlinear, and stochastic control alongside hybrid and embedded systems, dynamic-process automation, research, and applied control projects.',
     highlights: ['Advanced Control', 'Adaptive & Optimal Control', 'Nonlinear Systems', 'Research'],
     links: [
       { label: 'Official master overview', href: 'https://admitereonline.utcluj.ro/facultatea-de-automatica-si-calculatoare-master/' },
@@ -212,7 +212,7 @@ const projects = [
     category: 'Control Engineering',
     details: {
       overview:
-        'This project follows a nonlinear Segway from its physical state equations to a controlled and observable implementation. I modeled the three-state plant in MATLAB and Simulink, found the upright equilibrium, linearized the dynamics through symbolic Jacobians, and compared the linear approximation with the original nonlinear system.\n\n' +
+        'This project develops a controlled and observable implementation of a nonlinear Segway. I modeled the three-state plant in MATLAB and Simulink, found the upright equilibrium, linearized the physical state equations through symbolic Jacobians, and compared the linear approximation with the original nonlinear system.\n\n' +
         'The work then extends the same plant through continuous and forward-Euler discrete models, state-feedback control, observer design, stochastic estimation, and disturbance reconstruction. I also built an interactive MATLAB interface that switches between open-loop, closed-loop, Luenberger, linear Kalman, and nonlinear EKF scenarios while visualizing the Segway and its states in real time.',
       features: [
         'Three-state nonlinear Segway model with a translational state, body angle, angular rate, and one control input',
@@ -243,7 +243,7 @@ const projects = [
     period: 'November 2025',
     stack: 'MATLAB · Simulink · Process Control · System Identification',
     description:
-      'A hands-on exploration of nonlinear process control using a Festo workstation, from physical modeling and system identification to PI design, cascade control, feedforward compensation, and disturbance rejection.',
+      'A hands-on exploration of nonlinear process control using a Festo workstation. The work covers physical modeling, system identification, PI design, cascade control, feedforward compensation, and disturbance rejection.',
     repository: '',
     color: '#168878',
     year: 2025,
@@ -332,7 +332,7 @@ const projects = [
         'Feature Selection: Used statistical correlation analysis to identify the most relevant predictors, including diet quality, sports activity, snoring frequency, night pain, breathing difficulties, breathing pauses, and thermal discomfort during sleep',
         'Data Preprocessing: Cleaned, normalized, and encoded the questionnaire data before applying SMOTE to balance the target classes',
         'Model Comparison: Trained and evaluated Logistic Regression, Random Forest, LightGBM, XGBoost, CNN, and a StackingClassifier to compare different approaches on the same dataset',
-        'Pipeline Ownership: Handled the full workflow from preprocessing and feature engineering to training, validation, and result analysis',
+        'Pipeline Ownership: Managed preprocessing, feature engineering, training, validation, and result analysis as one complete workflow',
       ],
       results:
         'The best results were obtained with a StackingClassifier, which achieved approximately 91.9% accuracy in classifying sleep quality. A Random Forest Regressor also achieved an R² score of approximately 0.87 for continuous sleep score prediction. The comparative analysis showed that while CNNs performed competitively, the stacking ensemble delivered the strongest overall results for this tabular health-data problem.',
@@ -355,7 +355,7 @@ const projects = [
     category: 'Machine/Deep Learning',
     details: {
       overview:
-        'This project explores the use of AI and EEG signal processing to detect motor intentions from brain activity. Using the PhysioNet Motor Movement/Imagery Dataset, I built a research-oriented pipeline for preprocessing EEG signals, extracting frequency-time features, and training CNN models to classify hand movement intentions.',
+        'This project uses AI and EEG signal processing to detect motor intentions in brain activity. Using the PhysioNet Motor Movement/Imagery Dataset, I built a research-oriented pipeline for preprocessing EEG signals, extracting frequency-time features, and training CNN models to classify hand movement intentions.',
       contributions: [
         'EEG Data Analysis: Processed recordings from the PhysioNet Motor Movement/Imagery Dataset (64 channels, 160 Hz) to extract motor-relevant segments.',
         'Signal Preprocessing: Implemented band-pass (7.5-30 Hz) and notch filtering, channel standardization, artifact removal, and normalization to improve signal quality.',
@@ -543,7 +543,7 @@ const activities = [
     type: 'Robotics / Competition',
     details: {
       overview:
-        "FIRST LEGO League is an international competition for students (ages 9-16) that introduces them to science and technology through real-world challenges. As a Mentor for Team Lego Warriors, I transitioned from a \"builder\" role to a leadership position. I guided a team of younger students through the Robot Game (designing autonomous robots using LEGO Mindstorms EV3) and the Innovation Project, fostering their passion for STEM at an early age.",
+        "FIRST LEGO League is an international competition for students (ages 9-16) that introduces them to science and technology through real-world challenges. I started as a builder for Team Lego Warriors and later took on a mentoring role. I guided a team of younger students through the Robot Game (designing autonomous robots using LEGO Mindstorms EV3) and the Innovation Project, fostering their passion for STEM at an early age.",
       contributions: [
         'Technical Mentorship: Taught students the fundamentals of block-based programming and structural stability using the LEGO Mindstorms EV3 platform. I helped them translate abstract logic into physical robot movements',
         "Strategic Planning: Coordinated the team's competition strategy by analyzing the game field, prioritizing high-value missions, and optimizing the robot's run time (2.5 minutes)",
@@ -572,7 +572,7 @@ const activities = [
     type: 'Volunteering',
     details: {
       overview:
-        'Served as a volunteer with the Red Cross in Deva from 2020 to 2022, contributing to community well-being through various initiatives. This experience provided opportunities to make meaningful contributions while developing essential interpersonal and emergency response skills.',
+        'Served as a volunteer with the Red Cross in Deva between 2020 and 2022, contributing to community well-being through various initiatives. This experience provided opportunities to make meaningful contributions while developing essential interpersonal and emergency response skills.',
       contributions: [
         'Community Service: Contributed to community well-being through various initiatives, focusing on health, safety, and emergency preparedness',
         'First Aid Training: Gained comprehensive skills in first aid, emergency response, and medical assistance',
@@ -603,7 +603,7 @@ const activities = [
     type: 'Volunteering',
     details: {
       overview:
-        'Active member of LEO Club Sarmizegetusa in Deva from 2018 to 2022, where I contributed both as a volunteer and as part of the Coordinator Board, serving as Treasurer. Alongside this leadership role, I also supported projects focused on health initiatives, elderly care, and disability aid. This experience centered on organizing community development programs and educational initiatives.',
+        'Active member of LEO Club Sarmizegetusa in Deva between 2018 and 2022, where I contributed both as a volunteer and as part of the Coordinator Board, serving as Treasurer. Alongside this leadership role, I also supported projects focused on health initiatives, elderly care, and disability aid. This experience centered on organizing community development programs and educational initiatives.',
       contributions: [
         'Coordinator Board Leadership: Served on the Coordinator Board in Deva as Treasurer, helping oversee financial coordination and organizational responsibilities',
         'Project Leadership: Led projects supporting health initiatives, elderly care, and disability aid, coordinating volunteer efforts and managing project logistics',
@@ -1179,9 +1179,9 @@ function App() {
               <h2>Automation and Computer Science Graduate</h2>
               <p className="description">
                 I'm an Automation and Computer Science graduate driven by a simple question:{' '}
-                <span className="highlight-quote">"How does this actually work?"</span> This curiosity took me from
-                building robots in high school to optimizing Electric Vehicle models at Bosch and developing AI-powered
-                apps.
+                <span className="highlight-quote">"How does this actually work?"</span> This curiosity first drew me
+                into high-school robotics. Later, I worked on Electric Vehicle model optimization at Bosch and developed
+                AI-powered apps.
                 <br />
                 <br />
                 I love bridging the gap between complex hardware and user-friendly software. Whether I'm debugging a
@@ -1311,8 +1311,8 @@ function App() {
           </div>
           <div className="education-intro">
             <p>
-              My education has followed one continuous thread - from a strong mathematics and computer science
-              foundation to automation, and now toward advanced process control.
+              Mathematics and computer science shaped my high-school years. Automation became my bachelor's focus,
+              and advanced process control is the next subject I want to study in depth.
             </p>
             <span>Deva → Cluj-Napoca</span>
           </div>
@@ -1834,7 +1834,7 @@ function App() {
               <section className="thesis-section">
                 <div className="thesis-section-label">02 / Workflow</div>
                 <div>
-                  <h3>From symbolic model to validated controller</h3>
+                  <h3>Symbolic modeling and controller validation</h3>
                   <ol className="thesis-workflow">
                     <li>
                       <span>01</span>
@@ -1953,7 +1953,7 @@ which rfbl.analyzeSISO`}</code></pre>
                     Validation covers symbolic analysis, nominal design, closed-loop simulation,
                     nominal-versus-perturbed comparison, Lyapunov checks, LMI prototypes, robust-aware pole
                     selection, a linear L2 indicator and reproducible report generation. The public interface was
-                    audited on examples with relative degrees from 1 to 4, including a state-dependent decoupling
+                    audited on examples with relative degrees 1 through 4, including a state-dependent decoupling
                     term.
                   </p>
                   <p className="thesis-scope-note">
