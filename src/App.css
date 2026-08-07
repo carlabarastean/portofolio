@@ -740,6 +740,30 @@ main > section:not(.hero) {
   text-transform: uppercase;
 }
 
+.education-result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+  margin-top: 0.45rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.education-result > span {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.education-result strong {
+  color: var(--entry-color);
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
 .education-level {
   color: var(--entry-color);
   font-family: var(--mono);

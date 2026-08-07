@@ -158,6 +158,8 @@ const education = [
     level: 'Upper Secondary Education',
     period: '2018 - 2022',
     status: 'Completed',
+    resultLabel: 'Final average',
+    result: '9.52 / 10',
     program: 'Mathematics and Computer Science - Bilingual English',
     institution: 'Colegiul Național "Decebal" · Deva',
     description:
@@ -170,11 +172,13 @@ const education = [
   {
     level: 'Bachelor of Engineering',
     period: '2022 - 2026',
-    status: 'Graduated · 9.25 / 10',
+    status: 'Graduated',
+    resultLabel: 'Final average',
+    result: '9.25 / 10',
     program: 'Automation - Automation and Applied Informatics',
     institution: 'Technical University of Cluj-Napoca · Faculty of Automation and Computer Science',
     description:
-      'A four-year Systems Engineering program connecting control theory with process modeling, electronics, real-time and embedded systems, industrial informatics, and software development. I graduated with a final average of 9.25/10 and developed my bachelor thesis around nonlinear control analysis and feedback linearization in MATLAB.',
+      'A four-year Systems Engineering program connecting control theory with process modeling, electronics, real-time and embedded systems, industrial informatics, and software development. My bachelor thesis focused on nonlinear control analysis and feedback linearization in MATLAB.',
     highlights: ['Control Systems', 'Process Modeling', 'Embedded Systems', 'Applied Informatics'],
     links: [
       { label: 'Faculty overview', href: 'https://ac.utcluj.ro/oferta-educationala.html' },
@@ -185,6 +189,8 @@ const education = [
     level: "Master's Degree",
     period: '2026 - 2028',
     status: 'Starting in 2026',
+    resultLabel: 'Admission average',
+    result: '9.55 / 10',
     program: 'Advanced Process Control',
     institution: 'Technical University of Cluj-Napoca · Faculty of Automation and Computer Science',
     description:
@@ -1326,6 +1332,10 @@ function App() {
                   <span className="education-index">0{index + 1}</span>
                   <strong>{entry.period}</strong>
                   <span className="education-status">{entry.status}</span>
+                  <span className="education-result">
+                    <span>{entry.resultLabel}</span>
+                    <strong>{entry.result}</strong>
+                  </span>
                 </div>
                 <div className="education-details">
                   <span className="education-level">{entry.level}</span>
