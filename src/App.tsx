@@ -657,22 +657,22 @@ const activities = [
 ]
 
 const techStack = [
-  {
-    category: 'Control & Modelling',
-    technologies: ['MATLAB', 'Simulink', 'Control System Toolbox', 'Symbolic Math Toolbox', 'System Identification'],
-  },
-  {
-    category: 'Programming',
-    technologies: ['Python', 'TypeScript', 'JavaScript', 'Java'],
-  },
-  {
-    category: 'AI & Computer Vision',
-    technologies: ['TensorFlow', 'PyTorch', 'OpenCV'],
-  },
-  {
-    category: 'Web & Workflow',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Git', 'Docker'],
-  },
+  'React',
+  'TypeScript',
+  'Node.js',
+  'Express',
+  'Vite',
+  'Tailwind CSS',
+  'Python',
+  'TensorFlow',
+  'PyTorch',
+  'OpenCV',
+  'Docker',
+  'MongoDB',
+  'Git',
+  'GitHub Actions',
+  'MATLAB',
+  'Simulink',
 ]
 
 const projectNoteColors: Record<string, string> = {
@@ -1693,27 +1693,11 @@ function App() {
             <p className="eyebrow">Toolkit</p>
             <h3>Tech Stack</h3>
           </div>
-          <div className="stack-content">
-            <p className="stack-intro">
-              MATLAB and Simulink are at the centre of my engineering work. I also use programming,
-              AI, and web tools when a project needs data processing or a complete interface.
-            </p>
-            <div className="stack-groups">
-              {techStack.map((group, index) => (
-                <article className="stack-group" key={group.category}>
-                  <div className="stack-group-heading">
-                    <span>0{index + 1}</span>
-                    <h4>{group.category}</h4>
-                  </div>
-                  <ul className="stack-tools" aria-label={`${group.category} technologies`}>
-                    {group.technologies.map((technology) => (
-                      <li key={technology}>{technology}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </div>
+          <ul className="stack-list">
+            {techStack.map((tech) => (
+              <li key={tech}>{tech}</li>
+            ))}
+          </ul>
         </section>
 
         <section id="contact" className="contact">
