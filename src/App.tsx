@@ -1716,7 +1716,7 @@ function App() {
             </div>
             <div>
               <h4>Socials</h4>
-              <a href="https://www.linkedin.com/in/your-link" target="_blank" rel="noreferrer">
+              <a href="https://www.linkedin.com/in/carla-barastean-621326269/" target="_blank" rel="noreferrer">
                 LinkedIn
               </a>
               <a href="https://github.com/carlabarastean" target="_blank" rel="noreferrer">
