@@ -439,7 +439,6 @@ const activities = [
         geospatialAudience,
         geospatialSatelliteSlide,
       ],
-      externalLink: 'https://www.linkedin.com/posts/aquagraph_last-week-aquagraph-had-the-opportunity-activity-7520512815691001856-MKVU?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEG4wfkBP0zWGU4BQRyFu4c2lf53CWAXv3E',
     },
   },
   {
@@ -1579,14 +1578,6 @@ function App() {
                 Presented at ICCP 2026 on October 24, 2026. Proceedings publication is forthcoming, so the full
                 paper is not yet linked publicly.
               </p>
-              <div className="research-links">
-                <a href="https://lnkd.in/p/eAxZRmap" target="_blank" rel="noreferrer">
-                  Presentation update <span aria-hidden="true">↗</span>
-                </a>
-                <a href="https://iccp.ro/iccp2026/technical-program/" target="_blank" rel="noreferrer">
-                  ICCP 2026 program <span aria-hidden="true">↗</span>
-                </a>
-              </div>
             </div>
             <button
               className="research-preview"
@@ -1719,12 +1710,15 @@ function App() {
               <p>Cluj-Napoca, Romania</p>
             </div>
             <div>
-              <h4>Socials</h4>
+              <h4>Links</h4>
               <a href="https://www.linkedin.com/in/carla-barastean-621326269/" target="_blank" rel="noreferrer">
                 LinkedIn
               </a>
               <a href="https://github.com/carlabarastean" target="_blank" rel="noreferrer">
                 GitHub
+              </a>
+              <a href="/documents/Carla_Barastean_CV.pdf" target="_blank" rel="noreferrer">
+                Download CV
               </a>
             </div>
           </div>
@@ -2171,16 +2165,6 @@ which rfbl.analyzeSISO`}</code></pre>
                   <h3>Overview</h3>
                 </div>
                 <p className="section-content">{selectedActivity.details.overview}</p>
-                {selectedActivity.details.externalLink && (
-                  <a
-                    className="activity-source-link"
-                    href={selectedActivity.details.externalLink}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    View event update <span aria-hidden="true">↗</span>
-                  </a>
-                )}
               </div>
               <div className="modal-section">
                 <div className="section-title">
