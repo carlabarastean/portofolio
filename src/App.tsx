@@ -4,8 +4,6 @@ import './App.css'
 
 
 import profileGraduationDiploma from './assets/images/profile/graduation-diploma.jpg'
-import profileGraduationCap from './assets/images/profile/graduation-cap.jpg'
-import profileEngineerBadge from './assets/images/profile/engineer-badge.png'
 import redcross1 from './assets/images/redcross1.jpeg'
 import redcross2 from './assets/images/redcross2.jpeg'
 import redcross3 from './assets/images/redcross3.jpeg'
@@ -52,26 +50,12 @@ import cassini1 from './assets/images/cassini/cassini_1.jpeg'
 import cassini2 from './assets/images/cassini/cassini_2.jpeg'
 import cassini3 from './assets/images/cassini/cassini_3.jpeg'
 import cassini4 from './assets/images/cassini/cassini_4.jpeg'
+import geospatialAudience from './assets/images/geospatial/audience-presentation.jpg'
+import geospatialCarlaPresenting from './assets/images/geospatial/carla-presenting-aquagraph.jpg'
+import geospatialSatelliteSlide from './assets/images/geospatial/satellite-data-slide.jpg'
 import researchPaperFirstPage from './assets/images/research/iccp-2026-paper-first-page.png'
 import bachelorThesisCover from './assets/images/research/bachelor-thesis-cover.png'
 
-const profileImages = [
-  {
-    src: profileGraduationDiploma,
-    alt: 'Carla Maria Bărăștean at her graduation ceremony, holding her diploma and a rose',
-    objectPosition: 'center 43%',
-  },
-  {
-    src: profileGraduationCap,
-    alt: 'Carla Maria Bărăștean holding her personalized graduation cap',
-    objectPosition: 'center 42%',
-  },
-  {
-    src: profileEngineerBadge,
-    alt: 'Carla Maria Bărăștean holding her engineer name badge',
-    objectPosition: 'center 36%',
-  },
-]
 // Dynamically import any presentation slide images placed in the cassini/pptx or
 // cassini/pptx_cassini folders. This accepts both locations so you can keep the
 // older folder or the new `pptx_cassini` (higher-quality PNGs) without editing
@@ -130,10 +114,22 @@ const scpcLevelControlImages = Object.values(
 
 const experiences = [
   {
+    role: 'Co-Founder - Earth Observation & Geospatial Systems',
+    company: 'AquaGraph · Early-stage venture · Part-time',
+    period: 'May 2026 - Present',
+    website: 'https://aquagraph.org',
+    details: [
+      'Co-founded a geospatial environmental intelligence platform for monitoring river water quality and pollution risk',
+      'Combine Copernicus satellite imagery with hydrological river-network analysis to connect observed conditions with upstream sources and downstream impact',
+      'Contribute to remote-sensing workflows, technical research, product direction, and communication with scientific and operational audiences',
+      'Developing the platform toward repeatable monitoring and decision support for public authorities, industry, NGOs, and local communities',
+    ],
+  },
+  {
     role: 'Model-Based Software Developer',
     company: 'BOSCH · Cluj-Napoca',
     period: 'July 2024 - Jan 2025',
-    requestFeedback: true,
+    feedbackDocument: '/documents/FeedbackBosch.pdf',
     details: [
       'Modeled an EV drivetrain using six critical components',
       'Implemented Simulink/ASCET models and validated in TPT',
@@ -188,13 +184,13 @@ const education = [
   {
     level: "Master's Degree",
     period: '2026 - 2028',
-    status: 'Starting in 2026',
+    status: 'In progress',
     resultLabel: 'Admission average',
     result: '9.55 / 10',
     program: 'Advanced Process Control',
     institution: 'Technical University of Cluj-Napoca · Faculty of Automation and Computer Science',
     description:
-      'This two-year Systems Engineering master is the next step in my control engineering path. The curriculum covers adaptive, optimal, robust, intelligent, nonlinear, and stochastic control alongside hybrid and embedded systems, dynamic-process automation, research, and applied control projects.',
+      'I am continuing my control engineering studies through this two-year Systems Engineering master. The curriculum covers adaptive, optimal, robust, intelligent, nonlinear, and stochastic control alongside hybrid and embedded systems, dynamic-process automation, research, and applied control projects.',
     highlights: ['Advanced Control', 'Adaptive & Optimal Control', 'Nonlinear Systems', 'Research'],
     links: [
       { label: 'Official master overview', href: 'https://admitereonline.utcluj.ro/facultatea-de-automatica-si-calculatoare-master/' },
@@ -415,6 +411,38 @@ const projects = [
 
 const activities = [
   {
+    id: 'geospatial-bucharest-2026',
+    title: 'AquaGraph at geo-spatial.org Bucharest Seminars',
+    role: 'AquaGraph Presenter',
+    period: 'November 2026',
+    location: 'Bucharest, Romania',
+    description:
+      'Presented AquaGraph and our approach to combining satellite imagery with river-network analysis for water-quality monitoring and pollution-risk assessment.',
+    color: '#7b68c7',
+    year: 2026,
+    type: 'Conference',
+    details: {
+      overview:
+        'I presented AquaGraph at the geo-spatial.org Bucharest Seminars 2026, sharing how Earth Observation data and graph-based river-network analysis can work together in environmental monitoring. The presentation introduced the sensing capabilities of Sentinel-1 and Sentinel-2, our approach to following connectivity along rivers, and the practical need for tools that help identify potential pollution risks earlier.',
+      contributions: [
+        'Presented AquaGraph to a specialist geospatial audience and explained the technical reasoning behind the platform',
+        'Connected Copernicus satellite observations with hydrological network structure and downstream impact analysis',
+        'Discussed how remote sensing can complement field measurements and support wider, repeatable monitoring coverage',
+        'Represented the team in technical conversations with members of the Romanian geospatial community',
+      ],
+      impact:
+        'The event gave AquaGraph direct feedback from geospatial practitioners and created a useful bridge between our research, the platform we are building, and the people who work with Earth Observation data in practice.',
+      skills:
+        'Earth Observation, Remote Sensing, Sentinel-1, Sentinel-2, Geospatial Analysis, Research Communication, Public Speaking',
+      images: [
+        geospatialCarlaPresenting,
+        geospatialAudience,
+        geospatialSatelliteSlide,
+      ],
+      externalLink: 'https://www.linkedin.com/posts/aquagraph_last-week-aquagraph-had-the-opportunity-activity-7520512815691001856-MKVU?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEG4wfkBP0zWGU4BQRyFu4c2lf53CWAXv3E',
+    },
+  },
+  {
     id: 'cassini-aquagraph',
     title: 'CASSINI Hackathon - AquaGraph',
     role: 'Satellite Data Processing Contributor',
@@ -424,7 +452,7 @@ const activities = [
       'Competed in the 11th CASSINI Hackathon: EU Space for Water with AquaGraph and won 3rd place nationally in Romania, which also meant 1st place in the Cluj-Napoca local hub.',
     color: '#38bdf8',
     year: 2026,
-    type: 'Hackathon / Space Data',
+    type: 'Space Data',
     details: {
       overview:
         'I participated in the 11th CASSINI Hackathon: EU Space for Water, a European innovation event where multidisciplinary teams built solutions for major water-related challenges using services such as Copernicus and Galileo. Our team, AquaGraph, competed in the "Tracking and preventing water pollution" category and developed a satellite-based platform for near real-time pollution monitoring in Romanian rivers.',
@@ -458,7 +486,7 @@ const activities = [
       'Invited as a panel speaker at the IEEE 19th SACI Conference, representing the ADAPTED Research Group in discussions on innovation in STEM and academic entrepreneurship.',
     color: '#fbbf24',
     year: 2025,
-    type: 'Conference / Speaking',
+    type: 'Conference',
     details: {
       overview:
         'I was honored to be invited as a panel speaker at the IEEE 19th International Symposium on Applied Computational Intelligence and Informatics (SACI 2025) in Budapest. This opportunity allowed me to represent the ADAPTED Research Group in an international workshop focused on innovation in STEM fields and academic entrepreneurship.',
@@ -488,7 +516,7 @@ const activities = [
       'Built complex competition robots using advanced technologies, applied mathematical and physics concepts, and mentored team members in construction and software development.',
     color: '#f87171',
     year: 2022,
-    type: 'Robotics / Competition',
+    type: 'Robotics',
     details: {
       overview:
         "For three seasons, I was a core member and later a mentor for Team RO060 Decebal Tech, competing in Romania's premier robotics championship. My journey involved building competitive robots from scratch, culminating in significant achievements such as the Control Award (1st Place) and the Finalist Alliance Award (1st Pick) at regional qualifiers. Beyond engineering, I actively engaged with the national robotics community, participating in technical inspections and judging sessions.",
@@ -546,7 +574,7 @@ const activities = [
       'Started as a core team member, then advanced to a technical mentor for Team Lego Warriors. Guided junior students in building autonomous robots with LEGO Mindstorms EV3, focusing on algorithmic logic, structural stability, and competitive strategy.',
         color: '#6ee7b7',
     year: 2020,
-    type: 'Robotics / Competition',
+    type: 'Robotics',
     details: {
       overview:
         "FIRST LEGO League is an international competition for students (ages 9-16) that introduces them to science and technology through real-world challenges. I started as a builder for Team Lego Warriors and later took on a mentoring role. I guided a team of younger students through the Robot Game (designing autonomous robots using LEGO Mindstorms EV3) and the Innovation Project, fostering their passion for STEM at an early age.",
@@ -684,9 +712,9 @@ const projectNoteColors: Record<string, string> = {
 
 const activityNoteColors: Record<string, string> = {
   All: '#96607d',
-  'Hackathon / Space Data': '#26899a',
-  'Conference / Speaking': '#a34f7a',
-  'Robotics / Competition': '#aa6e28',
+  'Space Data': '#26899a',
+  Conference: '#a34f7a',
+  Robotics: '#aa6e28',
   'Academic Competition': '#526bb0',
   Volunteering: '#4f8965',
   'Professional Development': '#835fa6',
@@ -707,10 +735,6 @@ function App() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
   const [selectedActivity, setSelectedActivity] = useState<typeof activities[0] | null>(null)
   const [isThesisOpen, setIsThesisOpen] = useState<boolean>(false)
-  const [isFeedbackRequestOpen, setIsFeedbackRequestOpen] = useState<boolean>(false)
-  const [feedbackRequestStatus, setFeedbackRequestStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
-  const [feedbackRequestError, setFeedbackRequestError] = useState<string>('')
-  const [feedbackFormStartedAt, setFeedbackFormStartedAt] = useState<number>(0)
   const [lightboxImage, setLightboxImage] = useState<string | null>(null)
   const [lightboxImages, setLightboxImages] = useState<string[]>([])
   const [lightboxIndex, setLightboxIndex] = useState<number>(0)
@@ -735,9 +759,6 @@ function App() {
   const projectAutoplayStartTimeoutRef = useRef<number | null>(null)
   const [projectAutoplayUserPaused, setProjectAutoplayUserPaused] = useState<boolean>(false)
   const [isProjectFullscreen, setIsProjectFullscreen] = useState<boolean>(false)
-
-  // Profile image cycling (hero section)
-  const [profileImageIndex, setProfileImageIndex] = useState<number>(0)
 
   // Project filters
   const [projectCategoryFilter, setProjectCategoryFilter] = useState<string>('All')
@@ -831,60 +852,16 @@ function App() {
     })
   }
 
-  const openFeedbackRequest = () => {
-    setFeedbackRequestStatus('idle')
-    setFeedbackRequestError('')
-    setFeedbackFormStartedAt(Date.now())
-    setIsFeedbackRequestOpen(true)
-  }
-
-  const closeFeedbackRequest = () => {
-    if (feedbackRequestStatus === 'submitting') return
-    setIsFeedbackRequestOpen(false)
-  }
-
-  const handleFeedbackRequest = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    const form = event.currentTarget
-    const formData = new FormData(form)
-    const request = {
-      fullName: String(formData.get('fullName') || '').trim(),
-      email: String(formData.get('email') || '').trim(),
-      company: String(formData.get('company') || '').trim(),
-      reason: String(formData.get('reason') || '').trim(),
-      website: String(formData.get('website') || ''),
-      elapsedMs: feedbackFormStartedAt ? Date.now() - feedbackFormStartedAt : 0,
-    }
-
-    setFeedbackRequestStatus('submitting')
-    setFeedbackRequestError('')
-
-    try {
-      const response = await fetch('/api/request-bosch-feedback', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(request),
-      })
-      const responseBody = await response.json().catch(() => ({})) as { error?: string }
-
-      if (!response.ok) {
-        throw new Error(responseBody.error || 'The request could not be sent. Please try again.')
-      }
-
-      form.reset()
-      setFeedbackRequestStatus('success')
-    } catch (error) {
-      setFeedbackRequestError(
-        error instanceof Error ? error.message : 'The request could not be sent. Please try again.'
-      )
-      setFeedbackRequestStatus('error')
-    }
+  const openProject = (project: typeof projects[0]) => {
+    setProjectPreviewIndex(0)
+    setProjectAutoplay(false)
+    setProjectAutoplayUserPaused(false)
+    setSelectedProject(project)
   }
 
   // Block body scroll when modal is open
   useEffect(() => {
-    const isModalOpen = isThesisOpen || isFeedbackRequestOpen || selectedProject !== null || selectedActivity !== null || lightboxImage !== null || previewImages !== null
+    const isModalOpen = isThesisOpen || selectedProject !== null || selectedActivity !== null || lightboxImage !== null || previewImages !== null
     
     if (isModalOpen) {
       document.body.style.overflow = 'hidden'
@@ -896,7 +873,7 @@ function App() {
     return () => {
       document.body.style.overflow = ''
     }
-  }, [isThesisOpen, isFeedbackRequestOpen, selectedProject, selectedActivity, lightboxImage, previewImages])
+  }, [isThesisOpen, selectedProject, selectedActivity, lightboxImage, previewImages])
 
   useEffect(() => {
     if (!isThesisOpen) return
@@ -908,19 +885,6 @@ function App() {
     window.addEventListener('keydown', closeOnEscape)
     return () => window.removeEventListener('keydown', closeOnEscape)
   }, [isThesisOpen])
-
-  useEffect(() => {
-    if (!isFeedbackRequestOpen) return
-
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && feedbackRequestStatus !== 'submitting') {
-        setIsFeedbackRequestOpen(false)
-      }
-    }
-
-    window.addEventListener('keydown', closeOnEscape)
-    return () => window.removeEventListener('keydown', closeOnEscape)
-  }, [isFeedbackRequestOpen, feedbackRequestStatus])
 
   // Swipe handlers for lightbox
   const minSwipeDistance = 50
@@ -965,7 +929,6 @@ function App() {
 
     const slides = selectedActivity?.details.presentationSlides || []
     if (!slides || slides.length === 0) {
-      setActivityAutoplay(false)
       return
     }
 
@@ -995,7 +958,6 @@ function App() {
 
     const slides = selectedProject?.details.images || []
     if (!slides || slides.length === 0) {
-      setProjectAutoplay(false)
       return
     }
 
@@ -1012,12 +974,6 @@ function App() {
       }
     }
   }, [projectAutoplay, selectedProject])
-
-  useEffect(() => {
-    setProjectPreviewIndex(0)
-    setProjectAutoplay(false)
-    setProjectAutoplayUserPaused(false)
-  }, [selectedProject?.id])
 
   // Start project autoplay when project slides section enters view
   useEffect(() => {
@@ -1219,16 +1175,16 @@ function App() {
               <h1>
                 Carla - Maria <span>Bărăștean</span>
               </h1>
-              <h2>Automation and Computer Science Graduate</h2>
+              <h2>Control Engineering & Earth Observation</h2>
               <p className="description">
                 I'm an Automation and Computer Science graduate driven by a simple question:{' '}
-                <span className="highlight-quote">"How does this actually work?"</span> This curiosity first drew me
-                into high-school robotics. Later, I worked on Electric Vehicle model optimization at Bosch and developed
-                AI-powered apps.
+                <span className="highlight-quote">"How does this actually work?"</span> It first pulled me into
+                robotics, then into control systems, nonlinear dynamics, and model-based development.
                 <br />
                 <br />
-                I love bridging the gap between complex hardware and user-friendly software. Whether I'm debugging a
-                Simulink model or perfecting a React component, I'm all about building solutions that matter.
+                I now apply the same engineering mindset to Earth Observation. As an AquaGraph co-founder, I work with
+                Copernicus satellite data and river-network models to explore better ways of monitoring water quality.
+                I enjoy the point where mathematical models, real-world systems, and useful software meet.
                 <br />
                 <br />
                 <span className="highlight-insight">
@@ -1241,26 +1197,22 @@ function App() {
               </button>
               <div className="hero-notes" aria-label="Areas of focus">
                 <span>Control systems</span>
-                <span>Software engineering</span>
-                <span>Applied AI</span>
+                <span>Model-based design</span>
+                <span>Earth Observation</span>
+                <span>Scientific software</span>
               </div>
             </div>
             <div className="hero-visual">
               <svg className="portrait-sparkle" viewBox="0 0 64 64" aria-hidden="true">
                 <path d="M32 3C34.5 20.5 43.5 29.5 61 32C43.5 34.5 34.5 43.5 32 61C29.5 43.5 20.5 34.5 3 32C20.5 29.5 29.5 20.5 32 3Z" />
               </svg>
-              <div className="hero-image-wrapper" style={{ cursor: 'pointer' }} onClick={() => setProfileImageIndex((prev) => (prev + 1) % profileImages.length)}>
-                <img 
-                  src={profileImages[profileImageIndex].src}
-                  alt={profileImages[profileImageIndex].alt}
-                  title="Click to cycle through photos"
-                  style={{ objectPosition: profileImages[profileImageIndex].objectPosition }}
+              <div className="hero-image-wrapper">
+                <img
+                  src={profileGraduationDiploma}
+                  alt="Carla Maria Bărăștean at her graduation ceremony, holding her diploma and a rose"
+                  style={{ objectPosition: 'center 43%' }}
                 />
               </div>
-              <p className="portrait-caption">
-                <span>Portrait / {String(profileImageIndex + 1).padStart(2, '0')}</span>
-                Click the photograph to cycle
-              </p>
             </div>
           </div>
         </section>
@@ -1344,6 +1296,45 @@ function App() {
                 </p>
               </div>
             </div>
+          </div>
+          <div className="engineering-directions" aria-label="Professional directions">
+            <article className="direction-card direction-card-control">
+              <div className="direction-index">01</div>
+              <div>
+                <p className="direction-label">Primary direction</p>
+                <h4>Control Engineering</h4>
+                <p>
+                  Nonlinear control, system modeling, MATLAB and Simulink, state estimation, and model-based
+                  development. I like turning equations into systems that can be simulated, tested, and trusted.
+                </p>
+              </div>
+            </article>
+            <article className="direction-card direction-card-space">
+              <div className="direction-index">02</div>
+              <div>
+                <p className="direction-label">Growing direction</p>
+                <h4>Earth Observation & Space Data</h4>
+                <p>
+                  Satellite imagery, remote sensing, and geospatial analysis for environmental monitoring. Through
+                  AquaGraph, I work on connecting Sentinel observations with river topology and practical decisions.
+                </p>
+                <a href="https://aquagraph.org" target="_blank" rel="noreferrer">
+                  Visit AquaGraph <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+              <svg className="space-doodle" viewBox="0 0 210 150" aria-hidden="true">
+                <path className="space-orbit" d="M18 112C55 145 144 131 189 76C211 49 193 26 157 37" />
+                <path className="space-orbit space-orbit-secondary" d="M26 126C74 92 132 73 198 76" />
+                <g className="space-satellite" transform="translate(61 36) rotate(-18)">
+                  <rect x="31" y="22" width="34" height="28" rx="3" />
+                  <path d="M31 27L10 19L4 37L31 43M65 27L86 19L92 37L65 43" />
+                  <path d="M18 22L12 40M78 22L84 40M48 22V8M41 8H55" />
+                </g>
+                <circle cx="38" cy="116" r="3" />
+                <circle cx="175" cy="54" r="2.4" />
+                <path className="space-star" d="M163 103C164 111 168 115 176 116C168 117 164 121 163 129C162 121 158 117 150 116C158 115 162 111 163 103Z" />
+              </svg>
+            </article>
           </div>
         </section>
 
@@ -1436,14 +1427,18 @@ function App() {
                       <li key={detail}>{detail}</li>
                     ))}
                   </ul>
-                  {exp.requestFeedback && (
-                    <div className="feedback-request-note">
-                      <p>Official experience feedback is available after a brief identity review.</p>
-                      <button type="button" className="feedback-request-trigger" onClick={openFeedbackRequest}>
-                        Request verified feedback
-                      </button>
-                    </div>
-                  )}
+                  <div className="experience-links">
+                    {exp.website && (
+                      <a href={exp.website} target="_blank" rel="noreferrer">
+                        Visit company website <span aria-hidden="true">↗</span>
+                      </a>
+                    )}
+                    {exp.feedbackDocument && (
+                      <a href={exp.feedbackDocument} target="_blank" rel="noreferrer">
+                        View verified feedback <span aria-hidden="true">↗</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </article>
             ))}
@@ -1517,7 +1512,7 @@ function App() {
                 <article
                   key={project.id}
                   className="project-card"
-                  onClick={() => setSelectedProject(project)}
+                  onClick={() => openProject(project)}
                   style={{ '--project-color': project.color } as React.CSSProperties}
                 >
                   <div className="project-meta">
@@ -1551,13 +1546,13 @@ function App() {
           style={{ '--note-color': '#26899a' } as React.CSSProperties}
         >
           <div className="section-header">
-            <p className="eyebrow">Submitted Manuscript</p>
+            <p className="eyebrow">Accepted & Presented</p>
             <h3><span className="heading-annotation">Research</span></h3>
           </div>
           <article className="research-paper">
             <div className="research-copy">
               <div className="research-meta">
-                <span className="research-status">Submitted to ICCP 2026</span>
+                <span className="research-status">Accepted & presented at ICCP 2026</span>
                 <span>Paper / 2026</span>
               </div>
               <h4>
@@ -1581,8 +1576,17 @@ function App() {
                 <span>Controlled evaluation</span>
               </div>
               <p className="research-note">
-                Manuscript submitted for review. The full text is not publicly available.
+                Presented at ICCP 2026 on October 24, 2026. Proceedings publication is forthcoming, so the full
+                paper is not yet linked publicly.
               </p>
+              <div className="research-links">
+                <a href="https://lnkd.in/p/eAxZRmap" target="_blank" rel="noreferrer">
+                  Presentation update <span aria-hidden="true">↗</span>
+                </a>
+                <a href="https://iccp.ro/iccp2026/technical-program/" target="_blank" rel="noreferrer">
+                  ICCP 2026 program <span aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
             <button
               className="research-preview"
@@ -1596,7 +1600,7 @@ function App() {
             >
               <img
                 src={researchPaperFirstPage}
-                alt="First page of the manuscript submitted to ICCP 2026"
+                alt="First page of the paper accepted and presented at ICCP 2026"
               />
               <span className="research-preview-caption">
                 <span>First-page preview</span>
@@ -1726,124 +1730,6 @@ function App() {
           </div>
       </section>
       </main>
-
-      {isFeedbackRequestOpen && (
-        <div className="modal-overlay feedback-request-overlay" onClick={closeFeedbackRequest}>
-          <section
-            className="feedback-request-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="feedback-request-title"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <button
-              type="button"
-              className="feedback-request-close"
-              aria-label="Close feedback request"
-              onClick={closeFeedbackRequest}
-              disabled={feedbackRequestStatus === 'submitting'}
-            >
-              ×
-            </button>
-
-            {feedbackRequestStatus === 'success' ? (
-              <div className="feedback-request-success" aria-live="polite">
-                <p className="eyebrow">Request received</p>
-                <h2 id="feedback-request-title">Thank you.</h2>
-                <p>
-                  I will review your details. If access is approved, the document will be sent automatically to
-                  the email address you provided.
-                </p>
-                <button type="button" className="feedback-request-submit" onClick={closeFeedbackRequest}>
-                  Close
-                </button>
-              </div>
-            ) : (
-              <>
-                <header className="feedback-request-header">
-                  <p className="eyebrow">Verified access</p>
-                  <h2 id="feedback-request-title">Request my Bosch feedback</h2>
-                  <p>
-                    This is an official professional document, so I share it individually rather than publishing
-                    it online. Please leave enough information for me to verify your request.
-                  </p>
-                </header>
-
-                <form className="feedback-request-form" onSubmit={handleFeedbackRequest}>
-                  <div className="feedback-request-field">
-                    <label htmlFor="feedback-full-name">Full name <span>required</span></label>
-                    <input
-                      id="feedback-full-name"
-                      name="fullName"
-                      type="text"
-                      autoComplete="name"
-                      maxLength={100}
-                      required
-                      autoFocus
-                    />
-                  </div>
-
-                  <div className="feedback-request-field">
-                    <label htmlFor="feedback-company">Company or organization <span>required</span></label>
-                    <input
-                      id="feedback-company"
-                      name="company"
-                      type="text"
-                      autoComplete="organization"
-                      maxLength={120}
-                      required
-                    />
-                  </div>
-
-                  <div className="feedback-request-field feedback-request-field-wide">
-                    <label htmlFor="feedback-email">Professional email <span>required</span></label>
-                    <input
-                      id="feedback-email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      inputMode="email"
-                      maxLength={180}
-                      required
-                    />
-                    <small>A company domain helps with verification, but is not mandatory.</small>
-                  </div>
-
-                  <div className="feedback-request-field feedback-request-field-wide">
-                    <label htmlFor="feedback-reason">Why would you like to see it? <span>optional</span></label>
-                    <textarea id="feedback-reason" name="reason" rows={3} maxLength={600} />
-                  </div>
-
-                  <div className="feedback-request-honeypot" aria-hidden="true">
-                    <label htmlFor="feedback-website">Website</label>
-                    <input id="feedback-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
-                  </div>
-
-                  <div className="feedback-request-footer feedback-request-field-wide">
-                    <p>
-                      Your details are used only to review and answer this request. The document is sent only
-                      after I explicitly approve access.
-                    </p>
-                    <button
-                      type="submit"
-                      className="feedback-request-submit"
-                      disabled={feedbackRequestStatus === 'submitting'}
-                    >
-                      {feedbackRequestStatus === 'submitting' ? 'Sending request...' : 'Send request'}
-                    </button>
-                  </div>
-
-                  {feedbackRequestError && (
-                    <p className="feedback-request-error feedback-request-field-wide" role="alert">
-                      {feedbackRequestError}
-                    </p>
-                  )}
-                </form>
-              </>
-            )}
-          </section>
-        </div>
-      )}
 
       {isThesisOpen && (
         <div className="modal-overlay thesis-overlay" onClick={() => setIsThesisOpen(false)}>
@@ -2013,9 +1899,9 @@ which rfbl.analyzeSISO`}</code></pre>
               </section>
 
               <section className="thesis-section thesis-validation">
-                <div className="thesis-section-label">06 / Validation & scope</div>
+                <div className="thesis-section-label">06 / Validation & next development</div>
                 <div>
-                  <h3>Tested behavior, with explicit limits</h3>
+                  <h3>Validated now, designed to keep growing</h3>
                   <p>
                     Validation covers symbolic analysis, nominal design, closed-loop simulation,
                     nominal-versus-perturbed comparison, Lyapunov checks, LMI prototypes, robust-aware pole
@@ -2023,11 +1909,10 @@ which rfbl.analyzeSISO`}</code></pre>
                     audited on examples with relative degrees 1 through 4, including a state-dependent decoupling
                     term.
                   </p>
-                  <p className="thesis-scope-note">
-                    Scope: the current toolbox targets symbolically defined, input-affine nonlinear SISO systems.
-                    LMI and L2 results apply to the linearized dynamics in transformed coordinates and should be
-                    interpreted with the assumptions of the feedback-linearization model, not as an unrestricted
-                    nonlinear robustness guarantee.
+                  <p className="thesis-development-note">
+                    Next development: expand the example library, add richer visual diagnostics, extend automated
+                    controller comparisons, and evolve the package toward broader nonlinear-control workflows while
+                    keeping the API reproducible and easy to inspect.
                   </p>
                 </div>
               </section>
@@ -2286,6 +2171,16 @@ which rfbl.analyzeSISO`}</code></pre>
                   <h3>Overview</h3>
                 </div>
                 <p className="section-content">{selectedActivity.details.overview}</p>
+                {selectedActivity.details.externalLink && (
+                  <a
+                    className="activity-source-link"
+                    href={selectedActivity.details.externalLink}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View event update <span aria-hidden="true">↗</span>
+                  </a>
+                )}
               </div>
               <div className="modal-section">
                 <div className="section-title">

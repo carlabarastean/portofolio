@@ -287,6 +287,10 @@ main > section:not(.hero) {
   background: var(--yellow);
 }
 
+.hero-notes span:nth-child(4)::before {
+  background: var(--cobalt);
+}
+
 .hero-visual {
   position: relative;
   width: 100%;
@@ -584,6 +588,17 @@ main > section:not(.hero) {
   font-family: var(--mono);
   font-size: 0.66rem;
   line-height: 1.6;
+}
+
+.research-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.8rem;
+  margin-top: 1.4rem;
+}
+
+.research-links a {
+  color: var(--research-color);
 }
 
 .research-preview {
@@ -1118,6 +1133,153 @@ main > section:not(.hero) {
   transform: translateY(-50%);
 }
 
+.engineering-directions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+}
+
+.direction-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 1.25rem;
+  min-height: 18rem;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  overflow: hidden;
+  background: rgba(255, 248, 236, 0.52);
+  border: 1px solid var(--line);
+}
+
+.direction-card-control {
+  border-top: 4px solid var(--cobalt);
+}
+
+.direction-card-space {
+  padding-right: clamp(7.5rem, 14vw, 11rem);
+  border-top: 4px solid #26899a;
+}
+
+.direction-index,
+.direction-label {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.direction-card-control .direction-index,
+.direction-card-control .direction-label {
+  color: var(--cobalt);
+}
+
+.direction-card-space .direction-index,
+.direction-card-space .direction-label {
+  color: #267f90;
+}
+
+.direction-label {
+  margin: 0 0 1rem;
+}
+
+.direction-card h4 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3.4vw, 2.7rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+}
+
+.direction-card p:not(.direction-label) {
+  max-width: 36rem;
+  margin: 1.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.direction-card a,
+.experience-links a,
+.research-links a,
+.activity-source-link {
+  position: relative;
+  width: fit-content;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.direction-card a {
+  display: inline-flex;
+  gap: 0.45rem;
+  margin-top: 1.5rem;
+}
+
+.direction-card a::after,
+.experience-links a::after,
+.research-links a::after,
+.activity-source-link::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -0.3rem;
+  left: 0;
+  border-top: 2px solid currentColor;
+  opacity: 0.55;
+  transform: rotate(-0.8deg) scaleX(0.82);
+  transform-origin: left;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.direction-card a:hover::after,
+.experience-links a:hover::after,
+.research-links a:hover::after,
+.activity-source-link:hover::after {
+  opacity: 1;
+  transform: rotate(-0.8deg) scaleX(1);
+}
+
+.space-doodle {
+  position: absolute;
+  right: 0.4rem;
+  bottom: 0.2rem;
+  width: clamp(7rem, 15vw, 10.5rem);
+  height: auto;
+  color: #26899a;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.space-orbit,
+.space-satellite rect,
+.space-satellite path,
+.space-star {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.space-orbit-secondary {
+  stroke-dasharray: 2 8;
+}
+
+.space-doodle circle {
+  fill: currentColor;
+}
+
+.space-star {
+  fill: rgba(38, 137, 154, 0.08);
+}
+
 .experience-list {
   border-top: 1px solid var(--ink);
 }
@@ -1187,6 +1349,20 @@ main > section:not(.hero) {
   display: grid;
   gap: 1.8rem;
   align-content: start;
+}
+
+.experience-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+}
+
+.experience-links:empty {
+  display: none;
+}
+
+.experience-links a {
+  color: var(--accent-dark);
 }
 
 .feedback-request-note {
@@ -2373,15 +2549,22 @@ footer {
   font-size: 0.65rem;
 }
 
-.thesis-scope-note {
+.thesis-development-note {
   margin-top: 1.5rem !important;
   padding: 1.1rem 1.2rem;
   color: var(--ink) !important;
-  background: rgba(240, 6, 127, 0.06);
-  border-left: 3px solid var(--accent-dark);
+  background: rgba(38, 137, 154, 0.07);
+  border-left: 3px solid #26899a;
   font-family: var(--mono);
   font-size: 0.66rem;
   line-height: 1.65 !important;
+}
+
+.activity-source-link {
+  display: inline-flex;
+  gap: 0.45rem;
+  margin-top: 1.35rem;
+  color: var(--project-color);
 }
 
 .modal-close,
@@ -2962,6 +3145,10 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .engineering-directions {
+    grid-template-columns: 1fr;
+  }
+
   .research-paper {
     grid-template-columns: 1fr;
   }
@@ -3068,6 +3255,23 @@ footer {
     align-items: flex-start;
     flex-direction: column;
     gap: 0.7rem;
+  }
+
+  .direction-card {
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .direction-card-space {
+    padding-right: 1.5rem;
+    padding-bottom: 6rem;
+  }
+
+  .space-doodle {
+    right: 0.25rem;
+    bottom: 0.15rem;
+    width: 6.5rem;
+    opacity: 0.45;
   }
 
   .education-intro {
