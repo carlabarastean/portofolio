@@ -194,7 +194,7 @@ const education = [
     highlights: ['Advanced Control', 'Adaptive & Optimal Control', 'Nonlinear Systems', 'Research'],
     links: [
       { label: 'Official master overview', href: 'https://admitereonline.utcluj.ro/facultatea-de-automatica-si-calculatoare-master/' },
-      { label: 'CAP curriculum', href: 'https://ac.utcluj.ro/planuri-de-invatamant.html' },
+      { label: 'Master curriculum', href: 'https://ac.utcluj.ro/planuri-de-invatamant.html' },
     ],
   },
 ]
