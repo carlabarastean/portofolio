@@ -1322,10 +1322,14 @@ main > section:not(.hero) {
 }
 
 .experience-card li::before {
-  content: '-';
+  content: '';
   position: absolute;
-  left: 0;
-  color: var(--accent);
+  top: 0.68em;
+  left: 0.1rem;
+  width: 0.34rem;
+  height: 0.34rem;
+  background: var(--accent);
+  border-radius: 50%;
 }
 
 .experience-details {

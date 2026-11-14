@@ -114,37 +114,37 @@ const scpcLevelControlImages = Object.values(
 
 const experiences = [
   {
-    role: 'Co-Founder - Earth Observation & Geospatial Systems',
-    company: 'AquaGraph · Early-stage venture · Part-time',
-    period: 'May 2026 - Present',
+    role: 'AquaGraph Co-founder',
+    company: 'Earth Observation and water quality · Part time',
+    period: 'May 2026 to Present',
     website: 'https://aquagraph.org',
     details: [
-      'Co-founded a geospatial environmental intelligence platform for monitoring river water quality and pollution risk',
-      'Combine Copernicus satellite imagery with hydrological river-network analysis to connect observed conditions with upstream sources and downstream impact',
-      'Contribute to remote-sensing workflows, technical research, product direction, and communication with scientific and operational audiences',
-      'Developing the platform toward repeatable monitoring and decision support for public authorities, industry, NGOs, and local communities',
+      'I helped start AquaGraph to explore how satellite imagery and river networks can support water quality monitoring',
+      'My work combines Copernicus data with hydrological graph analysis to connect visible conditions with what may be happening upstream',
+      'I contribute to the research, product decisions, and the way we explain the platform to both technical and nontechnical audiences',
+      'We are shaping AquaGraph into a practical monitoring tool for authorities, industry, NGOs, and local communities',
     ],
   },
   {
-    role: 'Model-Based Software Developer',
+    role: 'Model Based Software Developer',
     company: 'BOSCH · Cluj-Napoca',
-    period: 'July 2024 - Jan 2025',
+    period: 'July 2024 to January 2025',
     feedbackDocument: '/documents/FeedbackBosch.pdf',
     details: [
-      'Modeled an EV drivetrain using six critical components',
-      'Implemented Simulink/ASCET models and validated in TPT',
-      'Generated production-grade C code for STM32 controllers',
-      'Designed a monitoring GUI for system insights',
+      'Built an electric vehicle drivetrain model around six core components',
+      'Worked with Simulink, ASCET, and TPT to implement the model and check its behavior',
+      'Generated C code for STM32 controllers as part of the model based workflow',
+      'Created a monitoring interface that made the system easier to inspect during testing',
     ],
   },
   {
     role: 'Computer and Network Operator',
     company: 'ALBALUX COM',
-    period: '2019 - Present',
+    period: '2019 to Present',
     details: [
-      'Installed and configured hardware for SMEs',
-      'Diagnosed network and workstation issues',
-      'Delivered on-site and remote technical support',
+      'Set up computers, peripherals, and networks for small businesses',
+      'Tracked down hardware, software, and connectivity problems',
+      'Helped clients on site and remotely when everyday technical issues appeared',
     ],
   },
 ]
@@ -152,11 +152,11 @@ const experiences = [
 const education = [
   {
     level: 'Upper Secondary Education',
-    period: '2018 - 2022',
+    period: '2018 to 2022',
     status: 'Completed',
     resultLabel: 'Final average',
     result: '9.52 / 10',
-    program: 'Mathematics and Computer Science - Bilingual English',
+    program: 'Mathematics and Computer Science: Bilingual English',
     institution: 'Colegiul Național "Decebal" · Deva',
     description:
       'The bilingual mathematics and computer science curriculum gave me extensive practice in algorithms, programming, logical reasoning, and technical communication in English. During these years, I decided that engineering and technology were worth pursuing seriously.',
@@ -167,11 +167,11 @@ const education = [
   },
   {
     level: 'Bachelor of Engineering',
-    period: '2022 - 2026',
+    period: '2022 to 2026',
     status: 'Graduated',
     resultLabel: 'Final average',
     result: '9.25 / 10',
-    program: 'Automation - Automation and Applied Informatics',
+    program: 'Automation: Automation and Applied Informatics',
     institution: 'Technical University of Cluj-Napoca · Faculty of Automation and Computer Science',
     description:
       'A four-year Systems Engineering program connecting control theory with process modeling, electronics, real-time and embedded systems, industrial informatics, and software development. My bachelor thesis focused on nonlinear control analysis and feedback linearization in MATLAB.',
@@ -183,7 +183,7 @@ const education = [
   },
   {
     level: "Master's Degree",
-    period: '2026 - 2028',
+    period: '2026 to 2028',
     status: 'In progress',
     resultLabel: 'Admission average',
     result: '9.55 / 10',
@@ -232,7 +232,7 @@ const projects = [
         'Interactive Engineering UI: Built a MATLAB application for switching scenarios and observing the plant, control effort, estimated states, and estimation error live',
       ],
       results:
-        'The complete code executes end-to-end in MATLAB R2025a. Both controllability and observability matrices have full rank 3. With Ts = 0.02 s, the designed controller places the closed-loop poles at approximately 0.9231, 0.9418, and 0.9608 - all inside the discrete-time unit circle. Near the equilibrium, the controlled linear and nonlinear responses closely overlap and track the reference. The experiments also make the model limits visible: the linear Luenberger observer converges on the linear plant but degrades under strong nonlinear mismatch, while the Kalman and EKF implementations provide noise-aware estimates and the augmented observer reconstructs piecewise-constant disturbances after each transient.',
+        'The complete code executes from start to finish in MATLAB R2025a. Both controllability and observability matrices have full rank 3. With Ts = 0.02 s, the designed controller places the closed-loop poles at approximately 0.9231, 0.9418, and 0.9608; all remain inside the discrete-time unit circle. Near the equilibrium, the controlled linear and nonlinear responses closely overlap and track the reference. The experiments also make the model limits visible: the linear Luenberger observer converges on the linear plant but degrades under strong nonlinear mismatch, while the Kalman and EKF implementations provide noise-aware estimates and the augmented observer reconstructs piecewise-constant disturbances after each transient.',
       techStack:
         'MATLAB, Simulink, Symbolic Math Toolbox, Control System Toolbox, State-Space Modeling, Pole Placement, Luenberger Observer, Kalman Filter, Extended Kalman Filter, Unknown-Input Observer, GUI Development',
       images: segwayControlImages,
@@ -240,7 +240,7 @@ const projects = [
   },
   {
     id: 'festo-level-control',
-    title: 'Festo Level Control - Cascade & Feedforward',
+    title: 'Festo Level Control: Cascade & Feedforward',
     subtitle: 'Nonlinear process modeling, PI control and disturbance rejection',
     period: 'November 2025',
     stack: 'MATLAB · Simulink · Process Control · System Identification',
@@ -252,7 +252,7 @@ const projects = [
     category: 'Control Engineering',
     details: {
       overview:
-        'I developed this project to deepen my understanding of how advanced control strategies behave on a realistic nonlinear process rather than an idealized textbook plant. The system controls the water level in the primary tank of a Festo process workstation. Its manipulated variable is the amplifier command voltage that drives the DC motor and centrifugal pump, while the controlled output is the tank level measured through the sensor chain. I built the nonlinear plant from its physical subsystems - amplifier, motor, pump, pump efficiency, rotor current, hydraulic filter, reservoir, and level sensor - instead of replacing the entire process with a single transfer function.\n\n' +
+        'I developed this project to deepen my understanding of how advanced control strategies behave on a realistic nonlinear process rather than an idealized textbook plant. The system controls the water level in the primary tank of a Festo process workstation. Its manipulated variable is the amplifier command voltage that drives the DC motor and centrifugal pump, while the controlled output is the tank level measured through the sensor chain. I built the nonlinear plant from its physical subsystems: amplifier, motor, pump, pump efficiency, rotor current, hydraulic filter, reservoir, and level sensor. This preserved the process structure instead of replacing the entire plant with a single transfer function.\n\n' +
         'For the simulation study, I configured the model with C = 5.15, u0 = 4.1 V, k = 0.0210, and a 332.5 cm² tank area. After identifying first-order models around the operating point, I designed PI controllers for the inner flow loop and outer level loop, then compared classical feedback, feedforward, cascade, and combined cascade + feedforward structures.',
       features: [
         'Nonlinear component-level model of the Festo hydraulic workstation in Simulink',
@@ -271,7 +271,7 @@ const projects = [
         'Simulation Validation: Compared full responses and detailed tracking-error behavior using signals logged directly from the Simulink models',
       ],
       results:
-        'All five relevant Simulink models execute end-to-end in MATLAB R2025a with the selected parameter set. The inner-loop identification moves the pump flow from 18.4679 to approximately 30.025 cm³/s over a 6 s simulation, while the external loop captures the much slower tank dynamics from 12.8493 to approximately 17.6547 cm. Both the cascade and combined cascade + feedforward structures converge to the 17.6625 cm reference. When inlet and outlet disturbances are introduced, the combined structure rejects them with only small transient level deviations - on the order of 10^-3 cm in the simulated scenario - before returning toward zero tracking error.',
+        'All five relevant Simulink models execute from start to finish in MATLAB R2025a with the selected parameter set. The inner-loop identification moves the pump flow from 18.4679 to approximately 30.025 cm³/s over a 6 s simulation, while the external loop captures the much slower tank dynamics from 12.8493 to approximately 17.6547 cm. Both the cascade and combined cascade + feedforward structures converge to the 17.6625 cm reference. When inlet and outlet disturbances are introduced, the combined structure rejects them with only small transient level deviations, on the order of 10^-3 cm in the simulated scenario, before returning toward zero tracking error.',
       techStack:
         'MATLAB, Simulink, Control System Toolbox, Nonlinear Process Modeling, System Identification, PI Control, Cascade Control, Feedforward Control, Disturbance Rejection, Hydraulic Process Control',
       images: scpcLevelControlImages,
@@ -279,7 +279,7 @@ const projects = [
   },
   {
     id: 'budgetly',
-    title: 'BudgetLy - Collaborative Finance Platform',
+    title: 'BudgetLy: Collaborative Finance Platform',
     subtitle: 'Full-Stack Finance Platform with Shared Payments',
     period: 'May 2025',
     stack: 'React · Node.js · MongoDB · Express',
@@ -367,14 +367,14 @@ const projects = [
         'Evaluation & Analysis: Measured accuracy, precision, recall, F1-score, and confusion matrices to analyze class separability and model generalization.'
       ],
       results:
-        'Implemented a full EEG-to-decision pipeline and identified that simpler CNNs generalized better on noisy EEG data. The best model reached ~60.3% accuracy; analysis showed stronger detection of the Rest class and challenges separating left vs right movement - insights useful for future hybrid or larger-scale models.',
+        'Implemented a full EEG-to-decision pipeline and identified that simpler CNNs generalized better on noisy EEG data. The best model reached ~60.3% accuracy; analysis showed stronger detection of the Rest class and challenges separating left versus right movement. These findings are useful for future hybrid or larger-scale models.',
       techStack: 'Python, PyTorch, NumPy, SciPy, STFT, Welch, Spectrograms, Jupyter Notebook',
       images: [eeg1, eeg2, eeg3, eeg4, eeg5, eeg6, eeg7, eeg8],
     },
   },
   {
     id: 'ecosort',
-    title: 'EcoSort - Intelligent Waste Recognition & Sorting System',
+    title: 'EcoSort: Intelligent Waste Recognition & Sorting System',
     subtitle: 'Real-time Waste Classification with EfficientNetB3 & OpenCV',
     period: 'January 2026',
     stack: 'Python · TensorFlow · OpenCV · Arduino',
@@ -443,7 +443,7 @@ const activities = [
   },
   {
     id: 'cassini-aquagraph',
-    title: 'CASSINI Hackathon - AquaGraph',
+    title: 'CASSINI Hackathon: AquaGraph',
     role: 'Satellite Data Processing Contributor',
     period: 'April 2026',
     location: 'Cluj-Napoca, Romania',
@@ -477,7 +477,7 @@ const activities = [
   },
   {
     id: 'ieee-saci',
-    title: 'Panel Speaker - IEEE SACI 2025',
+    title: 'Panel Speaker at IEEE SACI 2025',
     role: 'International Conference Speaker',
     period: 'May 2025',
     location: 'Budapest, Hungary',
@@ -507,9 +507,9 @@ const activities = [
   },
   {
     id: 'robotics-ftc',
-    title: 'FIRST Tech Challenge - RO060 Decebal Tech',
+    title: 'FIRST Tech Challenge: RO060 Decebal Tech',
     role: 'Team Member & Mentor',
-    period: '2019-2022',
+    period: '2019 to 2022',
     location: 'Deva, Romania',
     description:
       'Built complex competition robots using advanced technologies, applied mathematical and physics concepts, and mentored team members in construction and software development.',
@@ -521,7 +521,7 @@ const activities = [
         "For three seasons, I was a core member and later a mentor for Team RO060 Decebal Tech, competing in Romania's premier robotics championship. My journey involved building competitive robots from scratch, culminating in significant achievements such as the Control Award (1st Place) and the Finalist Alliance Award (1st Pick) at regional qualifiers. Beyond engineering, I actively engaged with the national robotics community, participating in technical inspections and judging sessions.",
       contributions: [
         'Software & Control: Developed Java algorithms for autonomous navigation and sensor integration, which was instrumental in winning the Control Award',
-        "The \"All-Rounder\" Phase: As a member of a startup team, I initially juggled multiple roles - Programming, Mechanics, and PR - ensuring the team's survival and growth during its early stages",
+        "The \"All Rounder\" Phase: As a member of a new team, I initially moved between programming, mechanics, and PR so we could keep making progress during our first stages",
         'Competition Strategy: Led the team through high-pressure Technical Inspections and presented our engineering portfolio to expert judges, defending our technical choices',
       ],
       impact:
@@ -567,7 +567,7 @@ const activities = [
     id: 'lego-league',
     title: 'FIRST Lego League',
     role: 'Team Member & Mentor',
-    period: '2018-2020',
+    period: '2018 to 2020',
     location: 'Deva, Romania',
     description:
       'Started as a core team member, then advanced to a technical mentor for Team Lego Warriors. Guided junior students in building autonomous robots with LEGO Mindstorms EV3, focusing on algorithmic logic, structural stability, and competitive strategy.',
@@ -596,7 +596,7 @@ const activities = [
     id: 'red-cross',
     title: 'Red Cross Volunteer',
     role: 'Volunteer Member',
-    period: '2020-2022',
+    period: '2020 to 2022',
     location: 'Deva, Romania',
     description:
       'Contributed to community well-being through various initiatives, developing skills in first aid, counseling, and emergency response.',
@@ -627,27 +627,25 @@ const activities = [
     id: 'leo-club',
     title: 'LEO Club Sarmizegetusa',
     role: 'Volunteer Member & Treasurer',
-    period: '2018-2022',
+    period: '2018 to 2022',
     location: 'Deva, Romania',
     description:
-      'Served as an active volunteer and member of the Coordinator Board in Deva as Treasurer, while also leading projects supporting health initiatives, elderly care, and disability aid.',
+      'I joined local volunteering projects and later served as Treasurer. One of the experiences that stayed with me most was helping organize the 2019 Special Olympics Romania National Games in Deva.',
     color: '#a78bfa',
     year: 2022,
     type: 'Volunteering',
     details: {
       overview:
-        'Active member of LEO Club Sarmizegetusa in Deva between 2018 and 2022, where I contributed both as a volunteer and as part of the Coordinator Board, serving as Treasurer. Alongside this leadership role, I also supported projects focused on health initiatives, elderly care, and disability aid. This experience centered on organizing community development programs and educational initiatives.',
+        'LEO Club was where I first learned what community work looks like in practice. I joined local volunteering initiatives, helped organize events, and later took responsibility for the club\'s finances as Treasurer. In 2019, I also volunteered through LEO at the Special Olympics Romania National Games in Deva, an experience that had a lasting impact on me.',
       contributions: [
-        'Coordinator Board Leadership: Served on the Coordinator Board in Deva as Treasurer, helping oversee financial coordination and organizational responsibilities',
-        'Project Leadership: Led projects supporting health initiatives, elderly care, and disability aid, coordinating volunteer efforts and managing project logistics',
-        'Community Development: Organized initiatives focused on education, skills development, and healthy living within the community',
-        'Event Organization: Planned and executed community events, managing logistics, coordination, and volunteer participation',
-        'Youth Engagement: Facilitated programs that engaged young people in community service and leadership development',
-        'Health & Wellness Programs: Organized initiatives promoting healthy living, education, and community wellness',
+        'Helped organize local projects related to health, older adults, and support for people with disabilities',
+        'Served as Treasurer and kept track of the club\'s financial responsibilities',
+        'Volunteered at the 2019 Special Olympics Romania National Games in Deva and supported the organization of the event',
+        'Worked with other volunteers to plan activities and respond to practical needs during community events',
       ],
       impact:
-        'Leading community projects enhanced my organizational and leadership capabilities. This experience taught me the importance of giving back to the community and provided valuable skills in project management, event organization, and working with diverse groups of people.',
-      skills: 'Project Leadership, Event Organization, Community Development, Volunteer Coordination, Youth Engagement, Program Management',
+        'The club taught me how much care and coordination sit behind a good community event. Special Olympics was especially meaningful because it showed me how volunteering can create a place where people feel supported, visible, and included.',
+      skills: 'Community Volunteering, Event Organization, Teamwork, Financial Responsibility, Communication',
       images: [
         leo1,
         leo2,
@@ -1172,7 +1170,7 @@ function App() {
             <div className="hero-text">
               <p className="eyebrow">Portfolio · 2026</p>
               <h1>
-                Carla - Maria <span>Bărăștean</span>
+                Carla Maria <span>Bărăștean</span>
               </h1>
               <h2>Control Engineering & Earth Observation</h2>
               <p className="description">
@@ -1188,7 +1186,7 @@ function App() {
                 <br />
                 <span className="highlight-insight">
                   And if there's one thing I've discovered, it's that the correct solution is usually the simplest
-                  one - even if I occasionally try the hard way first.
+                  one, even if I occasionally try the hard way first.
                 </span>
               </p>
               <button onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
@@ -1226,7 +1224,7 @@ function App() {
               <p>
                 My journey in technology began in Brad, Hunedoara, where I completed my primary and middle school
                 education. Driven by a growing passion for programming and personal development, I made the decision to
-                pursue my high school studies in Deva, Hunedoara - a choice that marked the beginning of my commitment to
+                pursue my high school studies in Deva, Hunedoara. That choice marked the beginning of my commitment to
                 following my interests, regardless of distance.
               </p>
               <p>
@@ -1565,7 +1563,7 @@ function App() {
                 A controlled study of whether physical river-flow topology adds predictive value beyond
                 geographic proximity in satellite-based water-quality monitoring. Using matched connectivity
                 baselines across national-scale river networks in Germany and Romania, the work examines where
-                flow-aware graph structure is informative - especially for dynamic temporal behavior - and where
+                flow aware graph structure is informative, especially for dynamic temporal behavior, and where
                 proximity alone is sufficient.
               </p>
               <div className="research-tags" aria-label="Research topics">
@@ -1770,7 +1768,7 @@ function App() {
                   <h3>A reusable nonlinear-control workflow</h3>
                   <p>
                     I designed and implemented a modular MATLAB toolbox that takes a symbolic, input-affine
-                    nonlinear SISO model - <code>x_dot = f(x) + g(x)u, y = h(x)</code> - through analysis,
+                    nonlinear SISO model, <code>x_dot = f(x) + g(x)u, y = h(x)</code>, through analysis,
                     nominal controller design, closed-loop simulation, perturbation diagnostics and numerical
                     validation. The goal was to turn feedback-linearization calculations that are manageable by
                     hand only for small examples into a reproducible software workflow.
@@ -2017,7 +2015,7 @@ which rfbl.analyzeSISO`}</code></pre>
                                 </div>
                                 <img
                                   src={selectedProject.details.images[projectPreviewIndex]}
-                                  alt={`${selectedProject.title} - ${usesTechnicalProjectPreview(selectedProject.id) ? 'Technical view' : 'Slide'} ${projectPreviewIndex + 1}`}
+                                  alt={`${selectedProject.title}: ${usesTechnicalProjectPreview(selectedProject.id) ? 'Technical view' : 'Slide'} ${projectPreviewIndex + 1}`}
                                 />
                                 <div className="gallery-overlay">
                                   <span>{projectAutoplay ? 'Playing...' : 'Click to play'}</span>
@@ -2072,7 +2070,7 @@ which rfbl.analyzeSISO`}</code></pre>
                                 >
                                   <img
                                     src={image}
-                                    alt={`${selectedProject.title} - ${
+                                    alt={`${selectedProject.title}: ${
                                       (selectedProject.id === 'sleep-ai' || selectedProject.id === 'eeg-bci') ? 'Slide' :
                                       selectedProject.id === 'budgetly' ? 'Screenshot' :
                                       'Image'
@@ -2233,7 +2231,7 @@ which rfbl.analyzeSISO`}</code></pre>
                       </div>
                       <img
                         src={selectedActivity.details.presentationSlides[activityPreviewIndex]}
-                        alt={`${selectedActivity.title} - Slide ${activityPreviewIndex + 1}`}
+                        alt={`${selectedActivity.title}: Slide ${activityPreviewIndex + 1}`}
                       />
                       <div className="gallery-overlay">
                         <span>{activityAutoplay ? 'Playing...' : 'Click to play'}</span>
@@ -2261,7 +2259,7 @@ which rfbl.analyzeSISO`}</code></pre>
                           setLightboxImage(image)
                         }}
                       >
-                        <img src={image} alt={`${selectedActivity.title} - Image ${idx + 1}`} />
+                        <img src={image} alt={`${selectedActivity.title}: Image ${idx + 1}`} />
                         <div className="gallery-overlay">
                           <span>Click to enlarge</span>
                         </div>
@@ -2440,7 +2438,7 @@ which rfbl.analyzeSISO`}</code></pre>
       )}
 
       <footer>
-        <p>© {new Date().getFullYear()} Carla - Maria Bărăștean. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Carla Maria Bărăștean. All rights reserved.</p>
       </footer>
     </div>
   )
