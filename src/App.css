@@ -1263,6 +1263,56 @@ main > section:not(.hero) {
   fill: rgba(38, 137, 154, 0.08);
 }
 
+.control-doodle {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.35rem;
+  width: clamp(7rem, 14vw, 10rem);
+  height: auto;
+  color: var(--cobalt);
+  opacity: 0.68;
+  pointer-events: none;
+}
+
+.control-target,
+.control-pendulum,
+.control-cart,
+.control-force,
+.control-angle,
+.control-spark,
+.control-weight,
+.control-pivot,
+.control-wheel {
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.control-target {
+  fill: none;
+  stroke-dasharray: 3 7;
+  opacity: 0.55;
+}
+
+.control-pendulum,
+.control-cart,
+.control-force,
+.control-angle {
+  fill: none;
+}
+
+.control-weight,
+.control-pivot,
+.control-wheel {
+  fill: rgba(64, 84, 216, 0.09);
+}
+
+.control-spark {
+  fill: rgba(64, 84, 216, 0.08);
+}
+
 .experience-list {
   border-top: 1px solid var(--ink);
 }
@@ -3247,7 +3297,12 @@ footer {
     padding-bottom: 6rem;
   }
 
-  .space-doodle {
+  .direction-card-control {
+    padding-bottom: 6rem;
+  }
+
+  .space-doodle,
+  .control-doodle {
     right: 0.25rem;
     bottom: 0.15rem;
     width: 6.5rem;

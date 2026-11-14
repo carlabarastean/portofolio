@@ -1305,6 +1305,18 @@ function App() {
                   development. I like turning equations into systems that can be simulated, tested, and trusted.
                 </p>
               </div>
+              <svg className="control-doodle" viewBox="0 0 210 150" aria-hidden="true">
+                <path className="control-target" d="M111 18V99" />
+                <path className="control-pendulum" d="M111 99L133 29" />
+                <circle className="control-weight" cx="133" cy="29" r="8" />
+                <circle className="control-pivot" cx="111" cy="99" r="4" />
+                <path className="control-cart" d="M68 98H151V125H68Z" />
+                <circle className="control-wheel" cx="87" cy="132" r="7" />
+                <circle className="control-wheel" cx="133" cy="132" r="7" />
+                <path className="control-force" d="M32 112H62M53 104L62 112L53 120" />
+                <path className="control-angle" d="M112 51C116 41 123 35 131 32M121 31L131 32L127 41" />
+                <path className="control-spark" d="M171 62C172 70 176 74 184 75C176 76 172 80 171 88C170 80 166 76 158 75C166 74 170 70 171 62Z" />
+              </svg>
             </article>
             <article className="direction-card direction-card-space">
               <div className="direction-index">02</div>
